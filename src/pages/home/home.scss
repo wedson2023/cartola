@@ -1,0 +1,44 @@
+page-home {
+    .item-md ion-avatar img{
+        border-radius: 0 !important;
+    }
+
+    .nome_liga {
+        display: block;
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    .escudo_liga {
+        margin: 10px auto;
+        width: 50%;
+    }
+
+    .descricao_liga, .num_participantes {
+        display: block;
+        text-align: center;
+    }
+
+    ion-slides {
+        position: absolute;
+        z-index:999999;
+        height: 100%;
+        width: 100%;
+    }
+
+    .destaques {
+        margin-top: 15px;
+    }
+
+    .trofeu {
+        color: #ffcc00;
+    }
+
+    .filtro {       
+        width: 95%;
+        margin: 10px;
+        padding: 10px 5px;
+        box-sizing: border-box;
+        border: solid thin #ccc;
+    }
+}

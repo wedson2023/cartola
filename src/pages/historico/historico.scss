@@ -1,0 +1,32 @@
+page-historico {
+    .nome, .ano, .pontuacao {
+        display: block;
+        text-align: center;
+    }
+
+    .foto {
+        margin: 15px auto;
+        width: 50%;
+        border-radius: 50%; 
+    }
+
+    ion-card-content.formulario {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .rodada {
+        width: 77%;
+        padding: 10px 1%;
+        margin: 1%;
+    }
+        
+    .col-20 {
+        width: 20%;
+        padding: 10px 1%;
+        margin: 1% 0;
+        background: cornflowerblue;
+        color: #fff;
+    } 
+    
+}
