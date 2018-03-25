@@ -14,6 +14,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RegulamentoPage } from '../pages/regulamento/regulamento';
 import { HistoricoPage } from '../pages/historico/historico';
 import { DestaquesPage } from '../pages/destaques/destaques';
+import { PartidasPage } from '../pages/partidas/partidas';
+import { MercadoPage } from '../pages/mercado/mercado';
+import { StatusJogadorPipe } from '../pipes/status-jogador/status-jogador';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { DestaquesPage } from '../pages/destaques/destaques';
     PosicaoJogadorPipe,
     DestaquesPage,
     RegulamentoPage,
-    HistoricoPage
+    HistoricoPage,
+    PartidasPage,
+    MercadoPage,
+    StatusJogadorPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,9 @@ import { DestaquesPage } from '../pages/destaques/destaques';
     ParciaisJogadoresPage,
     DestaquesPage,
     RegulamentoPage,
-    HistoricoPage
+    HistoricoPage,
+    PartidasPage,
+    MercadoPage
   ],
   providers: [
     StatusBar,

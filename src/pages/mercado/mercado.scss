@@ -1,0 +1,23 @@
+page-mercado {
+    ion-card-content{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    img.escudo{
+        width: 45px;
+        height: 45px;
+    }
+
+    div{
+        display: flex; 
+        flex-direction: column; 
+    }
+
+    img.status{
+        width: 20px;
+        height: 20px;
+        display: block;
+        margin: auto;
+    }
+}

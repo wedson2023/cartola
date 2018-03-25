@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mercado</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-card *ngFor="let atleta of atletas">          
+        <ion-card-content> 
+          <img class="escudo" [src]="atleta.clube.escudos['45x45']">
+          <div>
+            <strong>{{ atleta.apelido }}</strong>
+            <span>{{ atleta.posicao.abreviacao + ' - Jogos: ' + atleta.jogos_num }}</span>
+          </div>
+          <div>
+            <span>Méd.: {{ atleta.media_num | number : '1.1-2' }}</span>
+            <span>Últ.: {{ '' }}</span>
+          </div>
+          <div>
+            <span></span>
+            <span>C$ {{ atleta.variacao_num | number : '1.1-2' }}</span>
+          </div>
+          <div>
+              <span><img class="status" [src]="atleta.status_id | statusJogador" /></span>
+              <strong>C$ {{ atleta.preco_num | number : '1.1-2' }}</strong>
+          </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

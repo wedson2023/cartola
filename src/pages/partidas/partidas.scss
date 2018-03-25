@@ -1,0 +1,22 @@
+page-partidas {
+    div{
+        display: flex;
+        justify-content: space-between
+    }
+
+    div img{
+        width: 20%;
+        height: 20%;
+    }
+
+    strong{
+        line-height: 70px;
+        font-size: 1.2em;
+    }
+
+    p, time{
+        color : #666666;
+        display: block;
+        text-align: center;
+    }
+}

@@ -6,6 +6,7 @@ import { LoadingController } from 'ionic-angular';
 
 import { ModalController } from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
+import { PartidasPage } from '../partidas/partidas';
 
 @Component({
   selector: 'page-home',
@@ -59,6 +60,14 @@ export class HomePage {
   )   
   {
     
+  }
+
+  abrePartidas(){
+    this.HttpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=partidas').subscribe(response => {
+        let modal = this.ModalController.create(PartidasPage, { data : response });
+        modal.present();
+    })   
+   
   }
 
   historico(time){

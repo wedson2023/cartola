@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
@@ -14,7 +14,6 @@ export class DestaquesPage {
   atletas;
 
   constructor(
-    public navCtrl: NavController,
     public HttpClient: HttpClient,
     public loadingCtrl: LoadingController
   )   
