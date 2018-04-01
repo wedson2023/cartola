@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pesquisar times</ion-title>
+  </ion-navbar>
+  <ion-searchbar (keyup)="pesquisar($event, time)" [(ngModel)]="time" placeholder="Pesquisar time"></ion-searchbar>
+</ion-header>
+<ion-content>
+  <p class="mensagem" [hidden]="times">Pesquisa por seu nome ou nome do time</p>
+    <ion-list padding-right>
+          <ion-item *ngFor="let time of times">
+            <ion-avatar item-start>
+               <img [src]="time.url_escudo_png">
+            </ion-avatar>
+            <h2>{{ time.nome }}</h2>
+            <p>{{ time.nome_cartola }}</p>
+            <p></p>            
+          </ion-item> 
+      </ion-list>
+</ion-content>

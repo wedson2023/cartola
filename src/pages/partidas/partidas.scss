@@ -1,20 +1,22 @@
 page-partidas {
-    div{
+    ion-card-content{
         display: flex;
         justify-content: space-between
     }
+    
 
     div img{
-        width: 20%;
-        height: 20%;
+        width: 45px;
+        height: 45px;
+        margin: 10px 0
     }
 
     strong{
-        line-height: 70px;
         font-size: 1.2em;
+        display: block;
     }
 
-    p, time{
+   div{
         color : #666666;
         display: block;
         text-align: center;

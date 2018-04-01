@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pesquisar ligas</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="lista_favoritos()">
+          <ion-icon style="color: gold" name="star"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-searchbar (keyup)="pesquisar($event, liga)" [(ngModel)]="liga" placeholder="Pesquisar liga"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+    <p class="mensagem" [hidden]="ligas">Pesquisa por nome da liga</p>
+    <ion-list padding-right>
+        <ion-item-sliding *ngFor="let liga of ligas">
+          <ion-item (click)="lista_times(liga.slug)">
+            <ion-avatar item-start>
+              <img [src]="liga.imagem">
+            </ion-avatar>
+            <h2>{{ liga.nome }}</h2>
+            <p>{{ liga.descricao }}</p>
+            <p>{{ (liga.quantidade_times || 0) }} Times</p>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button style="padding:25px; background: #fff;" ><ion-icon (click)="marcar_favorito(liga)" [ngClass]="liga.favorito" name="star"></ion-icon></button>
+          </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

@@ -5,8 +5,8 @@
         <ion-icon class="trofeu" name="trophy"></ion-icon>
         <span class="destaque_time">{{ data.rodada.time }}</span>
         <h3 class="nome">Parabéns {{ data.rodada.nome }}</h3>
-        <img class="destaque_escudo" [src]="data.rodada.escudo" />
-        <h6>{{ data.rodada.pontos | number : '1.1-2' }} Pontos</h6>
+        <img class="destaque_escudo" [src]="data.rodada.escudo ? data.rodada.escudo : './assets/imgs/cartola.png'" />
+        <h6>{{ (data.rodada.pontos || 0) | number : '1.1-2' }} Pontos</h6>
         <h2>Campeão da rodada {{ data.rodada.rodada_id }}</h2>
       </ion-slide>
     
@@ -14,8 +14,8 @@
         <ion-icon class="trofeu" name="color-wand"></ion-icon>
         <span class="destaque_time">{{ data.lanterninha.time }}</span>
         <h3 class="nome">Parabéns {{ data.lanterninha.nome }}</h3>
-        <img class="destaque_escudo" [src]="data.lanterninha.escudo" />
-        <h6>{{ data.lanterninha.pontos | number : '1.1-2' }} Pontos</h6>
+        <img class="destaque_escudo" [src]="data.lanterninha.escudo ? data.lanterninha.escudo : './assets/imgs/cartola.png'" />
+        <h6>{{ (data.lanterninha.pontos || 0) | number : '1.1-2' }} Pontos</h6>
         <h2>Lanterninha da rodada {{ data.lanterninha.rodada_id }}</h2>
       </ion-slide>
     
@@ -23,8 +23,8 @@
         <ion-icon class="trofeu" name="logo-usd"></ion-icon>
         <span class="destaque_time">{{ data.patrimonio.time }}</span>
         <h3 class="nome">Parabéns {{ data.patrimonio.nome }}</h3>
-        <img class="destaque_escudo" [src]="data.patrimonio.escudo" />
-        <h6>{{ data.patrimonio.pontos | number : '1.1-2' }} Cartoletas</h6>
+        <img class="destaque_escudo" [src]="data.patrimonio.escudo ? data.patrimonio.escudo : './assets/imgs/cartola.png'" />
+        <h6>{{ (data.patrimonio.pontos || 0) | number : '1.1-2' }} Cartoletas</h6>
         <h2>Mais rico do campeonato</h2>
       </ion-slide>
     
@@ -32,8 +32,8 @@
         <ion-icon class="trofeu" name="trophy"></ion-icon>
         <span class="destaque_time">{{ data.mes.time }}</span>
         <h3 class="nome">Parabéns {{ data.mes.nome }}</h3>
-        <img class="destaque_escudo" [src]="data.mes.escudo" />
-        <h6>{{ data.mes.pontos | number : '1.1-2' }} Pontos</h6>
+        <img class="destaque_escudo" [src]="data.mes.escudo ? data.mes.escudo : './assets/imgs/cartola.png'" />
+        <h6>{{ (data.mes.pontos || 0) | number : '1.1-2' }} Pontos</h6>
         <h2>Melhor do mês atual</h2>
       </ion-slide>    
     
@@ -41,8 +41,8 @@
         <ion-icon class="trofeu" name="trophy"></ion-icon>
         <span class="destaque_time">{{ data.turno.time }}</span>
         <h3 class="nome">Parabéns {{ data.turno.nome }}</h3>
-        <img class="destaque_escudo" [src]="data.turno.escudo" />
-        <h6>{{ data.turno.pontos | number : '1.1-2' }} Pontos</h6>
+        <img class="destaque_escudo" [src]="data.turno.escudo ? data.turno.escudo : './assets/imgs/cartola.png'" />
+        <h6>{{ (data.turno.pontos || 0) | number : '1.1-2' }} Pontos</h6>
         <h2>Melhor do turno atual</h2>
       </ion-slide>
     </ion-slides>

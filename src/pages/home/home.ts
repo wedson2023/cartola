@@ -7,6 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
 import { PartidasPage } from '../partidas/partidas';
+import { HttpProvider } from '../../providers/http/http';
 
 @Component({
   selector: 'page-home',
@@ -56,14 +57,15 @@ export class HomePage {
     public navCtrl: NavController,
     public HttpClient: HttpClient,
     public loadingCtrl: LoadingController,
-    public ModalController: ModalController
+    public ModalController: ModalController,
+    private http:HttpProvider
   )   
   {
     
   }
 
   abrePartidas(){
-    this.HttpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=partidas').subscribe(response => {
+    this.http.getApi('partidas/1').subscribe(response => {
         let modal = this.ModalController.create(PartidasPage, { data : response });
         modal.present();
     })   
@@ -140,7 +142,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.HttpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=liga').subscribe(response => {
+     this.http.getApi('auth/liga/campeoes-agrestina').subscribe(response => {
       let resposta = JSON.parse(JSON.stringify(response));
 
         this.times = resposta.times;
@@ -148,7 +150,7 @@ export class HomePage {
         this.liga = resposta.liga.nome;
         this.descricao = resposta.liga.descricao;
         this.escudo = resposta.liga.url_flamula_png;
-        this.num_participantes = resposta.liga.total_times_liga;
+        this.num_participantes = resposta.times.length;
 
       if(resposta.destaques !== undefined)
       {

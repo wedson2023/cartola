@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
+import { HttpProvider } from '../../providers/http/http';
 
 @IonicPage()
 @Component({
@@ -11,22 +11,27 @@ import { LoadingController } from 'ionic-angular';
 })
 export class MercadoPage {
 
-  public atletas:object;
-  private response;
+  public atletas;
 
-  constructor(private HttpClient: HttpClient, private LoadingController: LoadingController) {
+  constructor(
+    private http: HttpProvider,
+    private LoadingController: LoadingController
+  ) 
+  {
   }
 
   ionViewDidLoad() {
     let loading = this.LoadingController.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.HttpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=mercado').subscribe(response => {
-        this.atletas = response.atletas;
-        for(let atleta of response.atletas)
+    this.http.getApi('atletas/mercado').subscribe(response => {
+        let resposta = JSON.parse(JSON.stringify(response));
+        
+        this.atletas = resposta.atletas.sort((a,b) => a.preco_num > b.preco_num ? -1 : 1);
+        for(let atleta of resposta.atletas)
         {
-          atleta.clube = response.clubes[atleta.clube_id];
-          atleta.posicao = response.posicoes[atleta.posicao_id];
+          atleta.clube = resposta.clubes[atleta.clube_id];
+          atleta.posicao = resposta.posicoes[atleta.posicao_id];
         }
         console.log(this.atletas);
         loading.dismiss();

@@ -26,8 +26,7 @@ export class PartidasPage {
       partida.casa = this.data.clubes[partida.clube_casa_id];
       partida.visitante = this.data.clubes[partida.clube_visitante_id];
     }
-    console.log(this.data);
-    this.partidas = this.data.partidas;
+    this.partidas = this.data.partidas.sort((a,b) => a.partida_data > b.partida_data ? 1 : -1);;
   }
 
 }

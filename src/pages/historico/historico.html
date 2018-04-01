@@ -3,28 +3,24 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>historico</ion-title>
+    <ion-title>Histórico</ion-title>
   </ion-navbar>
+  <select (ngModelChange)="buscar(time, rodada)" [(ngModel)]="rodada" name="rodada" class="rodada">
+      <option value="Selecione a rodada"></option>
+      <option [value]="val" *ngFor="let val of rodadas">{{ val + 'ª Rodada' }}</option>
+  </select>
 </ion-header>
 
 <ion-content>
-  <ion-card>    
-      <ion-card-content class="formulario">
-          <select [(ngModel)]="rodada" name="rodada" class="rodada">
-            <option [value]="val" *ngFor="let val of rodadas">{{ val + 'ª Rodada' }}</option>
-          </select>
-          <button (click)="buscar(time, rodada)" class="col-20">Buscar</button>
-      </ion-card-content> 
-    </ion-card>
     <ion-card>    
         <ion-card-content [hidden]="!data">
           <strong class="nome">{{ nome }}</strong>
-          <span class="ano">Participa desde {{ ano }}</span>
+          <!-- <span class="ano">Participa desde {{ ano }}</span> -->
           <img class="foto" src="{{ foto_perfil }}" alt="">
-          <span class="pontuacao">Sua pontuação: {{ pontos }}</span>
+          <!-- <span class="pontuacao">Sua pontuação: {{ pontos }}</span> -->
         </ion-card-content> 
     </ion-card>
-    <ion-card>    
+    <!-- <ion-card>    
         <ion-card-content [hidden]="!data">
             <ion-list>
                 <ion-item *ngFor="let atleta of atletas">
@@ -37,5 +33,5 @@
                 </ion-item>
               </ion-list>
         </ion-card-content> 
-    </ion-card>    
+    </ion-card>     -->
 </ion-content>

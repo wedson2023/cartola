@@ -32,50 +32,50 @@ export class HistoricoPage {
     public loadingCtrl: LoadingController
   ) 
   {
-  console.log(this.navParams.get('rodada_id'), this.navParams.get('time'));
+    console.log(this.navParams.get('rodada_id'), this.navParams.get('time'));
     this.times = this.navParams.get('time');
   }
 
   buscar(){
-    console.log(this.times);
-      let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    // console.log(this.times);
+    //   let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
       
-        loading.present();
-          this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=time&time=' + this.times).subscribe(response => {
-          let time = JSON.parse(JSON.stringify(response));
-        console.log(time);
-          if(time.length)
-          {
-            this.nome = time[0].nome;
-            this.foto_perfil = time[0].foto_perfil;            
-            this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=rodada&slug=' + time[0].slug + '&rodada=' + this.rodada).subscribe(response => {
-                let rodada = JSON.parse(JSON.stringify(response));
-                this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=clubes').subscribe(clubes => {
-                for(let x in rodada.atletas)
-                {
-                  for(let i in clubes)
-                  {                     
-                    if(clubes[i].id == rodada.atletas[x].clube_id)
-                    {
-                    rodada.atletas[x].escudo = clubes[i].escudos;
-                    }
-                  }
-                }
-                console.log(rodada);
-                this.data = rodada;
-                this.ano = rodada.time.temporada_inicial;
-                this.pontos = rodada.pontos;
-                this.atletas = rodada.atletas;
-                loading.dismiss();  
-              })   
-              })
-          }
-          else 
-          {
-            loading.dismiss();
-            alert('Nome de time não encontrado!');              
-          }          
-          })
+    //     loading.present();
+    //       this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=time&time=' + this.times).subscribe(response => {
+    //       let time = JSON.parse(JSON.stringify(response));
+    //     console.log(time);
+    //       if(time.length)
+    //       {
+    //         this.nome = time[0].nome;
+    //         this.foto_perfil = time[0].foto_perfil;            
+    //         this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=rodada&slug=' + time[0].slug + '&rodada=' + this.rodada).subscribe(response => {
+    //             let rodada = JSON.parse(JSON.stringify(response));
+    //             this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=clubes').subscribe(clubes => {
+    //             for(let x in rodada.atletas)
+    //             {
+    //               for(let i in clubes)
+    //               {                     
+    //                 if(clubes[i].id == rodada.atletas[x].clube_id)
+    //                 {
+    //                 rodada.atletas[x].escudo = clubes[i].escudos;
+    //                 }
+    //               }
+    //             }
+    //             console.log(rodada);
+    //             this.data = rodada;
+    //             this.ano = rodada.time.temporada_inicial;
+    //             this.pontos = rodada.pontos;
+    //             this.atletas = rodada.atletas;
+    //             loading.dismiss();  
+    //           })   
+    //           })
+    //       }
+    //       else 
+    //       {
+    //         loading.dismiss();
+    //         alert('Nome de time não encontrado!');              
+    //       }          
+    //       })
   }
 
   ionViewDidLoad() { 

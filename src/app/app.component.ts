@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { RegulamentoPage } from '../pages/regulamento/regulamento';
 import { DestaquesPage } from '../pages/destaques/destaques';
 import { MercadoPage } from '../pages/mercado/mercado';
+import { TimesPage } from '../pages/times/times';
+import { LigasPage } from '../pages/ligas/ligas';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +16,7 @@ import { MercadoPage } from '../pages/mercado/mercado';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = MercadoPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,6 +27,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Destaques', component: DestaquesPage },  
       { title: 'Mercado', component: MercadoPage },  
+      { title: 'Times', component: TimesPage },   
+      { title: 'Ligas', component: LigasPage },   
       { title: 'Regulamento', component: RegulamentoPage }     
     ]
   }

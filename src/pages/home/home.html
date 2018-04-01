@@ -21,7 +21,7 @@
               <button (click)="abreModalDestaque()" class="destaques" ion-button full>Destaques</button>
             </ion-card-content>    
           </ion-card>
-          <select class="filtro" (change)="selecionaFiltrar(filtro)" [(ngModel)]="filtro">
+          <select [hidden]="!escudo" class="filtro" (change)="selecionaFiltrar(filtro)" [(ngModel)]="filtro">
             <option value="campeonato">Campeonato</option>
             <option value="rodada">Rodada</option>
             <option value="patrimonio">Patrimônio</option>
@@ -34,21 +34,22 @@
                 <ion-avatar item-start>
                   <img [src]="time.url_escudo_png">
                 </ion-avatar>
-                <h2><!-- (filtro === 'campeonato' ? time.ranking.campeonato : 
-                    (filtro === 'rodada' ? time.ranking.rodada :
-                    (filtro === 'patrimonio' ? time.ranking.patrimonio : 
-                    (filtro === 'mes' ? time.ranking.mes : time.ranking.turno )))) + 'º ' + -->                  
-                  {{                     
+                <h2>
+                  {{
+                    (filtro === 'campeonato' ? (time.ranking.campeonato || 1) : 
+                    (filtro === 'rodada' ? (time.ranking.rodada || 1) :
+                    (filtro === 'patrimonio' ? (time.ranking.patrimonio || 1)  : 
+                    (filtro === 'mes' ? (time.ranking.mes || 1) : (time.ranking.turno || 1))))) + 'º ' + 
                     time.nome 
                   }}
                 </h2>
                 <p>{{ time.nome_cartola }}</p>
                 <p>            
                   {{ 
-                    (filtro === 'campeonato' ? (time.pontos.campeonato | number : '1.1-2') : 
-                    (filtro === 'rodada' ? (time.pontos.rodada | number : '1.1-2') :
-                    (filtro === 'patrimonio' ? time.patrimonio + ' Cartoletas' : 
-                    (filtro === 'mes' ? (time.pontos.mes | number : '1.1-2') : (time.pontos.turno | number : '1.1-2') )))) 
+                    (filtro === 'campeonato' ? ((time.pontos.campeonato || 0) | number : '1.1-2') : 
+                    (filtro === 'rodada' ? ((time.pontos.rodada || 0) | number : '1.1-2') :
+                    (filtro === 'patrimonio' ? (time.patrimonio || 0) + ' Cartoletas' : 
+                    (filtro === 'mes' ? ((time.pontos.mes || 0) | number : '1.1-2') : (time.pontos.turno | number : '1.1-2') )))) 
                   }}
                 </p>
                 <ion-icon *ngIf="time.ranking.campeonato <= 5" class="trofeu" name="trophy" item-end></ion-icon>

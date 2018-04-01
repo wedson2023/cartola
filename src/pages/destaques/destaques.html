@@ -1,5 +1,4 @@
-<ion-header>
-
+<ion-header [hidden]="esconder">
   <ion-navbar>
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -8,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content id="screenshot" padding>
   <ion-list>
     <ion-item *ngFor="let atleta of atletas">
       <ion-avatar item-start>

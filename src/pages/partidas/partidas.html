@@ -1,13 +1,15 @@
 <ion-content>
     <ion-card *ngFor="let partida of partidas">          
       <ion-card-content> 
-        <p>{{ partida.local }}</p>
+        <span>{{ partida.clube_casa_posicao + 'º' }}</span>        
+        <img [src]="partida.casa.escudos['45x45']" >
         <div>
-          <img [src]="partida.casa.escudos['60x60']" >
-          <strong>X</strong>        
-          <img [src]="partida.visitante.escudos['60x60']" >
-        </div>   
-        <time>{{ partida.partida_data | date : 'dd/MM/yyyy HH:mm' }}</time>
+          <p>{{ partida.local }}</p>
+          <strong>X</strong>               
+          <time>{{ partida.partida_data | date : 'dd/MM/yyyy HH:mm' }}</time>
+        </div>
+        <img [src]="partida.visitante.escudos['45x45']" >  
+        <span>{{ partida.clube_visitante_posicao + 'º' }}</span>
       </ion-card-content>
     </ion-card>
 </ion-content>

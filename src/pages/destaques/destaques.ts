@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-
-import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
+import { HttpProvider } from '../../providers/http/http';
 
 @IonicPage()
 @Component({
@@ -14,7 +13,7 @@ export class DestaquesPage {
   atletas;
 
   constructor(
-    public HttpClient: HttpClient,
+    private http: HttpProvider,
     public loadingCtrl: LoadingController
   )   
   {
@@ -24,7 +23,7 @@ export class DestaquesPage {
   ionViewDidLoad() {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
-    this.HttpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=destaques').subscribe(response => {
+    this.http.getApi('mercado/destaques').subscribe(response => {
       this.atletas = JSON.parse(JSON.stringify(response));
       loading.dismiss();
     })
