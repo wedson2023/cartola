@@ -2,11 +2,63 @@ page-mercado {
     ion-card-content{        
         display: flex;
         justify-content: space-between;
+        padding: 10px 7px !important;
+        align-items: center;        
+    }
+
+    div.scouts{
+        padding: 0 10px 10px 10px;
+    }
+
+    div.scouts span{
+        text-align: center;
+    }
+
+    div.scouts li:first-child{
+        border-bottom: solid thin #f1f1f1;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+
+    div.scouts ul li{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    span, strong{
+        font-size: 0.8em;
+    }
+
+    span.confronto{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;        
+    }
+
+    span.confronto img{
+        width: 18px;
+    }
+
+    span.confronto strong{
+        margin: 0 3px;
+    }
+
+    strong.apelido{
+        white-space: nowrap; 
+        width: 95px; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    span.posicao{
+        text-transform: uppercase;        
+        margin-top: 2px;
     }
 
     img.escudo{
-        width: 45px;
-        height: 45px;
+        width: 30px;
+        height: 30px;
     }
 
     div{

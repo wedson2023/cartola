@@ -9,6 +9,7 @@ import { DestaquesPage } from '../pages/destaques/destaques';
 import { MercadoPage } from '../pages/mercado/mercado';
 import { TimesPage } from '../pages/times/times';
 import { LigasPage } from '../pages/ligas/ligas';
+import { PremiacaoPage } from '../pages/premiacao/premiacao';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,6 +30,7 @@ export class MyApp {
       { title: 'Mercado', component: MercadoPage },  
       { title: 'Times', component: TimesPage },   
       { title: 'Ligas', component: LigasPage },   
+      { title: 'Premiação', component: PremiacaoPage },   
       { title: 'Regulamento', component: RegulamentoPage }     
     ]
   }

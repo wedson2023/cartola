@@ -1,16 +1,16 @@
 <ion-header>
-        <ion-navbar>
-          <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
-          <ion-title>Home</ion-title>
-          <ion-buttons end>
-            <button ion-button icon-only (click)="abrePartidas()">
-              <ion-icon name="football"></ion-icon>
-            </button>
-          </ion-buttons>
-        </ion-navbar>
-      </ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="abrePartidas()">
+        <ion-icon name="football"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
       <ion-content>    
         <ion-card [hidden]="!escudo">     
             <ion-card-content>
@@ -46,12 +46,14 @@
                 <p>{{ time.nome_cartola }}</p>
                 <p>            
                   {{ 
-                    (filtro === 'campeonato' ? ((time.pontos.campeonato || 0) | number : '1.1-2') : 
-                    (filtro === 'rodada' ? ((time.pontos.rodada || 0) | number : '1.1-2') :
+                    (filtro === 'campeonato' ? ((time.pontos.campeonato || 0) | number : '1.2-2') : 
+                    (filtro === 'rodada' ? ((time.pontos.rodada || 0) | number : '1.2-2') :
                     (filtro === 'patrimonio' ? (time.patrimonio || 0) + ' Cartoletas' : 
-                    (filtro === 'mes' ? ((time.pontos.mes || 0) | number : '1.1-2') : (time.pontos.turno | number : '1.1-2') )))) 
+                    (filtro === 'mes' ? ((time.pontos.mes || 0) | number : '1.2-2') : (time.pontos.turno | number : '1.1-2') )))) 
                   }}
+                  <img class="assinante" [hidden]="!time.assinante" src="https://cartolafc.globo.com/dist/3.3.3/img/selo-cartoleiro-pro.svg" alt="">
                 </p>
+                
                 <ion-icon *ngIf="time.ranking.campeonato <= 5" class="trofeu" name="trophy" item-end></ion-icon>
               </ion-item>
               <ion-item-options side="right">

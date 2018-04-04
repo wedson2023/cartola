@@ -5,29 +5,59 @@
     </button>
     <ion-title>Mercado</ion-title>
   </ion-navbar>
-  <ion-searchbar placeholder="Pesquisar atleta"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="pesquisar" placeholder="Pesquisar atleta"></ion-searchbar>
 </ion-header>
 
 <ion-content>  
-    <ion-card *ngFor="let atleta of atletas">          
+    <ion-card (click)="abrir_scouts(atleta)" *ngFor="let atleta of atletas | filter:pesquisar">          
         <ion-card-content> 
-          <img class="escudo" [src]="atleta.clube.escudos['45x45']">
+          <img class="escudo" [src]="atleta.clube.escudos['30x30']">
           <div>
-            <strong>{{ atleta.apelido }}</strong>
-            <span>{{ atleta.posicao.abreviacao + ' - Jogos: ' + atleta.jogos_num }}</span>
+            <strong class="apelido">{{ atleta.apelido }}</strong>
+            <span class="posicao">{{ atleta.posicao.abreviacao + ' - Jogos: ' + atleta.jogos_num }}</span>
           </div>
           <div>
-            <span>Méd.: {{ atleta.media_num | number : '1.1-2' }}</span>
-            <span>Últ.: {{ '' }}</span>
+            <span><strong>Méd.:</strong> {{ atleta.media_num | number : '1.2-2' }}</span>
+            <span><strong>Últ.:</strong> {{ atleta.pontos_num | number : '1.2-2' }}</span>
           </div>
           <div>
-            <span></span>
-            <span>C$ {{ atleta.variacao_num | number : '1.1-2' }}</span>
+            <span class="confronto">
+              <img [src]="atleta.confronto.url_escudo_casa"> <strong>x</strong> <img [src]="atleta.confronto.url_escudo_visitante">
+            </span>
+            <span>C$ {{ atleta.variacao_num | number : '1.2-2' }}</span>
           </div>
           <div>
               <span><img class="status" [src]="atleta.status_id | statusJogador" /></span>
-              <strong>C$ {{ atleta.preco_num | number : '1.1-2' }}</strong>
+              <strong>C$ {{ atleta.preco_num | number : '1.2-2' }}</strong>
           </div>
         </ion-card-content>
+        <div [hidden]="!atleta.abrir_scouts" class="scouts">
+          <ul>
+            <li>
+              <strong>ATAQUE: </strong>
+              <span>FS<br>0</span>
+              <span>PE<br>0</span>
+              <span>A<br>0</span>
+              <span>FT<br>0</span>
+              <span>FD<br>0</span>
+              <span>FF<br>0</span>
+              <span>G<br>0</span>
+              <span>I<br>0</span>
+              <span>PP<br>0</span>
+            </li>
+            <li>
+                <strong>DEFESA: </strong>
+                <span>FS<br>0</span>
+                <span>PE<br>0</span>
+                <span>A<br>0</span>
+                <span>FT<br>0</span>
+                <span>FD<br>0</span>
+                <span>FF<br>0</span>
+                <span>G<br>0</span>
+                <span>I<br>0</span>
+                <span>PP<br>0</span>
+            </li>
+          </ul>
+        </div>
     </ion-card>
 </ion-content>

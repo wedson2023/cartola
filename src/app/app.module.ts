@@ -23,6 +23,9 @@ import { HttpProvider } from '../providers/http/http';
 import { TimesPage } from '../pages/times/times';
 import { LigasPage } from '../pages/ligas/ligas';
 import { TimesLigaPage } from '../pages/times-liga/times-liga';
+import { FilterPipe } from '../pipes/filter/filter';
+import { IconMenuPipe } from '../pipes/icon-menu/icon-menu';
+import { PremiacaoPage } from '../pages/premiacao/premiacao';
 
 @NgModule({
   declarations: [
@@ -37,8 +40,12 @@ import { TimesLigaPage } from '../pages/times-liga/times-liga';
     MercadoPage,
     TimesPage,
     LigasPage,
+    PremiacaoPage,
     StatusJogadorPipe,
-    TimesLigaPage
+    TimesLigaPage,
+    FilterPipe,
+    IconMenuPipe,
+    
   ],
   imports: [
     BrowserModule,
@@ -58,6 +65,7 @@ import { TimesLigaPage } from '../pages/times-liga/times-liga';
     MercadoPage,
     TimesPage,
     LigasPage,
+    PremiacaoPage,
     TimesLigaPage
   ],
   providers: [

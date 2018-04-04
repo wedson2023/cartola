@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Premiação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+        <ion-card *ngFor="let p of premiacao">
+          <ion-card-content class="posicao">
+              <strong>{{ p.posicao }}</strong>
+              <strong>{{ p.valor | number : '1.2-2' }} REAIS</strong> 
+             <ion-icon class="trofeu" name="trophy" item-end></ion-icon>                       
+          </ion-card-content>           
+        </ion-card>
+        <hr>
+        <ion-card *ngFor="let p of outros">
+            <ion-card-content class="outros">
+                <strong> {{ p.valor | number : '1.2-2' }} {{ p.texto }}</strong>                                       
+            </ion-card-content>           
+        </ion-card>
+</ion-content>

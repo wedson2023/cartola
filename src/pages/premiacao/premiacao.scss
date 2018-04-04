@@ -1,0 +1,21 @@
+page-premiacao {
+    ion-card-content.posicao{
+        display: flex;
+        justify-content: space-between;  
+        align-items: center;     
+    }
+
+    ion-card-content.outros{
+        text-align: center;
+    }
+    
+    strong{
+        font-size: 1.2em;
+        color: #666666;
+    }
+
+    .trofeu{
+        color: gold;
+        font-size: 2em;
+    }
+}

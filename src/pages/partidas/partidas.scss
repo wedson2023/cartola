@@ -1,4 +1,17 @@
 page-partidas {
+    ion-header{
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        align-items: center;
+        background: #fff;
+    }
+
+    ion-header ion-icon{
+        font-size: 1.5em;
+        padding: 5px 10px;
+    }
+
     ion-card-content{
         display: flex;
         justify-content: space-between
