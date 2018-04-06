@@ -26,6 +26,7 @@ import { TimesLigaPage } from '../pages/times-liga/times-liga';
 import { FilterPipe } from '../pipes/filter/filter';
 import { IconMenuPipe } from '../pipes/icon-menu/icon-menu';
 import { PremiacaoPage } from '../pages/premiacao/premiacao';
+import { NavegaroffProvider } from '../providers/navegaroff/navegaroff';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { PremiacaoPage } from '../pages/premiacao/premiacao';
     SplashScreen,
     Screenshot,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpProvider
+    HttpProvider,
+    NavegaroffProvider
   ]
 })
 export class AppModule {}

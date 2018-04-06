@@ -2,11 +2,26 @@ page-times {
     .item-md ion-avatar img{
         border-radius: 0 !important;
     }
+
+    .no-favorito{
+        font-size: 2.5em;
+        color: black;
+    }
+
+    .favorito{
+        font-size: 2.5em;
+        color: gold;
+    }
     
     p.mensagem{
         display: block;
         padding: 50px 10px;
         color: #999999;
         text-align: center
+    }
+
+    img.assinante{
+        height: 12px;
+        margin-bottom: -1px; 
     }
 }

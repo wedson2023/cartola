@@ -8,6 +8,7 @@ import { ModalController } from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
 import { PartidasPage } from '../partidas/partidas';
 import { HttpProvider } from '../../providers/http/http';
+import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 
 @Component({
   selector: 'page-home',
@@ -15,10 +16,8 @@ import { HttpProvider } from '../../providers/http/http';
 })
 export class HomePage {
 
-  liga:String;
-  descricao:String;
-  escudo:String;
-  num_participantes:String;
+  liga:object;
+  ligaoff:object;
   times;
   ranking:String;
   filtro:String = 'campeonato';
@@ -58,10 +57,11 @@ export class HomePage {
     public HttpClient: HttpClient,
     public loadingCtrl: LoadingController,
     public ModalController: ModalController,
-    private http:HttpProvider
+    private http:HttpProvider,
+    private navegaroff: NavegaroffProvider
   )   
   {
-    
+    this.ligaoff = this.navegaroff.getItem('home_liga');
   }
 
   abrePartidas(){
@@ -143,73 +143,70 @@ export class HomePage {
     loading.present();
 
      this.http.getApi('auth/liga/campeoes-agrestina').subscribe(response => {
-      let resposta = JSON.parse(JSON.stringify(response));
+      this.liga = response;
+      
+      this.navegaroff.setItem('home_liga', response);
+      
+      //if(response.destaques !== undefined)
+      //{
+      //   this.destaque_lanterninha_time = resposta.destaques.lanterninha.nome;
+      //   this.destaque_lanterninha_nome = resposta.destaques.lanterninha.nome_cartola;       
+      //   this.destaque_lanterninha_escudo = resposta.destaques.lanterninha.url_escudo_png; 
+      //   this.destaque_lanterninha_id = resposta.destaques.lanterninha.rodada_time_id;
 
-        this.times = resposta.times;
+      //   this.destaque_mes_time = resposta.destaques.mes.nome;
+      //   this.destaque_mes_nome = resposta.destaques.mes.nome_cartola;       
+      //   this.destaque_mes_escudo = resposta.destaques.mes.url_escudo_png; 
+      //   this.destaque_mes_id = resposta.destaques.mes.rodada_time_id;
 
-        this.liga = resposta.liga.nome;
-        this.descricao = resposta.liga.descricao;
-        this.escudo = resposta.liga.url_flamula_png;
-        this.num_participantes = resposta.times.length;
+      //   this.destaque_patrimonio_time = resposta.destaques.patrimonio.nome;
+      //   this.destaque_patrimonio_nome = resposta.destaques.patrimonio.nome_cartola;       
+      //   this.destaque_patrimonio_escudo = resposta.destaques.patrimonio.url_escudo_png; 
+      //   this.destaque_patrimonio_id = resposta.destaques.patrimonio.rodada_time_id;
 
-      if(resposta.destaques !== undefined)
-      {
-        this.destaque_lanterninha_time = resposta.destaques.lanterninha.nome;
-        this.destaque_lanterninha_nome = resposta.destaques.lanterninha.nome_cartola;       
-        this.destaque_lanterninha_escudo = resposta.destaques.lanterninha.url_escudo_png; 
-        this.destaque_lanterninha_id = resposta.destaques.lanterninha.rodada_time_id;
+      //   this.destaque_rodada_time = resposta.destaques.rodada.nome;
+      //   this.destaque_rodada_nome = resposta.destaques.rodada.nome_cartola;       
+      //   this.destaque_rodada_escudo = resposta.destaques.rodada.url_escudo_png; 
+      //   this.destaque_rodada_id = resposta.destaques.rodada.rodada_time_id;
 
-        this.destaque_mes_time = resposta.destaques.mes.nome;
-        this.destaque_mes_nome = resposta.destaques.mes.nome_cartola;       
-        this.destaque_mes_escudo = resposta.destaques.mes.url_escudo_png; 
-        this.destaque_mes_id = resposta.destaques.mes.rodada_time_id;
+      //   this.destaque_turno_time = resposta.destaques.turno.nome;
+      //   this.destaque_turno_nome = resposta.destaques.turno.nome_cartola;       
+      //   this.destaque_turno_escudo = resposta.destaques.turno.url_escudo_png; 
+      //   this.destaque_turno_id = resposta.destaques.turno.rodada_time_id;
 
-        this.destaque_patrimonio_time = resposta.destaques.patrimonio.nome;
-        this.destaque_patrimonio_nome = resposta.destaques.patrimonio.nome_cartola;       
-        this.destaque_patrimonio_escudo = resposta.destaques.patrimonio.url_escudo_png; 
-        this.destaque_patrimonio_id = resposta.destaques.patrimonio.rodada_time_id;
-
-        this.destaque_rodada_time = resposta.destaques.rodada.nome;
-        this.destaque_rodada_nome = resposta.destaques.rodada.nome_cartola;       
-        this.destaque_rodada_escudo = resposta.destaques.rodada.url_escudo_png; 
-        this.destaque_rodada_id = resposta.destaques.rodada.rodada_time_id;
-
-        this.destaque_turno_time = resposta.destaques.turno.nome;
-        this.destaque_turno_nome = resposta.destaques.turno.nome_cartola;       
-        this.destaque_turno_escudo = resposta.destaques.turno.url_escudo_png; 
-        this.destaque_turno_id = resposta.destaques.turno.rodada_time_id;
-
-        for(let x in resposta.times)
-        {
-          if(resposta.times[x].time_id == resposta.destaques.lanterninha.time_id)
-          {          
-            this.destaque_lanterninha_pontos = resposta.times[x].pontos.rodada;
-          }
+      //   for(let x in resposta.times)
+      //   {
+      //     if(resposta.times[x].time_id == resposta.destaques.lanterninha.time_id)
+      //     {          
+      //       this.destaque_lanterninha_pontos = resposta.times[x].pontos.rodada;
+      //     }
           
-          if(resposta.times[x].time_id == resposta.destaques.patrimonio.time_id)
-          {
-            this.destaque_patrimonio_pontos = resposta.times[x].patrimonio;
-          }
+      //     if(resposta.times[x].time_id == resposta.destaques.patrimonio.time_id)
+      //     {
+      //       this.destaque_patrimonio_pontos = resposta.times[x].patrimonio;
+      //     }
           
-          if(resposta.times[x].time_id == resposta.destaques.mes.time_id)
-          {
-            this.destaque_mes_pontos = resposta.times[x].pontos.mes;
-          }
+      //     if(resposta.times[x].time_id == resposta.destaques.mes.time_id)
+      //     {
+      //       this.destaque_mes_pontos = resposta.times[x].pontos.mes;
+      //     }
 
-          if(resposta.times[x].time_id == resposta.destaques.rodada.time_id)
-          {
-            this.destaque_rodada_pontos = resposta.times[x].pontos.rodada;
-          }
+      //     if(resposta.times[x].time_id == resposta.destaques.rodada.time_id)
+      //     {
+      //       this.destaque_rodada_pontos = resposta.times[x].pontos.rodada;
+      //     }
 
-          if(resposta.times[x].time_id == resposta.destaques.turno.time_id)
-          {
-            this.destaque_turno_pontos = resposta.times[x].pontos.turno;
-          }
-        }
-      }
+      //     if(resposta.times[x].time_id == resposta.destaques.turno.time_id)
+      //     {
+      //       this.destaque_turno_pontos = resposta.times[x].pontos.turno;
+      //     }
+      //   }
+     // }
 
       loading.dismiss();
-      console.log(response);
+    }, err => {
+      loading.dismiss();
+      this.liga = this.ligaoff;
     })    
   }
 
