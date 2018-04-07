@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { ModalController } from 'ionic-angular';
 import { TimesLigaPage } from '../times-liga/times-liga';
 import { LoadingController } from 'ionic-angular';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
+import { MensagemProvider } from '../../providers/mensagem/mensagem';
 
 @IonicPage()
 @Component({
@@ -13,21 +14,20 @@ import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 })
 export class LigasPage {
 
-  ligas;
-  favoritos; 
+  public ligas:object;
+  private favoritos; 
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     private http:HttpProvider,
     public ModalController: ModalController,
     private loadingCtrl: LoadingController,
-    private navegaroff: NavegaroffProvider
+    private navegaroff: NavegaroffProvider,
+    private MensagemProvider: MensagemProvider
   ) 
   {
     if(this.navegaroff.getItem('ligas_favoritos') === null)
     {
-      this.navegaroff.setItem('ligas_favoritos', '[{"favorito":"favorito","liga_id":60,"time_dono_id":null,"clube_id":null,"nome":"Nacional","descricao":"A Liga do time campeão!","slug":"nacional","tipo":"F","mata_mata":false,"editorial":false,"patrocinador":false,"criacao":"2010-04-29 09:00:00","tipo_flamula":0,"tipo_estampa_flamula":null,"tipo_adorno_flamula":null,"cor_primaria_estampa_flamula":"888888","cor_secundaria_estampa_flamula":"CCCCCC","cor_borda_flamula":null,"cor_fundo_flamula":null,"url_flamula_svg":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_nacional.svg","url_flamula_png":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_nacional.png","tipo_trofeu":null,"cor_trofeu":null,"url_trofeu_svg":null,"url_trofeu_png":null,"inicio_rodada":1,"fim_rodada":null,"quantidade_times":null,"sorteada":false,"imagem":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_nacional.svg","mes_ranking_num":null,"mes_variacao_num":null,"camp_ranking_num":null,"camp_variacao_num":null,"total_times_liga":2056307,"vagas_restantes":null,"total_amigos_na_liga":0},{"liga_id":71,"time_dono_id":null,"clube_id":null,"nome":"Cartola PRO","descricao":"Só quem é Cartoleiro PRO participa dessa Liga. Não fique de fora e concorra a prêmios por rodada, mês e campeonato! Tá esperando o quê?","slug":"cartola-pro","tipo":"F","mata_mata":false,"editorial":true,"patrocinador":false,"criacao":"2012-04-25 12:00:00","tipo_flamula":1,"tipo_estampa_flamula":null,"tipo_adorno_flamula":null,"cor_primaria_estampa_flamula":"FFFFFF","cor_secundaria_estampa_flamula":"FFFFFF","cor_borda_flamula":null,"cor_fundo_flamula":null,"url_flamula_svg":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_pro.svg","url_flamula_png":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_pro.png","tipo_trofeu":null,"cor_trofeu":null,"url_trofeu_svg":null,"url_trofeu_png":null,"inicio_rodada":1,"fim_rodada":null,"quantidade_times":null,"sorteada":false,"imagem":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_pro.svg","mes_ranking_num":null,"mes_variacao_num":null,"camp_ranking_num":null,"camp_variacao_num":null,"total_times_liga":123287,"vagas_restantes":null,"total_amigos_na_liga":0,"favorito":"favorito"}]');
+      this.navegaroff.setItem('ligas_favoritos', JSON.parse('[{"favorito":"favorito","liga_id":60,"time_dono_id":null,"clube_id":null,"nome":"Nacional","descricao":"A Liga do time campeão!","slug":"nacional","tipo":"F","mata_mata":false,"editorial":false,"patrocinador":false,"criacao":"2010-04-29 09:00:00","tipo_flamula":0,"tipo_estampa_flamula":null,"tipo_adorno_flamula":null,"cor_primaria_estampa_flamula":"888888","cor_secundaria_estampa_flamula":"CCCCCC","cor_borda_flamula":null,"cor_fundo_flamula":null,"url_flamula_svg":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_nacional.svg","url_flamula_png":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_nacional.png","tipo_trofeu":null,"cor_trofeu":null,"url_trofeu_svg":null,"url_trofeu_png":null,"inicio_rodada":1,"fim_rodada":null,"quantidade_times":null,"sorteada":false,"imagem":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_nacional.svg","mes_ranking_num":null,"mes_variacao_num":null,"camp_ranking_num":null,"camp_variacao_num":null,"total_times_liga":2056307,"vagas_restantes":null,"total_amigos_na_liga":0},{"liga_id":71,"time_dono_id":null,"clube_id":null,"nome":"Cartola PRO","descricao":"Só quem é Cartoleiro PRO participa dessa Liga. Não fique de fora e concorra a prêmios por rodada, mês e campeonato! Tá esperando o quê?","slug":"cartola-pro","tipo":"F","mata_mata":false,"editorial":true,"patrocinador":false,"criacao":"2012-04-25 12:00:00","tipo_flamula":1,"tipo_estampa_flamula":null,"tipo_adorno_flamula":null,"cor_primaria_estampa_flamula":"FFFFFF","cor_secundaria_estampa_flamula":"FFFFFF","cor_borda_flamula":null,"cor_fundo_flamula":null,"url_flamula_svg":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_pro.svg","url_flamula_png":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_pro.png","tipo_trofeu":null,"cor_trofeu":null,"url_trofeu_svg":null,"url_trofeu_png":null,"inicio_rodada":1,"fim_rodada":null,"quantidade_times":null,"sorteada":false,"imagem":"https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/default/flamula/flamula_pro.svg","mes_ranking_num":null,"mes_variacao_num":null,"camp_ranking_num":null,"camp_variacao_num":null,"total_times_liga":123287,"vagas_restantes":null,"total_amigos_na_liga":0,"favorito":"favorito"}]'));
     }
 
     this.favoritos = this.navegaroff.getItem('ligas_favoritos');
@@ -70,7 +70,7 @@ export class LigasPage {
         loading.dismiss();  
         for(let x in response)
         {
-         
+         console.log(this.favoritos);
           let filtro_liga = this.favoritos.filter(elemento => elemento.liga_id == response[x].liga_id)[0];
           if(filtro_liga != undefined)
           {
@@ -85,13 +85,13 @@ export class LigasPage {
        this.ligas = response; 
       }, (err) => {
         loading.dismiss(); 
-        console.log('Verifique sua conexão com a internet');
+        this.MensagemProvider.mensagem('Algo deu errado', 'Por favor verifique sua conexão com a internet');
       });
     }    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LigasPage');
+    
   }
 
 }

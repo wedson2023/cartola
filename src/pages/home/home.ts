@@ -65,11 +65,8 @@ export class HomePage {
   }
 
   abrePartidas(){
-    this.http.getApi('partidas').subscribe(response => {
-        let modal = this.ModalController.create(PartidasPage, { data : response });
-        modal.present();
-    })   
-   
+    let modal = this.ModalController.create(PartidasPage);
+    modal.present();
   }
 
   historico(time){

@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ParciaisJogadoresPage } from './../pages/parciais-jogadores/parciais-jogadores';
 import { PosicaoJogadorPipe } from './../pipes/posicao-jogador/posicao-jogador';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,12 +26,12 @@ import { FilterPipe } from '../pipes/filter/filter';
 import { IconMenuPipe } from '../pipes/icon-menu/icon-menu';
 import { PremiacaoPage } from '../pages/premiacao/premiacao';
 import { NavegaroffProvider } from '../providers/navegaroff/navegaroff';
+import { MensagemProvider } from '../providers/mensagem/mensagem';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ParciaisJogadoresPage,
     PosicaoJogadorPipe,
     DestaquesPage,
     RegulamentoPage,
@@ -58,7 +57,6 @@ import { NavegaroffProvider } from '../providers/navegaroff/navegaroff';
   entryComponents: [
     MyApp,
     HomePage,
-    ParciaisJogadoresPage,
     DestaquesPage,
     RegulamentoPage,
     HistoricoPage,
@@ -75,7 +73,8 @@ import { NavegaroffProvider } from '../providers/navegaroff/navegaroff';
     Screenshot,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpProvider,
-    NavegaroffProvider
+    NavegaroffProvider,
+    MensagemProvider
   ]
 })
 export class AppModule {}

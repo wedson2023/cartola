@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { LoadingController } from 'ionic-angular';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
+import { MensagemProvider } from '../../providers/mensagem/mensagem';
 
 @IonicPage()
 @Component({
@@ -11,20 +12,19 @@ import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 })
 export class TimesPage {  
 
-  times;
-  favoritos; 
+  public times:object;
+  private favoritos; 
   
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     private http:HttpProvider,
     private loadingCtrl:LoadingController,
-    private navegaroff: NavegaroffProvider
+    private navegaroff: NavegaroffProvider,
+    private MensagemProvider: MensagemProvider
   ) 
   {
     if(this.navegaroff.getItem('times_favoritos') === null)
     {
-      this.navegaroff.setItem('times_favoritos', '[]');
+      this.navegaroff.setItem('times_favoritos', JSON.parse('[]'));
     }
 
     this.favoritos = this.navegaroff.getItem('times_favoritos');
@@ -61,8 +61,7 @@ export class TimesPage {
       this.http.getApi('times?q=' + encodeURIComponent(nome_time)).subscribe(response => {
         loading.dismiss(); 
         for(let x in response)
-        {
-         
+        {         
           let filtro_time = this.favoritos.filter(elemento => elemento.time_id == response[x].time_id)[0];
           if(filtro_time != undefined)
           {
@@ -77,13 +76,12 @@ export class TimesPage {
         this.times = response; 
       }, (err) => {
         loading.dismiss(); 
-        console.log('Verifique sua conexão com a internet');
+        this.MensagemProvider.mensagem('Algo deu errado', 'Por favor verifique sua conexão com a internet');
       });
     }    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TimesPage');
   }
 
 }

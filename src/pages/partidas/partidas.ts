@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
+import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 
 @IonicPage()
 @Component({
@@ -11,21 +12,21 @@ import { HttpProvider } from '../../providers/http/http';
 })
 export class PartidasPage {
 
-  private data;
-  private partidas;
+  public partidas:object;
+  private partidasoff:object;
   public rodada_atual:number;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     private http: HttpProvider,
-    public loadingCtrl: LoadingController 
+    public loadingCtrl: LoadingController,
+    private navegaroff: NavegaroffProvider
   )
-  {
-
+  {   
+    this.partidasoff = this.navegaroff.getItem('partidas_rodadas'); 
   }
 
   dados_partidas(response:any, loading:any){
+    this.rodada_atual = response.rodada;    
     if(response.mensagem == 'Rodada inválida.')
     {         
       alert('Rodada não disponível no momento.'); 
@@ -40,6 +41,7 @@ export class PartidasPage {
         partida.visitante = response.clubes[partida.clube_visitante_id];
       }
       this.partidas = response.partidas.sort((a,b) => a.partida_data > b.partida_data ? 1 : -1);
+      this.navegaroff.setItem('partidas_rodadas', this.partidas);
       loading.dismiss();
     }    
   }
@@ -72,9 +74,12 @@ export class PartidasPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.data = this.navParams.get('data');
-    this.rodada_atual = this.data.rodada;
-    this.dados_partidas(this.data, loading);
+    this.http.getApi('partidas').subscribe(response => {
+      this.dados_partidas(response, loading);         
+    }, err =>{      
+      this.partidas = this.partidasoff;
+      loading.dismiss();
+    }) 
   }
 
 }

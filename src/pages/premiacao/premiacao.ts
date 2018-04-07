@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
+import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 
 @IonicPage()
 @Component({
@@ -11,14 +12,16 @@ import { LoadingController } from 'ionic-angular';
 export class PremiacaoPage {
 
   public premiacao:object;
+  public premiacaooff:object;
   public outros:object;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     private http: HttpClient,
-    public loadingCtrl: LoadingController
-  ) {
+    public loadingCtrl: LoadingController,
+    private navegaroff: NavegaroffProvider
+  ) 
+  {
+    this.premiacaooff = this.navegaroff.getItem('premiacao');
   }
 
   ionViewDidLoad() {
@@ -26,9 +29,13 @@ export class PremiacaoPage {
     loading.present();
 
     this.http.get('http://wedsonwebdesigner.com.br/cartola/premiacao.php').subscribe(response => {
-       console.log(response);
+      this.navegaroff.setItem('premiacao', response);       
       this.premiacao = response[0];
       this.outros = response[1];
+      loading.dismiss();
+    }, err => {
+      this.premiacao = this.premiacaooff[0];
+      this.outros = this.premiacaooff[1];
       loading.dismiss();
     });
   }

@@ -3,6 +3,7 @@ import { IonicPage } from 'ionic-angular';
 
 import { LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
+import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 
 @IonicPage()
 @Component({
@@ -11,13 +12,16 @@ import { HttpProvider } from '../../providers/http/http';
 })
 export class MercadoPage {
 
-  public atletas;
+  public atletas:object;
+  private atletasoff:object;
 
   constructor(
     private http: HttpProvider,
-    private LoadingController: LoadingController
+    private LoadingController: LoadingController,
+    private navegaroff: NavegaroffProvider
   ) 
   {
+    this.atletasoff = this.navegaroff.getItem('mercado');
   }
 
   abrir_scouts(atleta){
@@ -43,10 +47,13 @@ export class MercadoPage {
             let confronto = partidas.partidas.filter(e => e.clube_casa_id == atleta.clube_id || e.clube_visitante_id == atleta.clube_id)[0];
             atleta.confronto = { url_escudo_casa : resposta.clubes[confronto.clube_casa_id].escudos['30x30'], url_escudo_visitante : resposta.clubes[confronto.clube_visitante_id].escudos['30x30'] };
           }
-          console.log(this.atletas);
+          this.navegaroff.setItem('mercado', this.atletas);
           loading.dismiss();
       }) 
 
+    }, err =>{
+      this.atletas = this.atletasoff;
+      loading.dismiss();
     })
   }
 
