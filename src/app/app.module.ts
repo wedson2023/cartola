@@ -27,6 +27,7 @@ import { IconMenuPipe } from '../pipes/icon-menu/icon-menu';
 import { PremiacaoPage } from '../pages/premiacao/premiacao';
 import { NavegaroffProvider } from '../providers/navegaroff/navegaroff';
 import { MensagemProvider } from '../providers/mensagem/mensagem';
+import { MercadoComponent } from '../components/mercado/mercado';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MensagemProvider } from '../providers/mensagem/mensagem';
     TimesLigaPage,
     FilterPipe,
     IconMenuPipe,
+    MercadoComponent
     
   ],
   imports: [
@@ -65,7 +67,8 @@ import { MensagemProvider } from '../providers/mensagem/mensagem';
     TimesPage,
     LigasPage,
     PremiacaoPage,
-    TimesLigaPage
+    TimesLigaPage,
+    MercadoComponent
   ],
   providers: [
     StatusBar,

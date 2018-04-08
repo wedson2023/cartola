@@ -4,6 +4,11 @@
         <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Mercado</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="abrir_filtro()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   <ion-searchbar [(ngModel)]="pesquisar" placeholder="Pesquisar atleta"></ion-searchbar>
 </ion-header>
@@ -47,15 +52,15 @@
             </li>
             <li>
                 <strong>DEFESA: </strong>
-                <span>FS<br>0</span>
-                <span>PE<br>0</span>
-                <span>A<br>0</span>
-                <span>FT<br>0</span>
-                <span>FD<br>0</span>
-                <span>FF<br>0</span>
-                <span>G<br>0</span>
-                <span>I<br>0</span>
-                <span>PP<br>0</span>
+                <span>RB<br>0</span>
+                <span>FC<br>0</span>
+                <span>GC<br>0</span>
+                <span>CA<br>0</span>
+                <span>CV<br>0</span>
+                <span>SG<br>0</span>
+                <span>DD<br>0</span>
+                <span>DP<br>0</span>
+                <span>GS<br>0</span>
             </li>
           </ul>
         </div>

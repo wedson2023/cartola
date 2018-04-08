@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
+import { PopoverController } from 'ionic-angular';
 
 import { LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
+import { MercadoComponent } from '../../components/mercado/mercado';
 
 @IonicPage()
 @Component({
@@ -18,7 +20,8 @@ export class MercadoPage {
   constructor(
     private http: HttpProvider,
     private LoadingController: LoadingController,
-    private navegaroff: NavegaroffProvider
+    private navegaroff: NavegaroffProvider,
+    private popoverCtrl: PopoverController
   ) 
   {
     this.atletasoff = this.navegaroff.getItem('mercado');
@@ -27,6 +30,11 @@ export class MercadoPage {
   abrir_scouts(atleta){
     console.log(atleta);
     atleta.abrir_scouts = true;
+  }
+
+  abrir_filtro(){    
+    let popover = this.popoverCtrl.create(MercadoComponent, {}, { cssClass: 'mercado' });
+    popover.present();
   }
 
   ionViewDidLoad() {

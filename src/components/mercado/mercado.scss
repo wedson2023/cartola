@@ -1,0 +1,34 @@
+mercado {
+    ion-avatar img{
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 0 !important; 
+    }
+
+    div.precos{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px
+    }
+
+    div.precos button{
+        width: 30%
+    }
+
+    div.botoes{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px
+    }
+
+    div.botoes button{
+        width: 50%;
+    }
+
+    div.botoes button:first-child{
+        margin-right: 10px
+    }
+
+
+}
