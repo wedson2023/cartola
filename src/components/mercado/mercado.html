@@ -9,7 +9,7 @@
                 <img src="./assets/imgs/status_jogador/provavel.png">
             </ion-avatar>
             <ion-label>Provável</ion-label>
-            <ion-toggle [(ngModel)]="provavel"></ion-toggle>
+            <ion-toggle (ionChange)="provavel ? filter.status_id = 7 : filter.status_id = null" [(ngModel)]="provavel"></ion-toggle>
           </ion-item>
         
           <ion-item>
@@ -17,7 +17,7 @@
                 <img src="./assets/imgs/status_jogador/duvida.png">
             </ion-avatar>
             <ion-label>Dúvida</ion-label>
-            <ion-toggle [(ngModel)]="duvida"></ion-toggle>
+            <ion-toggle (ionChange)="duvida ? filter.status_id = 2 : filter.status_id = null" [(ngModel)]="duvida"></ion-toggle>
           </ion-item>
         
           <ion-item>
@@ -25,7 +25,7 @@
                 <img src="./assets/imgs/status_jogador/suspenso.png">
             </ion-avatar>
             <ion-label>Suspenso</ion-label>
-            <ion-toggle [(ngModel)]="suspenso"></ion-toggle>
+            <ion-toggle (ionChange)="suspenso ? filter.status_id = 3 : filter.status_id = null" [(ngModel)]="suspenso"></ion-toggle>
           </ion-item>
           
           <ion-item>
@@ -33,24 +33,38 @@
                 <img src="./assets/imgs/status_jogador/contudido.png">
             </ion-avatar>
             <ion-label>Contudido</ion-label>
-            <ion-toggle [(ngModel)]="contudido"></ion-toggle>
+            <ion-toggle (ionChange)="contudido ? filter.status_id = 5 : filter.status_id = null" [(ngModel)]="contudido"></ion-toggle>
           </ion-item>
-        </ion-item-group> 
+        </ion-item-group>
+
+        <hr />         
+          <ion-item>
+            <ion-label>POSIÇÃO</ion-label>
+            <ion-select [(ngModel)]="filter.posicao_id">
+              <ion-option value="0">Todos</ion-option>
+              <ion-option value="1">Goleiro</ion-option>
+              <ion-option value="2">Lateral</ion-option>
+              <ion-option value="3">Zagueiro</ion-option>
+              <ion-option value="4">Meia</ion-option>
+              <ion-option value="5">Atacante</ion-option>
+              <ion-option value="6">Técnico</ion-option>
+            </ion-select>
+          </ion-item>
         
         <ion-item-group>
             <ion-item-divider color="white">PREÇOS C$</ion-item-divider>
             <div class="precos">
-                <button ion-button color="dark" outline>0 - 5</button>
-                <button ion-button color="dark" outline>5 - 10</button>
-                <button ion-button color="dark" outline>10 - 15</button>
-                <button ion-button color="dark" outline>15 - 20</button>
-                <button ion-button color="dark" outline>20 - 25</button>
-                <button ion-button color="dark" outline>+5</button>
+                <button ion-button [ngClass]="filter.preco_num == 5 ? 'btnPreenchido' : null" (click)="filter.preco_num = 5" color="dark" outline>0 - 5</button>
+                <button ion-button [ngClass]="filter.preco_num == 10 ? 'btnPreenchido' : null" (click)="filter.preco_num = 10" color="dark" outline>5 - 10</button>
+                <button ion-button [ngClass]="filter.preco_num == 15 ? 'btnPreenchido' : null" (click)="filter.preco_num = 15" color="dark" outline>10 - 15</button>
+                <button ion-button [ngClass]="filter.preco_num == 20 ? 'btnPreenchido' : null" (click)="filter.preco_num = 20" color="dark" outline>15 - 20</button>
+                <button ion-button [ngClass]="filter.preco_num == 25 ? 'btnPreenchido' : null" (click)="filter.preco_num = 25" color="dark" outline>20 - 25</button>
+                <button ion-button [ngClass]="filter.preco_num == 30 ? 'btnPreenchido' : null" (click)="filter.preco_num = 30" color="dark" outline>+25</button>
             </div>
         </ion-item-group>
         <ion-item-group>
             <ion-item-divider color="white">TIMES</ion-item-divider>
-            <ion-list radio-group>
+            <ion-list radio-group [(ngModel)]="filter.clube_id">
                 <ion-item>
                   <ion-avatar item-start>
                       <img src="https://s.glbimg.com/es/sde/f/organizacoes/2018/01/24/AmericaMG-45.png">
@@ -215,41 +229,8 @@
         </ion-item-group>
       </ion-list>
       <div class="botoes">
-        <button ion-button>Limpar</button>
-        <button ion-button>Filtrar</button>
+        <button (click)="limpar()" ion-button>Limpar</button>
+        <button (click)="filtrar()" ion-button>Filtrar</button>
       </div>
-      
-    <!-- <ion-item>
-      <ion-label>Status</ion-label>
-      <ion-select [(ngModel)]="status">
-        <ion-option value="">Todos</ion-option>
-        <ion-option value="7">Provavél</ion-option>
-        <ion-option value="2">Dúvida</ion-option>
-        <ion-option value="3">Suspenso</ion-option>
-        <ion-option value="5">Lesionado</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Preço</ion-label>
-      <ion-select [(ngModel)]="preco">
-        <ion-option value="">Todos</ion-option>
-        <ion-option value="7">C$ 5 a Baixo</ion-option>
-        <ion-option value="2">C$ 5 e 10</ion-option>
-        <ion-option value="3">C$ 10 e 15</ion-option>
-        <ion-option value="5">C$ 15 e 20</ion-option>
-        <ion-option value="5">C$ 20 a Cima</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Preço</ion-label>
-      <ion-select [(ngModel)]="preco">
-        <ion-option value="">Todos</ion-option>
-        <ion-option value="7">C$ 5 a Baixo</ion-option>
-        <ion-option value="2">C$ 5 e 10</ion-option>
-        <ion-option value="3">C$ 10 e 15</ion-option>
-        <ion-option value="5">C$ 15 e 20</ion-option>
-        <ion-option value="5">C$ 20 a Cima</ion-option>
-      </ion-select>
-    </ion-item> -->
   </ion-list>
 </ion-content>

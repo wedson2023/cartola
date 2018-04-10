@@ -14,6 +14,7 @@ import { MercadoComponent } from '../../components/mercado/mercado';
 })
 export class MercadoPage {
 
+  private todos_atletas:object;
   public atletas:object;
   private atletasoff:object;
 
@@ -28,13 +29,14 @@ export class MercadoPage {
   }
 
   abrir_scouts(atleta){
-    console.log(atleta);
     atleta.abrir_scouts = true;
   }
 
-  abrir_filtro(){    
-    let popover = this.popoverCtrl.create(MercadoComponent, {}, { cssClass: 'mercado' });
+  abrir_filtro(){   
+    let popover = this.popoverCtrl.create(MercadoComponent, this.atletasoff, { cssClass: 'mercado' });
     popover.present();
+
+    popover.onDidDismiss(atletas => this.atletas = atletas);
   }
 
   ionViewDidLoad() {
@@ -46,8 +48,10 @@ export class MercadoPage {
 
       this.http.getApi('atletas/mercado').subscribe(response => {
           let resposta = JSON.parse(JSON.stringify(response));
+
+          let atletas = resposta.atletas.filter(elemento => elemento.status_id != 6);
           
-          this.atletas = resposta.atletas.sort((a,b) => a.preco_num > b.preco_num ? -1 : 1);
+          this.atletas = atletas.sort((a,b) => a.preco_num > b.preco_num ? -1 : 1);
           for(let atleta of resposta.atletas)
           {
             atleta.clube = resposta.clubes[atleta.clube_id];
