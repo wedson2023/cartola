@@ -5,17 +5,51 @@
     </button>
     <ion-title>Mercado</ion-title>
     <ion-buttons end>      
-      <button ion-button icon-only (click)="abrir_filtro()">
-        <ion-icon name="list"></ion-icon>
+      <button id="list" ion-button icon-only>
+        <ion-icon name="list"></ion-icon>        
       </button>
-      <button ion-button icon-only (click)="abrir_filtro()">
+      <button id="stats" ion-button icon-only>
         <ion-icon name="stats"></ion-icon>
       </button>
       <button ion-button icon-only (click)="abrir_filtro()">
         <ion-icon name="more"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons>    
   </ion-navbar>
+  <ion-item [hidden]="true">
+    <ion-label>Ordenar</ion-label>
+      <ion-select class="list" (ionChange)="ordenar(ordem)" [(ngModel)]="ordem">
+        <ion-option value="preco_num">Preço</ion-option>
+        <ion-option value="pontos_num">Pontuação</ion-option>
+        <ion-option value="media_num">Média</ion-option>
+        <ion-option value="apelido">Nome</ion-option>
+        <ion-option value="variacao_num">Valorização</ion-option>
+        <ion-option value="desvariacao_num">Desvalorização</ion-option>
+      </ion-select>
+  </ion-item>
+  <ion-item [hidden]="true">
+    <ion-label>Ordenar</ion-label>
+      <ion-select class="stats" [(ngModel)]="ordenar">
+        <ion-option value="G">Gol</ion-option>
+        <ion-option value="A">Assist}encia</ion-option>
+        <ion-option value="FT">F. na trave</ion-option>
+        <ion-option value="FD">F. defendida</ion-option>
+        <ion-option value="FF">F. para fora</ion-option>
+        <ion-option value="GC">Gol contra</ion-option>
+        <ion-option value="RB">Roubo de bola</ion-option>
+        <ion-option value="PE">Passe Errado</ion-option>
+        <ion-option value="FC">Falta cometida</ion-option>
+        <ion-option value="FS">Falta sofrida</ion-option>
+        <ion-option value="I">Impedimento</ion-option>
+        <ion-option value="CA">Cartão amarelo</ion-option>
+        <ion-option value="CV">Cartão vermelho</ion-option>
+        <ion-option value="SG">Sem sofrer gol</ion-option>
+        <ion-option value="DD">Defesa dificíl</ion-option>
+        <ion-option value="DP">Defesa pênalti</ion-option>
+        <ion-option value="GS">Gol sofrido</ion-option>
+        <ion-option value="PP">Pênalti perdido</ion-option>
+      </ion-select>
+  </ion-item>
   <ion-searchbar [(ngModel)]="pesquisar" placeholder="Pesquisar atleta"></ion-searchbar>
 </ion-header>
 

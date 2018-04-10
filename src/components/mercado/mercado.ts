@@ -12,7 +12,6 @@ export class MercadoComponent {
   filter = { status_id : null, posicao_id : 0, clube_id : null, preco_num : null };
 
   limpar(){
-    console.log(this.filter);
     this.viewCtrl.dismiss(this.navegaroff.getItem('mercado'));
   }
 

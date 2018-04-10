@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+declare var $ :any;
+
+import { Component, OnInit } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 
@@ -12,10 +14,9 @@ import { MercadoComponent } from '../../components/mercado/mercado';
   selector: 'page-mercado',
   templateUrl: 'mercado.html',
 })
-export class MercadoPage {
+export class MercadoPage implements OnInit{
 
-  private todos_atletas:object;
-  public atletas:object;
+  public atletas;
   private atletasoff:object;
 
   constructor(
@@ -25,7 +26,29 @@ export class MercadoPage {
     private popoverCtrl: PopoverController
   ) 
   {
-    this.atletasoff = this.navegaroff.getItem('mercado');
+    this.atletasoff = this.navegaroff.getItem('mercado');      
+  }
+
+  ngOnInit(){
+
+    $('#list').click(function(){
+      $('ion-select.list').trigger('click');
+    })
+
+    $('#stats').click(function(){
+      $('ion-select.stats').trigger('click');
+    })
+
+  }
+
+  ordenar(ordem){
+    this.atletas.sort((a, b) => {
+      if (a[ordem] < b[ordem])
+      return -1;
+      if (a[ordem] > b[ordem])
+        return 1;
+      return 0;
+    });
   }
 
   abrir_scouts(atleta){
@@ -36,7 +59,7 @@ export class MercadoPage {
     let popover = this.popoverCtrl.create(MercadoComponent, this.atletasoff, { cssClass: 'mercado' });
     popover.present();
 
-    popover.onDidDismiss(atletas => this.atletas = atletas);
+    popover.onDidDismiss(atletas => this.atletas = ( atletas || this.atletas ));
   }
 
   ionViewDidLoad() {
