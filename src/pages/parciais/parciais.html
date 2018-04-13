@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Parciais</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content> 
+  <ion-tabs>
+    <ion-tab tabIcon="person" tabTitle="Times" [root]="tab1"></ion-tab>
+    <ion-tab tabIcon="man" tabTitle="Jogadores" [root]="tab2"></ion-tab>
+    <ion-tab tabIcon="shirt" tabTitle="Clubes" [root]="tab3"></ion-tab>
+  </ion-tabs> 
+</ion-content>

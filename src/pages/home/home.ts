@@ -4,11 +4,12 @@ import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
 
-import { ModalController } from 'ionic-angular';
+import { ModalController, PopoverController } from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
 import { PartidasPage } from '../partidas/partidas';
 import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
+import { PontuacaoComponent } from '../../components/pontuacao/pontuacao';
 
 @Component({
   selector: 'page-home',
@@ -58,10 +59,16 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public ModalController: ModalController,
     private http:HttpProvider,
-    private navegaroff: NavegaroffProvider
+    private navegaroff: NavegaroffProvider,
+    private popoverCtrl: PopoverController
   )   
   {
     this.ligaoff = this.navegaroff.getItem('home_liga');
+  }
+
+  pontuacao(){
+    let popover = this.popoverCtrl.create(PontuacaoComponent);
+    popover.present();
   }
 
   abrePartidas(){

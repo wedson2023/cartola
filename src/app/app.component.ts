@@ -10,6 +10,7 @@ import { MercadoPage } from '../pages/mercado/mercado';
 import { TimesPage } from '../pages/times/times';
 import { LigasPage } from '../pages/ligas/ligas';
 import { PremiacaoPage } from '../pages/premiacao/premiacao';
+import { ParciaisPage } from '../pages/parciais/parciais';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,11 +28,12 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Destaques', component: DestaquesPage },  
-      { title: 'Mercado', component: MercadoPage },  
+      { title: 'Mercado', component: MercadoPage },          
+      { title: 'Parciais', component: ParciaisPage }, 
       { title: 'Times', component: TimesPage },   
       { title: 'Ligas', component: LigasPage },   
       { title: 'Premiação', component: PremiacaoPage },   
-      { title: 'Regulamento', component: RegulamentoPage }     
+      { title: 'Regulamento', component: RegulamentoPage }
     ]
   }
 

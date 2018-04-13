@@ -28,6 +28,11 @@ import { PremiacaoPage } from '../pages/premiacao/premiacao';
 import { NavegaroffProvider } from '../providers/navegaroff/navegaroff';
 import { MensagemProvider } from '../providers/mensagem/mensagem';
 import { MercadoComponent } from '../components/mercado/mercado';
+import { PontuacaoComponent } from '../components/pontuacao/pontuacao';
+import { ParciaisPage } from '../pages/parciais/parciais';
+import { ParciaisTimesPage } from '../pages/parciais-times/parciais-times';
+import { ParciaisJogadoresPage } from '../pages/parciais-jogadores/parciais-jogadores';
+import { ParciaisClubesPage } from '../pages/parciais-clubes/parciais-clubes';
 
 @NgModule({
   declarations: [
@@ -46,8 +51,12 @@ import { MercadoComponent } from '../components/mercado/mercado';
     TimesLigaPage,
     FilterPipe,
     IconMenuPipe,
-    MercadoComponent
-    
+    MercadoComponent,
+    PontuacaoComponent,
+    ParciaisPage,
+    ParciaisTimesPage,
+    ParciaisJogadoresPage,
+    ParciaisClubesPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +77,12 @@ import { MercadoComponent } from '../components/mercado/mercado';
     LigasPage,
     PremiacaoPage,
     TimesLigaPage,
-    MercadoComponent
+    MercadoComponent,
+    PontuacaoComponent,
+    ParciaisPage,
+    ParciaisTimesPage,
+    ParciaisJogadoresPage,
+    ParciaisClubesPage
   ],
   providers: [
     StatusBar,

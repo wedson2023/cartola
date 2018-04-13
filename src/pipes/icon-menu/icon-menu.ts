@@ -8,9 +8,10 @@ export class IconMenuPipe implements PipeTransform {
     return value == 'Home' ? 'home'
     : (value == 'Destaques' ? 'star' 
     : (value == 'Mercado' ? 'cart' 
+    : (value == 'Parciais' ? 'clock' 
     : (value == 'Times' ? 'football' 
     : (value == 'Ligas' ? 'trophy' 
     : (value == 'Premiação' ? 'podium' 
-    : (value == 'Regulamento' ? 'paper' : null))))));
+    : (value == 'Regulamento' ? 'paper' : null)))))));
   }
 }
