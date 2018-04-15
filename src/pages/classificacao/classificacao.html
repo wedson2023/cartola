@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="football"></ion-icon>
+          </button>
+          <ion-title>Tabela Brasileirão</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding-right>
+<ion-list>
+  <ion-item *ngFor="let time of times">
+    <div class="nome-pontos">
+      <h2>{{ time.posicao + ' - ' + time.nome }}</h2>
+      <span>{{ time.pontos }}</span> 
+    </div>      
+        <ion-row>      
+          <ion-col class="center">
+            J
+          </ion-col>
+          <ion-col class="center">
+            V
+          </ion-col>
+          <ion-col class="center">
+            E
+          </ion-col>
+          <ion-col class="center">
+            D
+          </ion-col>
+          <ion-col class="center">
+            GP
+          </ion-col>
+          <ion-col class="center">
+            GC
+          </ion-col>
+          <ion-col class="center">
+            SG
+          </ion-col>
+          <ion-col class="center">
+            %
+          </ion-col>
+        </ion-row>
+        <ion-row>      
+            <ion-col class="center">
+              {{ time.jogos }}
+            </ion-col>
+            <ion-col class="center">
+              {{ time.vitorias }}
+            </ion-col>
+            <ion-col class="center">
+              {{ time.empates }}
+            </ion-col>
+            <ion-col class="center">
+              {{ time.derrotas }}
+            </ion-col>
+            <ion-col class="center">
+              {{ time.golsPro }}
+            </ion-col>
+            <ion-col class="center">
+              {{ time.golsContra }}
+            </ion-col>
+            <ion-col class="center">
+              {{ time.saldoGols }}
+            </ion-col>
+            <ion-col class="center">
+              {{ time.percentual }}
+            </ion-col>
+          </ion-row>
+  </ion-item>
+</ion-list>
+</ion-content>

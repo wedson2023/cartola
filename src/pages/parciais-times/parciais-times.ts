@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ParciaisTimesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, LoadingController } from 'ionic-angular';
+import { HttpProvider } from '../../providers/http/http';
+import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 
 @IonicPage()
 @Component({
@@ -14,12 +9,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'parciais-times.html',
 })
 export class ParciaisTimesPage {
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private http: HttpProvider,
+    private loadingCtrl: LoadingController,
+    private navegaroff: NavegaroffProvider
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ParciaisTimesPage');
+    
   }
 
 }

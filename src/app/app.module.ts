@@ -33,6 +33,9 @@ import { ParciaisPage } from '../pages/parciais/parciais';
 import { ParciaisTimesPage } from '../pages/parciais-times/parciais-times';
 import { ParciaisJogadoresPage } from '../pages/parciais-jogadores/parciais-jogadores';
 import { ParciaisClubesPage } from '../pages/parciais-clubes/parciais-clubes';
+import { ConfigPage } from '../pages/config/config';
+import { ClassificacaoPage } from '../pages/classificacao/classificacao';
+import { TemJogadorPage } from '../pages/tem-jogador/tem-jogador';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { ParciaisClubesPage } from '../pages/parciais-clubes/parciais-clubes';
     ParciaisPage,
     ParciaisTimesPage,
     ParciaisJogadoresPage,
-    ParciaisClubesPage
+    ParciaisClubesPage,
+    ConfigPage,
+    ClassificacaoPage,
+    TemJogadorPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +88,10 @@ import { ParciaisClubesPage } from '../pages/parciais-clubes/parciais-clubes';
     ParciaisPage,
     ParciaisTimesPage,
     ParciaisJogadoresPage,
-    ParciaisClubesPage
+    ParciaisClubesPage,
+    ConfigPage,
+    ClassificacaoPage,
+    TemJogadorPage
   ],
   providers: [
     StatusBar,

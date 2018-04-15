@@ -1,0 +1,27 @@
+<ion-header>
+
+  <div (ionChange)="tem_jogador(competidores)" radio-group [(ngModel)]="competidores">
+    <ion-item>
+      <ion-label>Escalaram</ion-label>
+      <ion-radio value="sim"></ion-radio>
+    </ion-item>
+    <ion-item>
+        <ion-label>Não escalaram</ion-label>
+        <ion-radio value="nao"></ion-radio>
+      </ion-item>
+  </div>
+
+</ion-header>
+
+
+<ion-content >
+    <ion-list padding-right>
+      <ion-item *ngFor="let atleta of atletas">
+        <ion-avatar item-start>
+            <img [src]="atleta.url_escudo_png">
+        </ion-avatar>
+        <h2 class="capitalize">{{ atleta.nome }}</h2>
+        <p class="capitalize">{{ atleta.nome_cartola }}</p>
+      </ion-item>
+    </ion-list>
+</ion-content>

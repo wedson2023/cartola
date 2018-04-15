@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-searchbar (keyup)="pesquisar($event, liga)" [(ngModel)]="liga" placeholder="Pesquisar liga"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <p class="mensagem" [hidden]="ligas">Nenhuma liga listada</p>
+   <ion-list padding-right>
+    <ion-item *ngFor="let liga of ligas" (click)="marcar_liga(liga.slug)">
+        <ion-avatar item-start>
+          <img [src]="liga.imagem">
+        </ion-avatar>
+        <h2>{{ liga.nome }}</h2>
+        <p>{{ liga.descricao }}</p>
+      </ion-item>
+    </ion-list>
+</ion-content>

@@ -10,6 +10,8 @@ import { PartidasPage } from '../partidas/partidas';
 import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 import { PontuacaoComponent } from '../../components/pontuacao/pontuacao';
+import { ConfigPage } from '../config/config';
+import { ClassificacaoPage } from '../classificacao/classificacao';
 
 @Component({
   selector: 'page-home',
@@ -66,13 +68,24 @@ export class HomePage {
     this.ligaoff = this.navegaroff.getItem('home_liga');
   }
 
+  config(){
+    let modal = this.ModalController.create(ConfigPage);
+    modal.present();
+    modal.onDidDismiss(() => this.ionViewDidLoad());
+  }
+
   pontuacao(){
     let popover = this.popoverCtrl.create(PontuacaoComponent);
     popover.present();
   }
 
-  abrePartidas(){
+  partidas(){
     let modal = this.ModalController.create(PartidasPage);
+    modal.present();
+  }
+  
+  classficacao(){
+    let modal = this.ModalController.create(ClassificacaoPage);
     modal.present();
   }
 
@@ -146,7 +159,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-     this.http.getApi('auth/liga/campeoes-agrestina').subscribe(response => {
+     this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao')).subscribe(response => {
       this.liga = response;
       
       this.navegaroff.setItem('home_liga', response);

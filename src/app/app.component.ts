@@ -18,7 +18,7 @@ import { ParciaisPage } from '../pages/parciais/parciais';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = ParciaisPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -35,6 +35,15 @@ export class MyApp {
       { title: 'Premiação', component: PremiacaoPage },   
       { title: 'Regulamento', component: RegulamentoPage }
     ]
+
+    if(localStorage.getItem('liga_padrao') === null)
+    {
+      localStorage.setItem('liga_padrao', 'campeoes-agrestina');
+    } 
+    else if(localStorage.getItem('liga_padrao') != 'campeoes-agrestina')
+    {
+      this.pages.splice(6, 2);
+    }
   }
 
   initializeApp() {

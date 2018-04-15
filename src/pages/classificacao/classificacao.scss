@@ -1,0 +1,32 @@
+page-classificacao {
+    ion-row{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 0.9em;
+        color: #666666
+    }
+
+    div.nome-pontos{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .label-md{
+        margin: 13px 0 13px 0 !important;
+    }
+
+    .item-md.item-block .item-inner{
+        padding-right: 0 !important;
+    }
+
+    ion-header ion-row{
+        padding: 0 8px;
+    }
+    .center{
+        text-align: center;
+        border: solid thin #cccccc;
+        width: 12.5%;
+    }
+}
