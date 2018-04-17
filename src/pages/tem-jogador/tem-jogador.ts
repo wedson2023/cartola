@@ -11,11 +11,13 @@ import { MensagemProvider } from '../../providers/mensagem/mensagem';
 })
 export class TemJogadorPage {
   private atleta_id;
+  private apelido;
+  private foto;
   private liga_id;
   private times;
   private atletas;
   private competidores = 'sim';
-  private tem = [];
+  private sim = [];
   private nao = [];
 
   constructor(
@@ -28,12 +30,15 @@ export class TemJogadorPage {
     private LoadingController: LoadingController
   ) {
     this.atleta_id = this.navParams.get('atleta_id');
+    this.apelido = this.navParams.get('apelido');
+    this.foto = this.navParams.get('foto');
+    console.log(this.apelido, this.atleta_id, this.foto);
     this.liga_id = this.navegaroff.getItem('home_liga').liga.liga_id;
     this.times = this.navegaroff.getItem('home_liga').times;
   }
 
   tem_jogador(param){    
-    this.atletas = param == 'sim' ? this.tem : this.nao;
+    this.atletas = param == 'sim' ? this.sim : this.nao;
   }
 
   ionViewDidLoad() {
@@ -44,7 +49,7 @@ export class TemJogadorPage {
       {
         if(response[id].atletas.includes(parseInt(this.atleta_id)))
         {
-          this.tem.push(this.times.filter(e => e.time_id == id)[0]);          
+          this.sim.push(this.times.filter(e => e.time_id == id)[0]);          
         }
         else
         {
@@ -52,7 +57,7 @@ export class TemJogadorPage {
         }
       }
 
-      this.atletas = this.tem;
+      this.atletas = this.sim;
       loading.dismiss();
     }, err => {
       loading.dismiss();

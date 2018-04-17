@@ -1,20 +1,19 @@
 <ion-header>
-
+  <img [src]="foto.replace('FORMATO', '140x140')" >
   <div (ionChange)="tem_jogador(competidores)" radio-group [(ngModel)]="competidores">
     <ion-item>
-      <ion-label>Escalaram</ion-label>
+      <ion-label>{{ sim.length }} Escalaram <strong class="capitalize">{{ apelido }}</strong></ion-label>
       <ion-radio value="sim"></ion-radio>
     </ion-item>
     <ion-item>
-        <ion-label>Não escalaram</ion-label>
+        <ion-label>{{ nao.length }} Não escalaram <strong class="capitalize">{{ apelido }}</strong></ion-label>
         <ion-radio value="nao"></ion-radio>
       </ion-item>
   </div>
 
 </ion-header>
 
-
-<ion-content >
+<ion-content >    
     <ion-list padding-right>
       <ion-item *ngFor="let atleta of atletas">
         <ion-avatar item-start>

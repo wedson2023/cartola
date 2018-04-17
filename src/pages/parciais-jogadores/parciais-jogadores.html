@@ -2,9 +2,12 @@
     <ion-searchbar [(ngModel)]="pesquisar" placeholder="Pesquisar atleta"></ion-searchbar>
 </ion-header>
 <ion-content> 
+    <ion-refresher (ionRefresh)="carregar($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <p *ngIf="atletas" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>  
     <ion-list padding-right>
-        <ion-item (click)="tem_jogador(atleta.atleta_id)" *ngFor="let atleta of atletas | filter : pesquisar">
+        <ion-item (click)="tem_jogador(atleta)" *ngFor="let atleta of atletas | filter : pesquisar">
             <ion-avatar item-start>
                 <img [src]="atleta.clube">
             </ion-avatar> 

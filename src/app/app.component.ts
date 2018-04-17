@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+//import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { HomePage } from '../pages/home/home';
 import { RegulamentoPage } from '../pages/regulamento/regulamento';
@@ -18,11 +19,15 @@ import { ParciaisPage } from '../pages/parciais/parciais';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ParciaisPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen
+  ) {
     this.initializeApp();
 
     this.pages = [

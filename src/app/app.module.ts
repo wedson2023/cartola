@@ -36,6 +36,7 @@ import { ParciaisClubesPage } from '../pages/parciais-clubes/parciais-clubes';
 import { ConfigPage } from '../pages/config/config';
 import { ClassificacaoPage } from '../pages/classificacao/classificacao';
 import { TemJogadorPage } from '../pages/tem-jogador/tem-jogador';
+import { ModalDestaquePage } from '../pages/modal-destaque/modal-destaque';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { TemJogadorPage } from '../pages/tem-jogador/tem-jogador';
     ParciaisClubesPage,
     ConfigPage,
     ClassificacaoPage,
-    TemJogadorPage
+    TemJogadorPage,
+    ModalDestaquePage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ import { TemJogadorPage } from '../pages/tem-jogador/tem-jogador';
     ParciaisClubesPage,
     ConfigPage,
     ClassificacaoPage,
-    TemJogadorPage
+    TemJogadorPage,
+    ModalDestaquePage
   ],
   providers: [
     StatusBar,

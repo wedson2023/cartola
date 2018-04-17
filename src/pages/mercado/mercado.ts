@@ -43,11 +43,18 @@ export class MercadoPage implements OnInit{
 
   ordenar(ordem){
     this.atletas.sort((a, b) => {
-      if (a[ordem] < b[ordem])
-      return -1;
-      if (a[ordem] > b[ordem])
-        return 1;
-      return 0;
+     if(ordem == 'desvariacao_num')
+     {        
+        return (a['variacao_num'] > b['variacao_num']) ? 1 : ((a['variacao_num'] < b['variacao_num']) ? -1 : 0);
+      }
+      else if(ordem == 'apelido')
+      {
+        return (a[ordem] > b[ordem]) ? 1 : ((a[ordem] < b[ordem]) ? -1 : 0);
+      }
+      else
+      {               
+        return (a[ordem] > b[ordem]) ? -1 : ((a[ordem] < b[ordem]) ? 1 : 0);
+      }
     });
   }
 

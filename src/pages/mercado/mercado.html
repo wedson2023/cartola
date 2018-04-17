@@ -31,7 +31,7 @@
     <ion-label>Ordenar</ion-label>
       <ion-select class="stats" [(ngModel)]="ordenar">
         <ion-option value="G">Gol</ion-option>
-        <ion-option value="A">Assist}encia</ion-option>
+        <ion-option value="A">Assistência</ion-option>
         <ion-option value="FT">F. na trave</ion-option>
         <ion-option value="FD">F. defendida</ion-option>
         <ion-option value="FF">F. para fora</ion-option>
@@ -80,27 +80,27 @@
           <ul>
             <li>
               <strong>ATAQUE: </strong>
-              <span>FS<br>0</span>
-              <span>PE<br>0</span>
-              <span>A<br>0</span>
-              <span>FT<br>0</span>
-              <span>FD<br>0</span>
-              <span>FF<br>0</span>
-              <span>G<br>0</span>
-              <span>I<br>0</span>
-              <span>PP<br>0</span>
+              <span>FS<br>{{ (atleta.scout.FS || 0) }}</span>
+              <span>PE<br>{{ (atleta.scout.PE || 0) }}</span>
+              <span>A<br>{{ (atleta.scout.A || 0) }}</span>
+              <span>FT<br>{{ (atleta.scout.FT || 0) }}</span>
+              <span>FD<br>{{ (atleta.scout.FD || 0) }}</span>
+              <span>FF<br>{{ (atleta.scout.FF || 0) }}</span>
+              <span>G<br>{{ (atleta.scout.G || 0) }}</span>
+              <span>I<br>{{ (atleta.scout.I || 0) }}</span>
+              <span>PP<br>{{ (atleta.scout.PP || 0) }}</span>
             </li>
             <li>
                 <strong>DEFESA: </strong>
-                <span>RB<br>0</span>
-                <span>FC<br>0</span>
-                <span>GC<br>0</span>
-                <span>CA<br>0</span>
-                <span>CV<br>0</span>
-                <span>SG<br>0</span>
-                <span>DD<br>0</span>
-                <span>DP<br>0</span>
-                <span>GS<br>0</span>
+                <span>RB<br>{{ (atleta.scout.RB || 0) }}</span>
+                <span>FC<br>{{ (atleta.scout.FC || 0) }}</span>
+                <span>GC<br>{{ (atleta.scout.GC || 0) }}</span>
+                <span>CA<br>{{ (atleta.scout.CA || 0) }}</span>
+                <span>CV<br>{{ (atleta.scout.CV || 0) }}</span>
+                <span>SG<br>{{ (atleta.scout.SG || 0) }}</span>
+                <span>DD<br>{{ (atleta.scout.DD || 0) }}</span>
+                <span>DP<br>{{ (atleta.scout.DP || 0) }}</span>
+                <span>GS<br>{{ (atleta.scout.GS || 0) }}</span>
             </li>
           </ul>
         </div>

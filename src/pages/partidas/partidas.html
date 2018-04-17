@@ -10,7 +10,7 @@
         <img [src]="partida.casa.escudos['45x45']" >
         <div>
           <p>{{ partida.local }}</p>
-          <strong>X</strong>               
+          <strong>{{ partida.placar_oficial_mandante }} X {{ partida.placar_oficial_visitante }}</strong>               
           <time>{{ partida.partida_data | date : 'dd/MM/yyyy HH:mm' }}</time>
         </div>
         <img [src]="partida.visitante.escudos['45x45']" >  

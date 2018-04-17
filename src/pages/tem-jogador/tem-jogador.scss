@@ -3,7 +3,27 @@ page-tem-jogador {
         border-radius: 0 !important;
     }
 
+   ion-header .item-md{
+        padding-left: 0;
+        font-size: 1em;
+    }
+
     .capitalize{
         text-transform: capitalize;
+    }
+
+    ion-header div{
+        width: 80%;
+    }
+
+    ion-header img{
+        width: 20%;
+        height: 20%;
+        margin: 5px 10px;
+    }
+
+    ion-header{
+        display: flex;
+        justify-content: space-between;
     }
 }

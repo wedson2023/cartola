@@ -24,11 +24,11 @@
           <strong class="nome_liga">{{ liga?.liga.nome }}</strong>
         <img class="escudo_liga" [src]="liga?.liga.url_flamula_png" />
         <span class="descricao_liga">{{ liga?.liga.descricao }}</span>
-        <span class="num_participantes"><strong>{{ (liga?.times.quantidade_times || 0) + 1 }}</strong> Participantes</span>
-        <button (click)="abreModalDestaque()" class="destaques" ion-button full>Destaques</button>
+        <span class="num_participantes"><strong>{{ liga?.liga.total_times_liga }}</strong> Participantes</span>
+        <button (click)="destaques()" class="destaques" ion-button full>Destaques</button>
     </ion-card-content>    
     </ion-card>
-    <select [hidden]="!liga?.liga.url_flamula_png" class="filtro" (change)="selecionaFiltrar(filtro)" [(ngModel)]="filtro">
+    <select [hidden]="!liga?.liga.url_flamula_png" class="filtro" (change)="filtrar(filtro)" [(ngModel)]="filtro">
       <option value="campeonato">Campeonato</option>
       <option value="rodada">Rodada</option>
       <option value="patrimonio">Patrimônio</option>
