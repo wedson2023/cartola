@@ -37,6 +37,7 @@ import { ConfigPage } from '../pages/config/config';
 import { ClassificacaoPage } from '../pages/classificacao/classificacao';
 import { TemJogadorPage } from '../pages/tem-jogador/tem-jogador';
 import { ModalDestaquePage } from '../pages/modal-destaque/modal-destaque';
+import { NacionalPage } from './../pages/nacional/nacional';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ModalDestaquePage } from '../pages/modal-destaque/modal-destaque';
     ConfigPage,
     ClassificacaoPage,
     TemJogadorPage,
-    ModalDestaquePage
+    ModalDestaquePage,
+    NacionalPage
   ],
   imports: [
     BrowserModule,
@@ -94,7 +96,8 @@ import { ModalDestaquePage } from '../pages/modal-destaque/modal-destaque';
     ConfigPage,
     ClassificacaoPage,
     TemJogadorPage,
-    ModalDestaquePage
+    ModalDestaquePage,
+    NacionalPage
   ],
   providers: [
     StatusBar,

@@ -1,5 +1,7 @@
+import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
+import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()
 @Component({
@@ -10,15 +12,16 @@ export class ModalDestaquePage {
 
   times;
   destaques:object;
+  rodada_atual:Number;
 
   constructor(
     private navCtrl: NavController, 
-    private navParams: NavParams
+    private navParams: NavParams,
+    private ModalController: ModalController
   ) 
-  {    
-    delete this.navParams.data['component'];
-    delete this.navParams.data['opts'];
-    this.povoar_destaques(this.navParams.data);
+  { 
+    this.rodada_atual = this.navParams.get('rodada_atual');
+    this.povoar_destaques(this.navParams.get('times'));
   }
 
   povoar_destaques(times){
@@ -29,8 +32,6 @@ export class ModalDestaquePage {
       mes : this.setMes(times),
       turno : this.setTurno(times)
     }
-
-    console.log(this.destaques);
   }
 
   setCampeaoRodada(times){
@@ -51,7 +52,10 @@ export class ModalDestaquePage {
   
   setTurno(times){
     return times.sort((a,b) => (a.ranking.turno > b.ranking.turno) ? 1 : ((a.ranking.turno < b.ranking.turno) ? -1 : 0))[0];
+  }  
+
+  historico(time){
+    let modal = this.ModalController.create(HistoricoPage, { time : { slug : time }, rodada_atual : this.rodada_atual });
+    modal.present();
   }
-
-
 }

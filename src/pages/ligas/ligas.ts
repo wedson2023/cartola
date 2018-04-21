@@ -70,7 +70,6 @@ export class LigasPage {
         loading.dismiss();  
         for(let x in response)
         {
-         console.log(this.favoritos);
           let filtro_liga = this.favoritos.filter(elemento => elemento.liga_id == response[x].liga_id)[0];
           if(filtro_liga != undefined)
           {

@@ -41,6 +41,12 @@ export class MercadoPage implements OnInit{
 
   }
 
+  estatisticas(ordem){
+    console.log(ordem, this.atletas);
+    //((a.scout[ordem] || 0) > (b.scout[ordem] || 0)) ? -1 : ((a.scout[ordem] || 0) > (b.scout[ordem] || 0)) ? 1 : 0
+    this.atletas.sort((a, b) => ((a.scout[ordem] || 0) > (b.scout[ordem] || 0)) ? -1 : ((a.scout[ordem] || 0) < (b.scout[ordem] || 0)) ? 1 : 0);
+  }
+
   ordenar(ordem){
     this.atletas.sort((a, b) => {
      if(ordem == 'desvariacao_num')
@@ -88,6 +94,24 @@ export class MercadoPage implements OnInit{
             atleta.posicao = resposta.posicoes[atleta.posicao_id];
             let confronto = partidas.partidas.filter(e => e.clube_casa_id == atleta.clube_id || e.clube_visitante_id == atleta.clube_id)[0];
             atleta.confronto = { url_escudo_casa : resposta.clubes[confronto.clube_casa_id].escudos['30x30'], url_escudo_visitante : resposta.clubes[confronto.clube_visitante_id].escudos['30x30'] };
+            atleta.scout['G'] = (atleta.scout['G'] || 0);
+            atleta.scout['A'] = (atleta.scout['A'] || 0);
+            atleta.scout['FT'] = (atleta.scout['FT'] || 0);
+            atleta.scout['FF'] = (atleta.scout['FF'] || 0);
+            atleta.scout['FS'] = (atleta.scout['FS'] || 0);
+            atleta.scout['PP'] = (atleta.scout['PP'] || 0);
+            atleta.scout['FD'] = (atleta.scout['FD'] || 0);
+            atleta.scout['I'] = (atleta.scout['I'] || 0);
+            atleta.scout['PE'] = (atleta.scout['PE'] || 0);
+            atleta.scout['SG'] = (atleta.scout['SG'] || 0);
+            atleta.scout['DP'] = (atleta.scout['DP'] || 0);
+            atleta.scout['DD'] = (atleta.scout['DD'] || 0);
+            atleta.scout['RB'] = (atleta.scout['RB'] || 0);
+            atleta.scout['GC'] = (atleta.scout['GC'] || 0);
+            atleta.scout['CV'] = (atleta.scout['CV'] || 0);
+            atleta.scout['CA'] = (atleta.scout['CA'] || 0);
+            atleta.scout['GS'] = (atleta.scout['GS'] || 0);
+            atleta.scout['FC'] = (atleta.scout['FC'] || 0);
           }
           this.navegaroff.setItem('mercado', this.atletas);
           loading.dismiss();

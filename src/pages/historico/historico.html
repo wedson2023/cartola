@@ -1,37 +1,52 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Histórico</ion-title>
-  </ion-navbar>
-  <select (ngModelChange)="buscar(time, rodada)" [(ngModel)]="rodada" name="rodada" class="rodada">
-      <option value="Selecione a rodada"></option>
-      <option [value]="val" *ngFor="let val of rodadas">{{ val + 'ª Rodada' }}</option>
+  <select (ngModelChange)="buscar(rodada_atual)" [(ngModel)]="rodada_atual" name="rodada_atual" class="rodada">
+      <option value="">Selecione a rodada</option>
+      <option [value]="rodada" *ngFor="let rodada of lista_rodadas">{{ rodada + 'ª Rodada' }}</option>
   </select>
 </ion-header>
 
 <ion-content>
     <ion-card>    
-        <ion-card-content [hidden]="!data">
-          <strong class="nome">{{ nome }}</strong>
-          <!-- <span class="ano">Participa desde {{ ano }}</span> -->
-          <img class="foto" src="{{ foto_perfil }}" alt="">
-          <!-- <span class="pontuacao">Sua pontuação: {{ pontos }}</span> -->
+        <ion-card-content [hidden]="!historico">
+          <h2 class="nome">{{ historico?.time.nome }}</h2>
+          <span class="ano">Participa desde {{ historico?.time.temporada_inicial }}</span>
+          <img class="foto" [src]="historico?.time.url_escudo_png" >
+          <span class="pontuacao"><strong>Sua pontuação:</strong> {{ historico?.pontos | number : '1.2-2' }}</span>
         </ion-card-content> 
     </ion-card>
-    <!-- <ion-card>    
-        <ion-card-content [hidden]="!data">
+    <ion-card>    
+        <ion-card-content [hidden]="!historico">
             <ion-list>
-                <ion-item *ngFor="let atleta of atletas">
+                <ion-item *ngFor="let atleta of historico?.atletas">
                   <ion-avatar item-start>
-                    <img src="{{ atleta.escudo['45x45'] }}">
+                    <img [src]="atleta.escudo">
+                  </ion-avatar>                  
+                  <ion-avatar [hidden]="atleta.capitao === 'não'" item-end>
+                    <img class="end" src="./assets/imgs/capitao.png">
                   </ion-avatar>
-                  <h2>{{ (atleta.posicao_id | posicaoJogador) + ' - ' + atleta.apelido }}</h2>
-                  <p>Pontos: <strong>{{ atleta.pontos_num }}</strong></p>
-                  <span>{{ atleta.scout }}</span>
+                  <h2>{{ (atleta.posicao | uppercase) + ' - ' + atleta.apelido }}</h2>
+                  <p>Pontos: <strong>{{ (atleta.capitao === 'sim' ? (atleta.pontos_num + atleta.pontos_num) : atleta.pontos_num) | number : '1.2-2' }}</strong></p>
+                  <span class="green"> {{ ( atleta.scout.G ? atleta.scout.G + 'G' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.A ? atleta.scout.A + 'A' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.FT ? atleta.scout.FT + 'FT' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.FD ? atleta.scout.FD + 'FD' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.FF ? atleta.scout.FF + 'FF' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.FS ? atleta.scout.FS + 'FS' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.PP ? atleta.scout.PP + 'PP' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.I ? atleta.scout.I + 'I' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.PE ? atleta.scout.PE + 'PE' : null ) }}</span>
+                  
+                  <span class="green"> {{ ( atleta.scout.SG ? atleta.scout.SG + 'SG' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.DP ? atleta.scout.DP + 'DP' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.DD ? atleta.scout.DD + 'DD' : null ) }}</span>
+                  <span class="green"> {{ ( atleta.scout.RB ? atleta.scout.RB + 'RB' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.GC ? atleta.scout.GC + 'GC' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.CV ? atleta.scout.CV + 'CV' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.CA ? atleta.scout.CA + 'CA' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.GS ? atleta.scout.GS + 'GS' : null ) }}</span>
+                  <span class="red"> {{ ( atleta.scout.FC ? atleta.scout.FC + 'FC' : null ) }}</span>
                 </ion-item>
               </ion-list>
         </ion-card-content> 
-    </ion-card>     -->
+    </ion-card>    
 </ion-content>

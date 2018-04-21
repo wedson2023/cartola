@@ -29,7 +29,7 @@
   </ion-item>
   <ion-item [hidden]="true">
     <ion-label>Ordenar</ion-label>
-      <ion-select class="stats" [(ngModel)]="ordenar">
+      <ion-select class="stats" (ionChange)="estatisticas(ordenar)" [(ngModel)]="ordenar">
         <ion-option value="G">Gol</ion-option>
         <ion-option value="A">Assistência</ion-option>
         <ion-option value="FT">F. na trave</ion-option>

@@ -1,6 +1,7 @@
+import { MensagemProvider } from './../../providers/mensagem/mensagem';
+import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
@@ -9,77 +10,50 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'historico.html',
 })
 export class HistoricoPage { 
-  loading:any;  
-  data:any;
-  times:String = this.navParams.get('time');
 
-  rodadas:Number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]; 
-  rodada:Number = this.navParams.get('rodada_id');
-
-  nome:String;
-  ano:String;
-  foto_perfil:String;
-  pontos:Number;
-  posicao:String;
-  atletas:Array<object>;
-  res:object;
+  private time;
+  public historico:Object;
+  public lista_rodadas:Number[];
+  private rodada_atual;
 
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public httpClient: HttpClient,
-    public loadingCtrl: LoadingController
+    private navParams: NavParams,
+    private loadingCtrl: LoadingController,
+    private http: HttpProvider,
+    private mensagem: MensagemProvider
   ) 
   {
-    console.log(this.navParams.get('rodada_id'), this.navParams.get('time'));
-    this.times = this.navParams.get('time');
+    let todas_rodadas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38];
+    this.time = this.navParams.get('time');
+    this.rodada_atual = this.navParams.get('rodada_atual');
+    this.lista_rodadas = todas_rodadas.splice(0, this.rodada_atual);
   }
 
-  buscar(){
-    // console.log(this.times);
-    //   let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
-      
-    //     loading.present();
-    //       this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=time&time=' + this.times).subscribe(response => {
-    //       let time = JSON.parse(JSON.stringify(response));
-    //     console.log(time);
-    //       if(time.length)
-    //       {
-    //         this.nome = time[0].nome;
-    //         this.foto_perfil = time[0].foto_perfil;            
-    //         this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=rodada&slug=' + time[0].slug + '&rodada=' + this.rodada).subscribe(response => {
-    //             let rodada = JSON.parse(JSON.stringify(response));
-    //             this.httpClient.get('http://wedsonwebdesigner.com.br/cartola/index.php?api=clubes').subscribe(clubes => {
-    //             for(let x in rodada.atletas)
-    //             {
-    //               for(let i in clubes)
-    //               {                     
-    //                 if(clubes[i].id == rodada.atletas[x].clube_id)
-    //                 {
-    //                 rodada.atletas[x].escudo = clubes[i].escudos;
-    //                 }
-    //               }
-    //             }
-    //             console.log(rodada);
-    //             this.data = rodada;
-    //             this.ano = rodada.time.temporada_inicial;
-    //             this.pontos = rodada.pontos;
-    //             this.atletas = rodada.atletas;
-    //             loading.dismiss();  
-    //           })   
-    //           })
-    //       }
-    //       else 
-    //       {
-    //         loading.dismiss();
-    //         alert('Nome de time não encontrado!');              
-    //       }          
-    //       })
+  buscar(rodada_atual){
+    console.log(this.time, rodada_atual);
+    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    loading.present();
+
+    this.http.getApi('/time/slug/' + this.time.slug + '/' + rodada_atual).subscribe(response => {
+      let resposta = JSON.parse(JSON.stringify(response));
+
+      for(let x in resposta.atletas)
+      {
+        resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].abreviacao;
+        resposta.atletas[x].escudo = resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45'];
+        resposta.atletas[x].capitao = resposta.capitao_id === resposta.atletas[x].atleta_id ? 'sim' : 'não';
+      }
+     
+      resposta.atletas = resposta.atletas.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1);
+      this.historico = resposta;
+      loading.dismiss();
+    }, err => {
+      this.mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet');
+    })
   }
 
   ionViewDidLoad() { 
-    this.buscar();    
-    //console.log('ionViewDidLoad HistoricoPage');
+    this.buscar(this.rodada_atual);
   }
 }

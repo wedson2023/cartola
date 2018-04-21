@@ -1,10 +1,10 @@
+import { NacionalPage } from './../nacional/nacional';
+import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 
-import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
-
 import { ModalController, PopoverController } from 'ionic-angular';
+
 import { HistoricoPage } from '../historico/historico';
 import { PartidasPage } from '../partidas/partidas';
 import { HttpProvider } from '../../providers/http/http';
@@ -23,10 +23,9 @@ export class HomePage {
   liga;  
   ligaoff:object; 
   filtro:String;
+  rodada_atual;
 
   constructor(
-    public navCtrl: NavController,
-    public HttpClient: HttpClient,
     public loadingCtrl: LoadingController,
     public ModalController: ModalController,
     private http:HttpProvider,
@@ -35,7 +34,7 @@ export class HomePage {
   )   
   {
     this.filtro = 'campeonato';
-    this.ligaoff = this.navegaroff.getItem('home_liga');  
+    this.ligaoff = this.navegaroff.getItem('home_liga');     
   }
 
   config(){
@@ -60,11 +59,17 @@ export class HomePage {
   }
 
   historico(time){
-    //this.navCtrl.push(HistoricoPage, { time : time.nome, rodada_id : this.destaque_rodada_id });
+    let modal = this.ModalController.create(HistoricoPage, { time : time, rodada_atual : this.rodada_atual.rodada });
+    modal.present();
   }
 
   destaques(){
-    let modal = this.ModalController.create(ModalDestaquePage, this.liga.times);
+    let modal = this.ModalController.create(ModalDestaquePage, { times : this.liga.times, rodada_atual : this.rodada_atual.rodada });
+    modal.present();
+  }
+
+  nacional(){
+    let modal = this.ModalController.create(NacionalPage, { rodada_atual : this.rodada_atual });
     modal.present();
   }
 
@@ -77,9 +82,23 @@ export class HomePage {
     loading.present();
 
      this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao')).subscribe(response => {
+      for(let x in response.times)
+      {
+        let r = response.times[x].ranking;
+
+        r.campeonato = (r.campeonato || (response.times.length)) 
+        r.rodada = (r.rodada || (response.times.length)) 
+        r.patrimonio = (r.patrimonio || (response.times.length)) 
+        r.mes = (r.mes || (response.times.length)) 
+        r.turno = (r.turno || (response.times.length)) 
+      }
       this.liga = response;      
       this.navegaroff.setItem('home_liga', response);
       loading.dismiss();
+      this.http.getApi('partidas').subscribe(response => {
+        this.rodada_atual = response;
+      })
+      
     }, err => {
       loading.dismiss();
       this.liga = this.ligaoff;

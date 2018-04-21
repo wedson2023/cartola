@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-card [hidden]="!time_nacional">
+    <ion-card-content>
+        <h2>{{ time_nacional?.mito_rodada.nome }}</h2>
+        <p>{{ time_nacional?.mito_rodada.nome_cartola }}</p>
+        <p><strong>Temporada Inicial:</strong> {{ time_nacional?.mito_rodada.temporada_inicial }}</p>
+        <img [src]="time_nacional?.mito_rodada.foto_perfil">
+        <button ion-button (click)="historico(time_nacional?.mito_rodada.slug)" color="dark" round>VER TIME</button>
+        <span><strong>Média Nacional C$:</strong> {{ time_nacional?.media_cartoletas | number : '1.2-2' }}</span>
+        <span><strong>Média Nacional Pontos: </strong>{{ time_nacional?.media_pontos | number : '1.2-2' }}</span>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

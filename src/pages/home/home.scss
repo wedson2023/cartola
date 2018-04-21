@@ -36,6 +36,16 @@ page-home {
         width: 100%;
     }
 
+    ion-card div{
+        display: flex;        
+        justify-content: space-between;
+    }
+
+    ion-card div .button-md{
+        width: 49%;
+        margin: 0.4rem 0;
+    }
+
     .destaques {
         margin-top: 15px;
     }

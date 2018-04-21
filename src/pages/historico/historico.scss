@@ -1,18 +1,17 @@
 page-historico {
     .nome, .ano, .pontuacao {
         display: block;
-        text-align: center;
+        text-align: center;        
+    }
+    
+    .nome{
+        font-size: 1.4em;
+        font-weight: bold;
     }
 
     .foto {
         margin: 15px auto;
         width: 50%;
-        border-radius: 50%; 
-    }
-
-    ion-card-content.formulario {
-        display: flex;
-        justify-content: space-between;
     }
 
     .rodada {
@@ -21,13 +20,36 @@ page-historico {
         margin: 10px 10px;
         border: solid thin #cccccc
     }
-        
-    .col-20 {
-        width: 20%;
-        padding: 10px 1%;
-        margin: 1% 0;
-        background: cornflowerblue;
-        color: #fff;
-    } 
+
+    .item-md h2, p{
+        font-size: 1.3rem;
+    }
+
+    .item-md.item-block .item-inner{
+        padding-right: 0 !important; 
+    }
+
+    .item-md ion-avatar img{
+        border-radius: 0 !important;       
+    }
+
+    .item-md ion-avatar img.end{
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .item-md{
+        padding-left: 0 !important;
+    }
+
+    .green{
+        color: green;
+        font-size: 0.8em;
+    }
+
+    .red{
+        color: red;
+        font-size: 0.8em;
+    }
     
 }
