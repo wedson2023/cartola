@@ -1,3 +1,4 @@
+import { MeuTimePage } from './../pages/meu-time/meu-time';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -66,7 +67,8 @@ import { NacionalPage } from './../pages/nacional/nacional';
     ClassificacaoPage,
     TemJogadorPage,
     ModalDestaquePage,
-    NacionalPage
+    NacionalPage,
+    MeuTimePage
   ],
   imports: [
     BrowserModule,
@@ -97,7 +99,8 @@ import { NacionalPage } from './../pages/nacional/nacional';
     ClassificacaoPage,
     TemJogadorPage,
     ModalDestaquePage,
-    NacionalPage
+    NacionalPage,
+    MeuTimePage
   ],
   providers: [
     StatusBar,

@@ -1,5 +1,5 @@
+import { MeuTimePage } from './../meu-time/meu-time';
 import { NacionalPage } from './../nacional/nacional';
-import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { Component } from '@angular/core';
 
 import { LoadingController } from 'ionic-angular';
@@ -73,6 +73,11 @@ export class HomePage {
     modal.present();
   }
 
+  meu_time(){
+    let modal = this.ModalController.create(MeuTimePage);
+    modal.present();
+  }
+
   filtrar(filtro){    
     this.liga.times.sort((a, b) => a.ranking[filtro] - b.ranking[filtro]);
   }
@@ -82,18 +87,20 @@ export class HomePage {
     loading.present();
 
      this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao')).subscribe(response => {
-      for(let x in response.times)
-      {
-        let r = response.times[x].ranking;
+      let resposta = JSON.parse(JSON.stringify(response));
 
-        r.campeonato = (r.campeonato || (response.times.length)) 
-        r.rodada = (r.rodada || (response.times.length)) 
-        r.patrimonio = (r.patrimonio || (response.times.length)) 
-        r.mes = (r.mes || (response.times.length)) 
-        r.turno = (r.turno || (response.times.length)) 
+      for(let x in resposta.times)
+      {
+        let r = resposta.times[x].ranking;
+
+        r.campeonato = (r.campeonato || (resposta.times.length)) 
+        r.rodada = (r.rodada || (resposta.times.length)) 
+        r.patrimonio = (r.patrimonio || (resposta.times.length)) 
+        r.mes = (r.mes || (resposta.times.length)) 
+        r.turno = (r.turno || (resposta.times.length)) 
       }
-      this.liga = response;      
-      this.navegaroff.setItem('home_liga', response);
+      this.liga = resposta;      
+      this.navegaroff.setItem('home_liga', resposta);
       loading.dismiss();
       this.http.getApi('partidas').subscribe(response => {
         this.rodada_atual = response;

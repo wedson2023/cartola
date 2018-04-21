@@ -1,8 +1,13 @@
 page-nacional {
-    ion-card-content{
+    ion-content div{
         display: flex;
         flex-direction: column;
         text-align: center;
+    }
+
+    img{
+        width: 50%;
+        margin: 15px auto !important;
     }
 
     button{

@@ -31,7 +31,6 @@ export class HistoricoPage {
   }
 
   buscar(rodada_atual){
-    console.log(this.time, rodada_atual);
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
@@ -40,6 +39,7 @@ export class HistoricoPage {
 
       for(let x in resposta.atletas)
       {
+        resposta.atletas[x].scout = (resposta.atletas[x].scout || {});
         resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].abreviacao;
         resposta.atletas[x].escudo = resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45'];
         resposta.atletas[x].capitao = resposta.capitao_id === resposta.atletas[x].atleta_id ? 'sim' : 'não';
@@ -49,6 +49,7 @@ export class HistoricoPage {
       this.historico = resposta;
       loading.dismiss();
     }, err => {
+      loading.dismiss();      
       this.mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet');
     })
   }

@@ -34,6 +34,7 @@ export class NacionalPage {
   ionViewDidLoad() {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
+
     this.http.getApi('pos-rodada/destaques').subscribe(response => {
       this.navegaroff.setItem('time_nacional', response);
       this.time_nacional = response;
