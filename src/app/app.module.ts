@@ -39,6 +39,7 @@ import { ClassificacaoPage } from '../pages/classificacao/classificacao';
 import { TemJogadorPage } from '../pages/tem-jogador/tem-jogador';
 import { ModalDestaquePage } from '../pages/modal-destaque/modal-destaque';
 import { NacionalPage } from './../pages/nacional/nacional';
+import { ModalParciaisTimePage } from '../pages/modal-parciais-time/modal-parciais-time';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { NacionalPage } from './../pages/nacional/nacional';
     TemJogadorPage,
     ModalDestaquePage,
     NacionalPage,
-    MeuTimePage
+    MeuTimePage,
+    ModalParciaisTimePage
   ],
   imports: [
     BrowserModule,
@@ -100,7 +102,8 @@ import { NacionalPage } from './../pages/nacional/nacional';
     TemJogadorPage,
     ModalDestaquePage,
     NacionalPage,
-    MeuTimePage
+    MeuTimePage,
+    ModalParciaisTimePage
   ],
   providers: [
     StatusBar,

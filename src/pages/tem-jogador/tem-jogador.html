@@ -13,7 +13,11 @@
 
 </ion-header>
 
-<ion-content >    
+<ion-content>
+  <div class="pontuacao">
+    <strong>Pontuacão:</strong>
+    <strong>{{ pontuacao | number : '1.2-2' }}</strong>
+  </div>  
     <ion-list padding-right>
       <ion-item *ngFor="let atleta of atletas">
         <ion-avatar item-start>
@@ -21,6 +25,9 @@
         </ion-avatar>
         <h2 class="capitalize">{{ atleta.nome }}</h2>
         <p class="capitalize">{{ atleta.nome_cartola }}</p>
+        <ion-avatar [hidden]="atleta.capitao === 'não'" item-end>
+          <img class="end" src="./assets/imgs/capitao.png">
+        </ion-avatar>
       </ion-item>
     </ion-list>
 </ion-content>

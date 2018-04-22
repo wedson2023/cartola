@@ -12,6 +12,6 @@ export class FilterPipe implements PipeTransform {
     }
     
     let filter = args.toLocaleLowerCase(); 
-    return value.filter(v => v.apelido.toLocaleLowerCase().indexOf(filter) != -1);
+    return value.filter(v => (v.apelido === undefined ? v.nome.toLocaleLowerCase().indexOf(filter) : v.apelido.toLocaleLowerCase().indexOf(filter)) != -1);
   }
 }

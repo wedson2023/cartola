@@ -26,7 +26,7 @@
         <strong class="nome_liga">{{ liga?.liga.nome }}</strong>
         <img class="escudo_liga" [src]="liga?.liga.url_flamula_png" />
         <span class="descricao_liga">{{ liga?.liga.descricao }}</span>
-        <span class="num_participantes"><strong>{{ liga?.liga.total_times_liga }}</strong> Participantes</span>
+        <span class="num_participantes"><strong>{{ liga?.liga.total_times_liga + 1 }}</strong> Participantes</span>
         <button (click)="destaques()" class="destaques" ion-button full>Destaques</button>
         <div>
           <button (click)="nacional()" ion-button color="dark">Nacional</button><button (click)="meu_time()" ion-button color="dark">Seu time</button>

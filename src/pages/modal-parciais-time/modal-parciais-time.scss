@@ -1,4 +1,4 @@
-page-meu-time {
+page-modal-parciais-time {
     .item-md ion-avatar img{
         border-radius: 0 !important;
     }
@@ -41,23 +41,5 @@ page-meu-time {
     div strong, div span{
         font-size: 1.3rem;
     }
-
-    div button{
-        padding: 15px 15px !important;
-    }
-
-    .last_update{
-        display: block;
-        padding: 5px;
-        margin-bottom: 5px;
-        margin-left: 15px !important;
-        border-bottom: solid thin #cccccc; 
-        color: #999999;
-        text-align: center;
-        font-size: 0.9em;
-    }
-
-    ion-header .label-md{
-        margin: 0 !important;
-    }
+    
 }

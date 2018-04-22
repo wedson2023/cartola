@@ -16,6 +16,7 @@ export class TemJogadorPage {
   private liga_id;
   private times;
   private atletas;
+  private pontuacao;
   private competidores = 'sim';
   private sim = [];
   private nao = [];
@@ -32,7 +33,8 @@ export class TemJogadorPage {
     this.atleta_id = this.navParams.get('atleta_id');
     this.apelido = this.navParams.get('apelido');
     this.foto = this.navParams.get('foto');
-    console.log(this.apelido, this.atleta_id, this.foto);
+    this.pontuacao = this.navParams.get('pontuacao');
+
     this.liga_id = this.navegaroff.getItem('home_liga').liga.liga_id;
     this.times = this.navegaroff.getItem('home_liga').times;
   }
@@ -44,12 +46,14 @@ export class TemJogadorPage {
   ionViewDidLoad() {
     let loading = this.LoadingController.create({ content: 'Por favor aguarde...' });
     loading.present();
-    this.http.getApi('/liga/' + this.liga_id + '/times').subscribe(response => {      
+    this.http.getApi('/liga/' + this.liga_id + '/times').subscribe(response => {           
       for(let id in response)
       {
         if(response[id].atletas.includes(parseInt(this.atleta_id)))
         {
-          this.sim.push(this.times.filter(e => e.time_id == id)[0]);          
+          let time = this.times.filter(e => e.time_id == id)[0];
+          time.capitao = response[id].capitao == this.atleta_id ? 'sim' : 'não';
+          this.sim.push(time);          
         }
         else
         {

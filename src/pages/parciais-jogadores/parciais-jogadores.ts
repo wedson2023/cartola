@@ -25,39 +25,18 @@ export class ParciaisJogadoresPage {
   }
 
   tem_jogador(atleta){
-    let modal = this.ModalController.create(TemJogadorPage, { atleta_id : atleta.atleta_id, apelido : atleta.apelido, foto : atleta.foto });
+    console.log(atleta);
+    let modal = this.ModalController.create(TemJogadorPage, { pontuacao : atleta.pontuacao, atleta_id : atleta.atleta_id, apelido : atleta.apelido, foto : atleta.foto });
     modal.present();
   }
 
-  carregar(refresh){    
-    this.http.getApi('atletas/pontuados').subscribe(response => {
-      let resposta = JSON.parse(JSON.stringify(response));
-
-      for(let x in resposta.atletas)
-      {
-        resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].nome;
-        resposta.atletas[x].clube = resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45']; 
-      }
-
-      let atletas = [];
-      for(let i in resposta.atletas)
-      {
-        resposta.atletas[i].atleta_id = i;
-        atletas.push(resposta.atletas[i]);
-      }
-
-      atletas.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);       
-      this.atletas = atletas; 
-      this.navegaroff.setItem('hr_parciais_atletas', new Date());
-      this.navegaroff.setItem('parciais_atletas', atletas);
-      this.last_updated = new Date();      
-      refresh.complete();
-    }, err => refresh.complete() )
+  carregar(refresh){  
+    this.ionViewDidLoad(refresh);  
   }
 
   ionViewDidLoad(refresh) {
     let loading = this.LoadingController.create({ content: 'Por favor aguarde...' });
-    loading.present();
+    if(!refresh) loading.present();
 
     this.http.getApi('atletas/pontuados').subscribe(response => {
       let resposta = JSON.parse(JSON.stringify(response));
@@ -80,10 +59,12 @@ export class ParciaisJogadoresPage {
       this.navegaroff.setItem('hr_parciais_atletas', new Date());
       this.navegaroff.setItem('parciais_atletas', atletas);
       this.last_updated = new Date();
+      if(refresh) refresh.complete();
       loading.dismiss();    
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_atletas');
       this.atletas = this.atletasoff;
+      if(refresh) refresh.complete();
       loading.dismiss(); 
       }  
     )

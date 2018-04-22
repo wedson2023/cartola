@@ -1,3 +1,22 @@
+<ion-header>
+    <ion-searchbar [(ngModel)]="pesquisar" placeholder="Pesquisar times"></ion-searchbar>
+</ion-header>
 <ion-content>
-    
+    <ion-refresher (ionRefresh)="carregar($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <p *ngIf="times" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
+    <ion-list padding-right>
+        <ion-item (click)="parcial_time(time)" *ngFor="let time of times | filter : pesquisar">
+            <ion-avatar item-start>
+                <img [src]="time.url_escudo_png">
+            </ion-avatar> 
+            <h2>{{ time.nome }}</h2>
+            <p>{{ time.nome_cartola }}</p>
+            <ion-note item-end="" class="note note-md">
+                <strong>{{ time.pontuacao | number : '1.2-2' }}</strong>
+                <span>{{ time.atletas_restante }}/12</span>
+            </ion-note>
+        </ion-item>
+    </ion-list>
 </ion-content>

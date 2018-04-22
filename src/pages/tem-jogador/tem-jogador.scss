@@ -8,6 +8,20 @@ page-tem-jogador {
         font-size: 1em;
     }
 
+    div.pontuacao{
+        padding: 10px 15px;
+        border-bottom: solid thin #cccccc;
+        display: flex;
+        justify-content: space-between;
+        color: #666666
+    }
+
+    .item-md ion-avatar img.end{
+        margin-top: 7px;
+        width: 25px !important;
+        height: 25px !important;
+    }
+
     .capitalize{
         text-transform: capitalize;
     }

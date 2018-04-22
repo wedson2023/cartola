@@ -1,6 +1,44 @@
 page-parciais-times {
     .item-md ion-avatar img{
         border-radius: 0 !important;
+    }    
+
+    .item-md h2{
+        font-size: 1.5rem;
+    }
+
+    ion-item div.pontuacao{
+        width: 100px;
+        border: solid thin red;
+        float: right;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        font-size: 1.3rem;
+    }
+
+    .item-md.item-block .item-inner{
+        padding-right: 0 !important;
+    }
+
+    .note-md{
+        display: flex;
+        flex-direction: column;
+        text-align: right;        
+    }
+
+    .note-md strong, .note-md span{
+        font-size: 1.3rem;
+    }
+    
+    .last_update{
+        display: block;
+        padding: 5px;
+        margin-bottom: 5px;
+        border-bottom: solid thin #cccccc; 
+        color: #999999;
+        text-align: center;
+        font-size: 0.9em;
     }
 
     p.mensagem{

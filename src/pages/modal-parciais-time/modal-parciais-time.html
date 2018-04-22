@@ -1,16 +1,6 @@
-<ion-header>
-  <ion-item>
-  <ion-avatar item-start>
-    <img [src]="meu_time?.time.url_escudo_png">
-  </ion-avatar>
-  <h2>{{ meu_time?.time.nome }}</h2>
-  <p>{{ meu_time?.time.nome_cartola }}</p>
-</ion-item>
-</ion-header>
 <ion-content padding-right>
-    <p *ngIf="meu_time?.atletas" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
-    <ion-list [hidden]="!meu_time?.atletas">
-        <ion-item *ngFor="let atletas of meu_time?.atletas">
+    <ion-list [hidden]="!time">
+        <ion-item *ngFor="let atletas of parciais?.atletas">
           <ion-avatar item-start>
             <img [src]="atletas.escudo">
           </ion-avatar>
@@ -41,11 +31,10 @@
           <ion-note item-end="" [ngClass]="atletas.pontos_num.toString().indexOf('-') ? 'green' : 'red'" class="note note-md">{{ (atletas.capitao === 'sim' ? (atletas.pontos_num + atletas.pontos_num) : atletas.pontos_num) | number : '1.2-2' }}</ion-note>
         </ion-item>
         <ion-item>
-          <div class="total">
-          <button ion-button>Não é seu time?</button>          
+          <div class="total">        
             <strong>PONTUAÇÃO: </strong>
-            <strong [ngClass]="pontuacao_total.toString().indexOf('-') ? 'green' : 'red'">{{ pontuacao_total | number : '1.2-2' }}</strong>
-          </div>          
+            <strong [ngClass]="pontuacao_total ? 'green' : 'red'">{{ pontuacao_total | number : '1.2-2' }}</strong>
+          </div> 
         </ion-item>
       </ion-list>
 </ion-content>

@@ -14,7 +14,6 @@ export class ParciaisClubesPage {
   public partidas;
   private partidasoff;
   private atletas;
-  private atletasoff;
   private show_parciais;
 
   constructor(
