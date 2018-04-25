@@ -4,10 +4,20 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Parciais</ion-title>
+    <ion-buttons end>
+      <button ion-button id="share" icon-only>
+        <ion-icon name="md-share"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-
+<ion-item [hidden]="true">
+  <ion-label>Ordenar</ion-label>
+    <ion-select class="parciais" (ionChange)="compartilhar(ordem)" [(ngModel)]="ordem">
+      <ion-option value="false">Geral</ion-option>
+      <ion-option value="true">Parciais</ion-option>
+    </ion-select>
+</ion-item>
 <ion-content> 
   <ion-tabs>
     <ion-tab tabIcon="person" tabTitle="Times" [root]="tab1"></ion-tab>

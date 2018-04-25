@@ -1,7 +1,7 @@
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,11 +19,11 @@ export class ModalParciaisTimePage {
     public navParams: NavParams,
     private http: HttpProvider,
     private loadingCtrl: LoadingController,
-    private Mensagem: MensagemProvider
+    private Mensagem: MensagemProvider,
+    private viewCtrl: ViewController
   ) {
     this.time = this.navParams.get('time');
     this.atletas = this.navParams.get('atletas');
-    console.log(this.time, this.atletas);
   }
 
   ionViewDidLoad() {
@@ -41,13 +41,14 @@ export class ModalParciaisTimePage {
         at.escudo = resposta.clubes[at.clube_id].escudos['60x60'];
         at.posicao = resposta.posicoes[at.posicao_id].abreviacao;
         at.capitao = resposta.capitao_id == at.atleta_id ? 'sim' : 'não';
-        pontuacao_total += at.pontos_num;
+        pontuacao_total += resposta.capitao_id == at.atleta_id ? (at.pontos_num * 2) : at.pontos_num;
       }
       this.pontuacao_total = pontuacao_total;
       resposta.atletas.sort((a, b) => a.posicao_id - b.posicao_id)
       this.parciais = resposta;
       loading.dismiss();
     }, err => {
+      this.viewCtrl.dismiss();
       this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet!');
       loading.dismiss();
     })

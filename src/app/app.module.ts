@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login';
 import { MeuTimePage } from './../pages/meu-time/meu-time';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -40,6 +41,7 @@ import { TemJogadorPage } from '../pages/tem-jogador/tem-jogador';
 import { ModalDestaquePage } from '../pages/modal-destaque/modal-destaque';
 import { NacionalPage } from './../pages/nacional/nacional';
 import { ModalParciaisTimePage } from '../pages/modal-parciais-time/modal-parciais-time';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { ModalParciaisTimePage } from '../pages/modal-parciais-time/modal-parcia
     ModalDestaquePage,
     NacionalPage,
     MeuTimePage,
-    ModalParciaisTimePage
+    ModalParciaisTimePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,8 @@ import { ModalParciaisTimePage } from '../pages/modal-parciais-time/modal-parcia
     ModalDestaquePage,
     NacionalPage,
     MeuTimePage,
-    ModalParciaisTimePage
+    ModalParciaisTimePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -112,7 +116,8 @@ import { ModalParciaisTimePage } from '../pages/modal-parciais-time/modal-parcia
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpProvider,
     NavegaroffProvider,
-    MensagemProvider
+    MensagemProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

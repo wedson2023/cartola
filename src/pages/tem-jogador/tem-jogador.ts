@@ -17,12 +17,10 @@ export class TemJogadorPage {
   private times;
   private atletas;
   private pontuacao;
-  private competidores = 'sim';
   private sim = [];
   private nao = [];
 
   constructor(
-    private navCtrl: NavController,
     private navParams: NavParams,
     private http: HttpProvider,
     private navegaroff: NavegaroffProvider,

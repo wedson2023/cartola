@@ -1,3 +1,4 @@
+import { HttpProvider } from './../../providers/http/http';
 import { MeuTimePage } from './../meu-time/meu-time';
 import { NacionalPage } from './../nacional/nacional';
 import { Component } from '@angular/core';
@@ -7,7 +8,6 @@ import { ModalController, PopoverController } from 'ionic-angular';
 
 import { HistoricoPage } from '../historico/historico';
 import { PartidasPage } from '../partidas/partidas';
-import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 import { PontuacaoComponent } from '../../components/pontuacao/pontuacao';
 import { ConfigPage } from '../config/config';
@@ -20,6 +20,7 @@ import { ModalDestaquePage } from '../modal-destaque/modal-destaque';
 })
 export class HomePage {
 
+  private token;
   liga;  
   ligaoff:object; 
   filtro:String;
@@ -34,7 +35,7 @@ export class HomePage {
   )   
   {
     this.filtro = 'campeonato';
-    this.ligaoff = this.navegaroff.getItem('home_liga');     
+    this.ligaoff = this.navegaroff.getItem('home_liga');      
   }
 
   config(){

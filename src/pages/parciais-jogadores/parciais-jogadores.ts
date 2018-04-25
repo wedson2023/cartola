@@ -16,7 +16,6 @@ export class ParciaisJogadoresPage {
 
   constructor(
     private http: HttpProvider,
-    private loadingCtrl: LoadingController,
     private LoadingController: LoadingController,
     private navegaroff: NavegaroffProvider,
     public ModalController: ModalController
@@ -25,7 +24,6 @@ export class ParciaisJogadoresPage {
   }
 
   tem_jogador(atleta){
-    console.log(atleta);
     let modal = this.ModalController.create(TemJogadorPage, { pontuacao : atleta.pontuacao, atleta_id : atleta.atleta_id, apelido : atleta.apelido, foto : atleta.foto });
     modal.present();
   }
@@ -39,6 +37,7 @@ export class ParciaisJogadoresPage {
     if(!refresh) loading.present();
 
     this.http.getApi('atletas/pontuados').subscribe(response => {
+      loading.dismiss(); 
       let resposta = JSON.parse(JSON.stringify(response));
 
       for(let x in resposta.atletas)
@@ -59,8 +58,7 @@ export class ParciaisJogadoresPage {
       this.navegaroff.setItem('hr_parciais_atletas', new Date());
       this.navegaroff.setItem('parciais_atletas', atletas);
       this.last_updated = new Date();
-      if(refresh) refresh.complete();
-      loading.dismiss();    
+      if(refresh) refresh.complete();         
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_atletas');
       this.atletas = this.atletasoff;

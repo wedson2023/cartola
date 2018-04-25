@@ -94,6 +94,7 @@ export class MercadoPage implements OnInit{
             atleta.posicao = resposta.posicoes[atleta.posicao_id];
             let confronto = partidas.partidas.filter(e => e.clube_casa_id == atleta.clube_id || e.clube_visitante_id == atleta.clube_id)[0];
             atleta.confronto = { url_escudo_casa : resposta.clubes[confronto.clube_casa_id].escudos['30x30'], url_escudo_visitante : resposta.clubes[confronto.clube_visitante_id].escudos['30x30'] };
+            atleta.scout = {};
             atleta.scout['G'] = (atleta.scout['G'] || 0);
             atleta.scout['A'] = (atleta.scout['A'] || 0);
             atleta.scout['FT'] = (atleta.scout['FT'] || 0);

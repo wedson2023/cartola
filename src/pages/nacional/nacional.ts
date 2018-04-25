@@ -1,7 +1,7 @@
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { IonicPage, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()

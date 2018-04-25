@@ -1,3 +1,4 @@
+import { ParciaisPage } from './../pages/parciais/parciais';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -11,7 +12,6 @@ import { MercadoPage } from '../pages/mercado/mercado';
 import { TimesPage } from '../pages/times/times';
 import { LigasPage } from '../pages/ligas/ligas';
 import { PremiacaoPage } from '../pages/premiacao/premiacao';
-import { ParciaisPage } from '../pages/parciais/parciais';
 
 @Component({
   templateUrl: 'app.html'

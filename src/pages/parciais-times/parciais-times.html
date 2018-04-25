@@ -1,5 +1,6 @@
-<ion-header>
+<ion-header >
     <ion-searchbar [(ngModel)]="pesquisar" placeholder="Pesquisar times"></ion-searchbar>
+    <ion-toggle (ionChange)="ordenar(provavel)" [(ngModel)]="provavel"></ion-toggle>
 </ion-header>
 <ion-content>
     <ion-refresher (ionRefresh)="carregar($event)">
@@ -7,16 +8,21 @@
     </ion-refresher>
     <p *ngIf="times" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
     <ion-list padding-right>
-        <ion-item (click)="parcial_time(time)" *ngFor="let time of times | filter : pesquisar">
-            <ion-avatar item-start>
-                <img [src]="time.url_escudo_png">
-            </ion-avatar> 
-            <h2>{{ time.nome }}</h2>
-            <p>{{ time.nome_cartola }}</p>
-            <ion-note item-end="" class="note note-md">
-                <strong>{{ time.pontuacao | number : '1.2-2' }}</strong>
-                <span>{{ time.atletas_restante }}/12</span>
-            </ion-note>
-        </ion-item>
-    </ion-list>
+        <ion-item-sliding *ngFor="let time of times | filter : pesquisar; let i = index">
+            <ion-item (click)="parcial_time(time)">
+                <ion-avatar item-start>
+                    <img [src]="time.url_escudo_png">
+                </ion-avatar> 
+                <h2>{{ (i + 1) + ' - ' + time.nome }}</h2>
+                <p>{{ time.nome_cartola }}</p>
+                <ion-note item-end="" class="note note-md">
+                    <strong>{{ (ordem ? time.pontuacao_total : time.pontuacao) | number : '1.2-2' }}</strong>
+                    <span>{{ (pontos_campeao ? (i ? '-' : '') + ((pontos_campeao - time.pontuacao_total) | number : '1.2-2') : time.atletas_restante + '/12') }}</span>
+                </ion-note>
+            </ion-item>
+            <ion-item-options (click)="compartilhar(time)" side="right">
+                <button ion-button style="padding:17px 10px; background: #fff;" ><ion-icon style="color:black; font-size: 2.5em;" name="share"></ion-icon></button>
+            </ion-item-options>
+        </ion-item-sliding>    
+    </ion-list>    
 </ion-content>

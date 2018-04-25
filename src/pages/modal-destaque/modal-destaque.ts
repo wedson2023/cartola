@@ -1,6 +1,5 @@
-import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
+import { IonicPage, NavParams, ModalController} from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()
@@ -14,8 +13,7 @@ export class ModalDestaquePage {
   destaques:object;
   rodada_atual:Number;
 
-  constructor(
-    private navCtrl: NavController, 
+  constructor( 
     private navParams: NavParams,
     private ModalController: ModalController
   ) 

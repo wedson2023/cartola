@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController } from 'ionic-angular';
-import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 import { HttpClient } from '@angular/common/http';
 

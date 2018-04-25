@@ -1,0 +1,20 @@
+<ion-content padding>
+  <ion-card>   
+    <ion-card-content>
+      <img src="./assets/imgs/cartola.png" alt="">
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating>Seu email</ion-label>
+          <ion-input [(ngModel)]="usuario.payload.email" type="text"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Sua senha</ion-label>
+          <ion-input [(ngModel)]="usuario.payload.password" type="password"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button block (click)="login()" ion-button>Logar</button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

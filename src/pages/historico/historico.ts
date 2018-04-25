@@ -36,7 +36,7 @@ export class HistoricoPage {
 
     this.http.getApi('/time/slug/' + this.time.slug + '/' + rodada_atual).subscribe(response => {
       let resposta = JSON.parse(JSON.stringify(response));
-
+      console.log(resposta, rodada_atual);
       for(let x in resposta.atletas)
       {
         resposta.atletas[x].scout = (resposta.atletas[x].scout || {});

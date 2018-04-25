@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-item>
+  <ion-item >
   <ion-avatar item-start>
-    <img [src]="meu_time?.time.url_escudo_png">
+    <img [src]="(meu_time?.time.url_escudo_png || './assets/imgs/escudo.png')">
   </ion-avatar>
   <h2>{{ meu_time?.time.nome }}</h2>
   <p>{{ meu_time?.time.nome_cartola }}</p>
@@ -42,7 +42,7 @@
         </ion-item>
         <ion-item>
           <div class="total">
-          <button ion-button>Não é seu time?</button>          
+          <button (click)="login()" ion-button>Não é seu time?</button>          
             <strong>PONTUAÇÃO: </strong>
             <strong [ngClass]="pontuacao_total.toString().indexOf('-') ? 'green' : 'red'">{{ pontuacao_total | number : '1.2-2' }}</strong>
           </div>          

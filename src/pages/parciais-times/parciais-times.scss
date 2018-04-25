@@ -21,6 +21,20 @@ page-parciais-times {
         padding-right: 0 !important;
     }
 
+    ion-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    ion-header ion-searchbar{
+        width: 83%;
+    }
+
+    .searchbar-md{
+        padding-right: 0 !important;
+    }
+
     .note-md{
         display: flex;
         flex-direction: column;
