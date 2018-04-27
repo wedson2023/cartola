@@ -35,7 +35,7 @@ export class LigasPage {
 
   lista_times(slug){
     let modal = this.ModalController.create(TimesLigaPage, { data : slug });
-    modal.present();    
+    modal.present(); 
   }
 
   lista_favoritos(){
@@ -65,8 +65,7 @@ export class LigasPage {
     {      
       let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
       loading.present();
-      let nome_liga = encodeURIComponent(liga);
-      this.http.getApi('ligas?q=' + encodeURIComponent(nome_liga)).subscribe(response => {
+      this.http.getApi('ligas?q=' + encodeURI(liga)).subscribe(response => {
         loading.dismiss();  
         for(let x in response)
         {

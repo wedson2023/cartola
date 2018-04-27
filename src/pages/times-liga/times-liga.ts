@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 
@@ -15,13 +15,11 @@ export class TimesLigaPage {
   times;
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpProvider,
     private loadingCtrl: LoadingController
   ) {
     this.slug = this.navParams.get('data');
-    console.log(this.navParams.get('data'));
   }
 
   ionViewDidLoad() {

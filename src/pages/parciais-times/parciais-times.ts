@@ -1,6 +1,6 @@
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
-import { Component, OnInit } from '@angular/core';
-import { IonicPage, LoadingController, ModalController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, LoadingController, ModalController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 import { ModalParciaisTimePage } from './../modal-parciais-time/modal-parciais-time';
@@ -26,12 +26,10 @@ export class ParciaisTimesPage {
     private navegaroff: NavegaroffProvider,
     private ModalController: ModalController,    
     private socialSharing: SocialSharing,
-    private Mensagem: MensagemProvider,
-    private NavParams: NavParams
+    private Mensagem: MensagemProvider
   ) {    
     this.liga = this.navegaroff.getItem('home_liga');
     this.timesoff = this.navegaroff.getItem('parciais_times');
-    console.log(this.pontos_campeao)
   }
   
   ordenar(ordem){
@@ -55,7 +53,6 @@ export class ParciaisTimesPage {
       this.times.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1); 
       this.pontos_campeao = null;
     }  
-    console.log(this.pontos_campeao);
   }
 
   parcial_time(time){

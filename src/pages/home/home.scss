@@ -3,6 +3,10 @@ page-home {
         border-radius: 0 !important;
     }
 
+    ion-list{
+        margin-top: 5px !important;
+    }
+
     .config{
         font-size: 2em;
     }
@@ -52,13 +56,5 @@ page-home {
 
     .trofeu {
         color: #ffcc00;
-    }
-
-    .filtro {       
-        width: 95%;
-        margin: 10px;
-        padding: 10px 5px;
-        box-sizing: border-box;
-        border: solid thin #ccc;
     }
 }

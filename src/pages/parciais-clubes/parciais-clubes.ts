@@ -28,8 +28,9 @@ export class ParciaisClubesPage {
   parciais_jogadores(clubes){  
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
-
+    
     this.http.getApi('atletas/pontuados').subscribe(response => {
+      loading.dismiss();
       let resposta = JSON.parse(JSON.stringify(response));
 
       let atletas = { casa : [], visitante : [] };
@@ -49,8 +50,7 @@ export class ParciaisClubesPage {
       atletas.casa.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1); 
       atletas.visitante.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1);       
       this.atletas = atletas;
-      this.show_parciais = clubes.clube_casa_id;
-      loading.dismiss();  
+      this.show_parciais = clubes.clube_casa_id;        
     }, err =>{
       this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet.');
       loading.dismiss(); 

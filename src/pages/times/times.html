@@ -16,7 +16,7 @@
   <p class="mensagem" [hidden]="times">Pesquisa por seu nome ou nome do time</p>
     <ion-list padding-right>
         <ion-item-sliding *ngFor="let time of times">
-          <ion-item>
+          <ion-item (click)="historico(time)">
             <ion-avatar item-start>
                <img [src]="time.url_escudo_png">
             </ion-avatar>

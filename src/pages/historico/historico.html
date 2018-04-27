@@ -1,8 +1,10 @@
 <ion-header>
-  <select (ngModelChange)="buscar(rodada_atual)" [(ngModel)]="rodada_atual" name="rodada_atual" class="rodada">
-      <option value="">Selecione a rodada</option>
-      <option [value]="rodada" *ngFor="let rodada of lista_rodadas">{{ rodada + 'ª Rodada' }}</option>
-  </select>
+  <ion-item>
+    <ion-label>Selecione a rodada</ion-label>
+      <ion-select class="parciais" (ionChange)="buscar(rodada)" [(ngModel)]="rodada">
+        <ion-option [value]="rodada" *ngFor="let rodada of lista_rodadas">{{ rodada + 'ª Rodada' }}</ion-option>
+      </ion-select>
+  </ion-item>
 </ion-header>
 
 <ion-content>

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, ModalController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { LoadingController } from 'ionic-angular';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 import { MensagemProvider } from '../../providers/mensagem/mensagem';
+import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()
 @Component({
@@ -13,13 +14,15 @@ import { MensagemProvider } from '../../providers/mensagem/mensagem';
 export class TimesPage {  
 
   public times:object;
-  private favoritos; 
+  private favoritos;
+  private rodada_atual;
   
   constructor(
     private http:HttpProvider,
     private loadingCtrl:LoadingController,
     private navegaroff: NavegaroffProvider,
-    private MensagemProvider: MensagemProvider
+    private MensagemProvider: MensagemProvider,
+    private ModalController: ModalController
   ) 
   {
     if(this.navegaroff.getItem('times_favoritos') === null)
@@ -28,6 +31,12 @@ export class TimesPage {
     }
 
     this.favoritos = this.navegaroff.getItem('times_favoritos');
+  }
+
+  historico(time){
+    console.log(time);
+    let modal = this.ModalController.create(HistoricoPage, { time : time, rodada_atual : this.rodada_atual.rodada });
+    modal.present();
   }
 
   lista_favoritos(){
@@ -57,8 +66,7 @@ export class TimesPage {
     {
       let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
       loading.present();
-      let nome_time = encodeURIComponent(time);
-      this.http.getApi('times?q=' + encodeURIComponent(nome_time)).subscribe(response => {
+      this.http.getApi('times?q=' + encodeURI(time)).subscribe(response => {
         loading.dismiss(); 
         for(let x in response)
         {         
@@ -82,6 +90,9 @@ export class TimesPage {
   }
 
   ionViewDidLoad() {
+    this.http.getApi('partidas').subscribe(response => {
+      this.rodada_atual = response;
+    })
   }
 
 }

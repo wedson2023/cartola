@@ -10,6 +10,7 @@ export class MercadoComponent {
 
   atletas;
   filter = { status_id : null, posicao_id : 0, clube_id : null, preco_num : null };
+  provavel;
 
   limpar(){
     this.viewCtrl.dismiss(this.navegaroff.getItem('mercado'));

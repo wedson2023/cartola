@@ -31,7 +31,6 @@ export class MeuTimePage {
   login(){
     let modal = this.ModalController.create(LoginPage);
     modal.present();
-
     modal.onDidDismiss((token) => { this.http.setToken(token); this.ionViewDidLoad(); })
   }
 

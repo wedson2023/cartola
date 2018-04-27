@@ -14,6 +14,7 @@ import { MercadoComponent } from '../../components/mercado/mercado';
   selector: 'page-mercado',
   templateUrl: 'mercado.html',
 })
+
 export class MercadoPage implements OnInit{
 
   public atletas;
@@ -25,9 +26,9 @@ export class MercadoPage implements OnInit{
     private navegaroff: NavegaroffProvider,
     private popoverCtrl: PopoverController
   ) 
-  {
-    this.atletasoff = this.navegaroff.getItem('mercado');      
-  }
+  {    
+    this.atletasoff = this.navegaroff.getItem('mercado'); 
+  }  
 
   ngOnInit(){
 
@@ -41,9 +42,7 @@ export class MercadoPage implements OnInit{
 
   }
 
-  estatisticas(ordem){
-    console.log(ordem, this.atletas);
-    //((a.scout[ordem] || 0) > (b.scout[ordem] || 0)) ? -1 : ((a.scout[ordem] || 0) > (b.scout[ordem] || 0)) ? 1 : 0
+  estatisticas(ordem){    
     this.atletas.sort((a, b) => ((a.scout[ordem] || 0) > (b.scout[ordem] || 0)) ? -1 : ((a.scout[ordem] || 0) < (b.scout[ordem] || 0)) ? 1 : 0);
   }
 
@@ -71,7 +70,6 @@ export class MercadoPage implements OnInit{
   abrir_filtro(){   
     let popover = this.popoverCtrl.create(MercadoComponent, this.atletasoff, { cssClass: 'mercado' });
     popover.present();
-
     popover.onDidDismiss(atletas => this.atletas = ( atletas || this.atletas ));
   }
 
@@ -94,7 +92,7 @@ export class MercadoPage implements OnInit{
             atleta.posicao = resposta.posicoes[atleta.posicao_id];
             let confronto = partidas.partidas.filter(e => e.clube_casa_id == atleta.clube_id || e.clube_visitante_id == atleta.clube_id)[0];
             atleta.confronto = { url_escudo_casa : resposta.clubes[confronto.clube_casa_id].escudos['30x30'], url_escudo_visitante : resposta.clubes[confronto.clube_visitante_id].escudos['30x30'] };
-            atleta.scout = {};
+            atleta.scout = atleta.scout ? atleta.scout : {};
             atleta.scout['G'] = (atleta.scout['G'] || 0);
             atleta.scout['A'] = (atleta.scout['A'] || 0);
             atleta.scout['FT'] = (atleta.scout['FT'] || 0);

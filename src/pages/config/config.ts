@@ -18,7 +18,6 @@ export class ConfigPage{
     private MensagemProvider: MensagemProvider,
     private viewCtrl: ViewController
   ) {
-
   }
 
   marcar_liga(liga){
@@ -31,8 +30,7 @@ export class ConfigPage{
     {      
       let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
       loading.present();
-      let nome_liga = encodeURIComponent(liga);
-      this.http.getApi('ligas?q=' + encodeURIComponent(nome_liga)).subscribe(response => {
+      this.http.getApi('ligas?q=' + encodeURI(liga)).subscribe(response => {
        loading.dismiss();        
        this.ligas = response; 
       }, (err) => {

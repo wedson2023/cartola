@@ -4,7 +4,7 @@ import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpProvider } from './../../providers/http/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { ParciaisTimesPage } from '../parciais-times/parciais-times';
 import { ParciaisJogadoresPage } from '../parciais-jogadores/parciais-jogadores';
@@ -22,7 +22,6 @@ export class ParciaisPage{
   private times;
   private atletas;
   private last_updated;
-  private pontos_campeao;
 
   tab1 = ParciaisTimesPage;
   tab2 = ParciaisJogadoresPage;
@@ -56,7 +55,7 @@ export class ParciaisPage{
     else
     {   
       text += '*_RANKING GERAL_*' + quebra + quebra;   
-      let ordem = response.sort((a,b) => a.pontuacao_total > b.pontuacao_total ? -1 : 1);          
+      response.sort((a,b) => a.pontuacao_total > b.pontuacao_total ? -1 : 1);          
     }
 
     for(let x in response)
@@ -68,8 +67,6 @@ export class ParciaisPage{
 
     let ultima = new Date(this.last_updated); 
     text += quebra + '_Última atualização: ' + new Date(ultima.setHours(ultima.getHours() + 3)).toLocaleTimeString('pt-BR') + '_';
-    
-    console.log(text, ordem, response);
 
     this.socialSharing.shareViaWhatsApp(text, null, '').then(() => {
       // Success!
@@ -110,7 +107,14 @@ export class ParciaisPage{
       }) 
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_times');
-      this.compartilhar_texto(this.timesoff, ordem);
+      if(this.timesoff !== null)
+      {
+        this.compartilhar_texto(this.timesoff, ordem);
+      }
+      else
+      {
+        this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão, ou aguarde enquanto as parciais ficam disponiveis.');
+      }
       this.times = this.timesoff;
     })
   }

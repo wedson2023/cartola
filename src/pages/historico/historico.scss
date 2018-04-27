@@ -1,4 +1,8 @@
 page-historico {
+    ion-header{
+        padding: 2px 10px;
+    }
+
     .nome, .ano, .pontuacao {
         display: block;
         text-align: center;        
@@ -7,6 +11,10 @@ page-historico {
     .nome{
         font-size: 1.4em;
         font-weight: bold;
+    }
+
+    .item-md.item-block .item-inner{
+        border: none !important;
     }
 
     .foto {

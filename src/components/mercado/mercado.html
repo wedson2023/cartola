@@ -3,7 +3,6 @@
       <ion-list>
         <ion-item-group>
           <ion-item-divider color="white">ESTADOS</ion-item-divider>
-          
           <ion-item>
             <ion-avatar item-start>
                 <img src="./assets/imgs/status_jogador/provavel.png">
@@ -17,7 +16,7 @@
                 <img src="./assets/imgs/status_jogador/duvida.png">
             </ion-avatar>
             <ion-label>Dúvida</ion-label>
-            <ion-toggle (ionChange)="duvida ? filter.status_id = 2 : filter.status_id = null" [(ngModel)]="duvida"></ion-toggle>
+            <ion-toggle checked="true" (ionChange)="duvida ? filter.status_id = 2 : filter.status_id = null" [(ngModel)]="duvida"></ion-toggle>
           </ion-item>
         
           <ion-item>

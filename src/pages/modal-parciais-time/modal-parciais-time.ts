@@ -36,8 +36,8 @@ export class ModalParciaisTimePage {
       for(let x in resposta.atletas)
       {
         let at = resposta.atletas[x];
-        at.scout = (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].scout : {});
-        at.pontos_num = (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].pontuacao : 0);
+        at.scout = this.atletas === undefined ? at.scout : (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].scout : {});
+        at.pontos_num = this.atletas === undefined ? at.pontos_num : (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].pontuacao : 0);
         at.escudo = resposta.clubes[at.clube_id].escudos['60x60'];
         at.posicao = resposta.posicoes[at.posicao_id].abreviacao;
         at.capitao = resposta.capitao_id == at.atleta_id ? 'sim' : 'não';

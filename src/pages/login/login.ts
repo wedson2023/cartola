@@ -1,4 +1,3 @@
-import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
@@ -23,7 +22,6 @@ export class LoginPage {
     private http: HttpProvider,
     private Mensagem: MensagemProvider,
     private loadingCtrl: LoadingController,
-    private navegaroff: NavegaroffProvider,
     private ViewController:ViewController
   ) {
 

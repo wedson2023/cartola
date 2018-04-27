@@ -33,13 +33,16 @@
         </div>        
     </ion-card-content>    
     </ion-card>
-    <select [hidden]="!liga?.liga.url_flamula_png" class="filtro" (change)="filtrar(filtro)" [(ngModel)]="filtro">
-      <option value="campeonato">Campeonato</option>
-      <option value="rodada">Rodada</option>
-      <option value="patrimonio">Patrimônio</option>
-      <option value="mes">Mês</option>
-      <option value="turno">Turno</option>
-    </select>
+    <ion-item padding-right [hidden]="!liga?.liga.url_flamula_png">
+      <ion-label>Ordenar por</ion-label>
+        <ion-select class="parciais" (ionChange)="filtrar(filtro)" [(ngModel)]="filtro">
+            <ion-option value="campeonato">Campeonato</ion-option>
+            <ion-option value="rodada">Rodada</ion-option>
+            <ion-option value="patrimonio">Patrimônio</ion-option>
+            <ion-option value="mes">Mês</ion-option>
+            <ion-option value="turno">Turno</ion-option>          
+        </ion-select>
+    </ion-item>
     <ion-list padding-right>
         <ion-item (click)="historico(time)" *ngFor="let time of liga?.times">
           <ion-avatar item-start>

@@ -26,7 +26,6 @@ export class ClassificacaoPage {
     loading.present();
 
      this.http.get('http://wedsonwebdesigner.com.br:3000/').subscribe(response => {
-       console.log(response);
       this.times = response;      
       this.navegaroff.setItem('classificacao', response);
       loading.dismiss();

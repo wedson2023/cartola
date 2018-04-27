@@ -10,7 +10,13 @@
         <ion-item menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name="{{ p.title | iconMenu }}" item-start></ion-icon>
         {{ p.title }}
-        </ion-item>
+        </ion-item>  
+        <a class="link" [hidden]="link?.verifica" href="{{ link?.link }}">       
+          <ion-item menuClose ion-item>
+            <ion-icon name="sync" item-start></ion-icon>
+              Atualizar App
+          </ion-item> 
+        </a>      
     </ion-list>
   </ion-content>
 

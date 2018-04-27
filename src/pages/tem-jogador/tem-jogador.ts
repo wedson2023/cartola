@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 import { MensagemProvider } from '../../providers/mensagem/mensagem';
