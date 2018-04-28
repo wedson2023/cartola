@@ -3,11 +3,11 @@
     <ion-toggle (ionChange)="ordenar(provavel)" [(ngModel)]="provavel"></ion-toggle>
 </ion-header>
 <ion-content>
-    <p class="mensagem" [hidden]="times">Não há parciais disponível no momento.</p>
+    <p class="mensagem" [hidden]="times?.length">Não há parciais disponível no momento.</p>
     <ion-refresher (ionRefresh)="carregar($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <p *ngIf="times" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
+    <p *ngIf="times?.length" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
     <ion-list padding-right>
         <ion-item-sliding *ngFor="let time of times | filter : pesquisar; let i = index">
             <ion-item (click)="parcial_time(time)">

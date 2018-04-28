@@ -52,7 +52,7 @@ export class ParciaisClubesPage {
       this.atletas = atletas;
       this.show_parciais = clubes.clube_casa_id;        
     }, err =>{
-      this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet.');
+      this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet ou as parciais não estão disponível.');
       loading.dismiss(); 
     })
   }

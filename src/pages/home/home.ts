@@ -1,3 +1,4 @@
+import { MyApp } from './../../app/app.component';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
 
@@ -13,6 +14,8 @@ import { ClassificacaoPage } from '../classificacao/classificacao';
 import { ModalDestaquePage } from '../modal-destaque/modal-destaque';
 import { MeuTimePage } from './../meu-time/meu-time';
 import { NacionalPage } from './../nacional/nacional';
+import { PremiacaoPage } from '../premiacao/premiacao';
+import { RegulamentoPage } from '../regulamento/regulamento';
 
 @Component({
   selector: 'page-home',
@@ -42,7 +45,18 @@ export class HomePage {
   config(){
     let modal = this.ModalController.create(ConfigPage);
     modal.present();
-    modal.onDidDismiss(() => this.ionViewDidLoad());
+    modal.onDidDismiss(() => { 
+      if(localStorage.getItem('liga_padrao') == 'campeoes-agrestina')
+      {
+        let existe = MyApp.pages.some(e => e.title == 'Premiação');
+        if(!existe) MyApp.pages.push({ title: 'Premiação', component: PremiacaoPage }, { title: 'Regulamento', component: RegulamentoPage });
+      }
+      else
+      {
+        MyApp.pages.splice(5, 2);
+      }
+      this.ionViewDidLoad();
+    });
   }
 
   pontuacao(){

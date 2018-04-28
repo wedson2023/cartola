@@ -14,13 +14,10 @@
         <a class="link" [hidden]="link?.verifica" href="{{ link?.link }}">       
           <ion-item menuClose ion-item>
             <ion-icon name="sync" item-start></ion-icon>
-              Atualizar App
+              {{ link?.nome }}
           </ion-item> 
         </a>      
     </ion-list>
   </ion-content>
-
 </ion-menu>
-
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -23,8 +23,11 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  static pages: Array<{title: string, component: any}>;
 
   link;
+
+  static pg = 0;
 
   constructor(
     public platform: Platform,
@@ -59,7 +62,7 @@ export class MyApp {
       this.link = response;
     });
     
-    this.pages = [  
+    MyApp.pages = [  
       { title: 'Destaques', component: DestaquesPage },  
       { title: 'Mercado', component: MercadoPage },          
       { title: 'Parciais', component: ParciaisPage }, 
@@ -69,13 +72,15 @@ export class MyApp {
       { title: 'Regulamento', component: RegulamentoPage }
     ]
 
+    this.pages = MyApp.pages;
+
     if(localStorage.getItem('liga_padrao') === null)
     {
       localStorage.setItem('liga_padrao', 'campeoes-agrestina');
     } 
     else if(localStorage.getItem('liga_padrao') != 'campeoes-agrestina')
     {
-      this.pages.splice(6, 2);
+      this.pages.splice(5, 2);
     }
   }
 

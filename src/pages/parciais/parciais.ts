@@ -107,13 +107,13 @@ export class ParciaisPage{
       }) 
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_times');
-      if(this.timesoff)
+      if(+this.timesoff)
       {
         this.compartilhar_texto(this.timesoff, ordem);
       }
       else
       {
-        this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão, ou aguarde enquanto as parciais ficam disponiveis.');
+        this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão ou aguarde enquanto as parciais ficam disponiveis.');
       }
       this.times = this.timesoff;
     })
