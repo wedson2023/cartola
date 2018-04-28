@@ -5,6 +5,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -117,7 +118,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     HttpProvider,
     NavegaroffProvider,
     MensagemProvider,
-    SocialSharing
+    SocialSharing,
+    BackgroundMode
   ]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@
  <ion-slides pager>    
       
       <ion-slide>
+        {{ paginas | json }}
         <ion-icon class="trofeu" name="trophy"></ion-icon>
         <span class="destaque_time">{{ destaques.pontuador.nome }}</span>
         <h3 class="nome capitalize">Parabéns {{ destaques.pontuador.nome_cartola }}</h3>

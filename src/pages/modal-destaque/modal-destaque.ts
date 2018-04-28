@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavParams, ModalController, NavController } from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()
@@ -19,7 +19,7 @@ export class ModalDestaquePage {
   ) 
   { 
     this.rodada_atual = this.navParams.get('rodada_atual');
-    this.povoar_destaques(this.navParams.get('times'));
+    this.povoar_destaques(this.navParams.get('times'));    
   }
 
   povoar_destaques(times){

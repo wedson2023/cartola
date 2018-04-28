@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { ParciaisPage } from './../pages/parciais/parciais';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, IonicApp } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { HomePage } from '../pages/home/home';
 import { RegulamentoPage } from '../pages/regulamento/regulamento';
@@ -29,9 +30,30 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private http: HttpClient
+    private http: HttpClient,
+    private IonicApp: IonicApp,
+    private background: BackgroundMode
   ) {
-    this.initializeApp();    
+    this.initializeApp();
+
+    this.platform.registerBackButtonAction(response => {
+      const activePortal = (this.IonicApp._overlayPortal.getActive() || this.IonicApp._modalPortal.getActive());
+      if(activePortal)
+      {
+        activePortal.dismiss();
+      } 
+      else
+      {
+        if(this.nav.canGoBack())
+        {
+          this.nav.pop();
+        }
+        else
+        {
+          this.background.moveToBackground();
+        }        
+      }
+    }, 0);
 
     this.http.get('http://wedsonwebdesigner.com.br/cartola/atualizacao.php').subscribe(response => {
       this.link = response;

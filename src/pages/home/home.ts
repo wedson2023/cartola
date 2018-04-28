@@ -1,3 +1,4 @@
+import { MyApp } from './../../app/app.component';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
 
@@ -66,6 +67,7 @@ export class HomePage {
   }
 
   destaques(){
+    MyApp.paginas = 'entrou';
     let modal = this.ModalController.create(ModalDestaquePage, { times : this.liga.times, rodada_atual : this.rodada_atual.rodada });
     modal.present();
   }
