@@ -2,6 +2,7 @@
     <ion-searchbar [(ngModel)]="pesquisar" placeholder="Pesquisar atleta"></ion-searchbar>
 </ion-header>
 <ion-content> 
+    <p class="mensagem" [hidden]="atletas">Não há parciais disponível no momento.</p>
     <ion-refresher (ionRefresh)="carregar($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>

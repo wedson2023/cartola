@@ -1,3 +1,4 @@
+import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
@@ -19,22 +20,23 @@ export class PartidasPage {
   constructor(
     private http: HttpProvider,
     public loadingCtrl: LoadingController,
-    private navegaroff: NavegaroffProvider
+    private navegaroff: NavegaroffProvider,
+    private mensagem: MensagemProvider
   )
   {   
     this.partidasoff = this.navegaroff.getItem('partidas_rodadas'); 
   }
 
   dados_partidas(response:any, loading:any){
-    this.rodada_atual = response.rodada;    
     if(response.mensagem == 'Rodada inválida.')
-    {         
-      alert('Rodada não disponível no momento.'); 
+    { 
+      this.mensagem.mensagem('Aguarde', 'Rodada não disponível no momento.');
       this.rodada_atual = this.rodada_atual - 1;
       loading.dismiss();
     }
     else
     {
+      this.rodada_atual = response.rodada;
       for(let partida of response.partidas)
       {      
         partida.casa = response.clubes[partida.clube_casa_id];
@@ -47,7 +49,7 @@ export class PartidasPage {
   }
 
   proxima_rodada(){
-    if(this.rodada_atual == 38) return false;
+    if(this.rodada_atual == 38 || this.rodada_atual === undefined) return false;
     this.rodada_atual = this.rodada_atual + 1;
 
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
@@ -55,11 +57,15 @@ export class PartidasPage {
 
     this.http.getApi('partidas/' + this.rodada_atual).subscribe(response => {             
       this.dados_partidas(response, loading);
+    }, err => {
+      loading.dismiss();
+      this.rodada_atual = this.rodada_atual - 1;
+      this.mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a ainternet.'); 
     });     
   }
 
   anterior_rodada(){
-    if(this.rodada_atual == 1) return false;
+    if(this.rodada_atual == 1 || this.rodada_atual === undefined) return false;
     this.rodada_atual = this.rodada_atual - 1;  
     
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
@@ -67,6 +73,10 @@ export class PartidasPage {
 
     this.http.getApi('partidas/' + this.rodada_atual).subscribe(response => {
       this.dados_partidas(response, loading);
+    }, err => {
+      loading.dismiss();
+      this.rodada_atual = this.rodada_atual + 1;
+      this.mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a ainternet.'); 
     }); 
   }
 

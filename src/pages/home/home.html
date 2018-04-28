@@ -35,7 +35,7 @@
     </ion-card>
     <ion-item padding-right [hidden]="!liga?.liga.url_flamula_png">
       <ion-label>Ordenar por</ion-label>
-        <ion-select class="parciais" (ionChange)="filtrar(filtro)" [(ngModel)]="filtro">
+        <ion-select (ionChange)="filtrar(filtro)" [(ngModel)]="filtro">
             <ion-option value="campeonato">Campeonato</ion-option>
             <ion-option value="rodada">Rodada</ion-option>
             <ion-option value="patrimonio">Patrimônio</ion-option>

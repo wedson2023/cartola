@@ -6,6 +6,13 @@ page-parciais-jogadores {
     ion-list{
         margin-top: 5px !important;
     }
+
+    p.mensagem{
+        display: block;
+        padding: 50px 10px;
+        color: #999999;
+        text-align: center
+    }
     
     .last_update{
         display: block;

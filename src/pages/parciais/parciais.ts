@@ -71,7 +71,7 @@ export class ParciaisPage{
     this.socialSharing.shareViaWhatsApp(text, null, '').then(() => {
       // Success!
     }).catch(() => {
-      this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet!');
+      this.Mensagem.mensagem('Algo deu errado', 'Tente novamente!');
     });
   }
 
@@ -107,7 +107,7 @@ export class ParciaisPage{
       }) 
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_times');
-      if(this.timesoff !== null)
+      if(this.timesoff)
       {
         this.compartilhar_texto(this.timesoff, ordem);
       }

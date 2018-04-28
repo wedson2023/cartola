@@ -3,6 +3,7 @@
     <ion-toggle (ionChange)="ordenar(provavel)" [(ngModel)]="provavel"></ion-toggle>
 </ion-header>
 <ion-content>
+    <p class="mensagem" [hidden]="times">Não há parciais disponível no momento.</p>
     <ion-refresher (ionRefresh)="carregar($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
