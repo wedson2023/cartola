@@ -28,6 +28,7 @@ export class HomePage {
   filtro:String;
   rodada_atual;
   backbutton;
+  esconderScroll;
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -102,7 +103,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao')).subscribe(response => {
+    this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '?orderBy=campeonato').subscribe(response => {
     let resposta = JSON.parse(JSON.stringify(response));
 
     for(let x in resposta.times)
@@ -125,5 +126,37 @@ export class HomePage {
       loading.dismiss();
       this.liga = this.ligaoff;
     })       
-  }   
+  }  
+  
+  carregarMais($event){ 
+      let page = this.liga.times.length / 100 + 1;
+      this.esconderScroll = (this.liga.liga.total_times_liga - this.liga.times.length) ? false : true;
+      if((this.liga.liga.total_times_liga - this.liga.times.length) >= 0){ 
+        this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '?orderBy=' + this.filtro + '&page=' + page).subscribe(response => {
+          let resposta = JSON.parse(JSON.stringify(response));
+      
+          for(let x in resposta.times)
+          {
+            let r = resposta.times[x].ranking;
+      
+            r.campeonato = (r.campeonato || (resposta.times.length)) 
+            r.rodada = (r.rodada || (resposta.times.length)) 
+            r.patrimonio = (r.patrimonio || (resposta.times.length)) 
+            r.mes = (r.mes || (resposta.times.length)) 
+            r.turno = (r.turno || (resposta.times.length))
+            
+            this.liga.times.push(resposta.times[x]);
+          }
+                
+          $event.complete();
+          }, err => {
+            $event.complete();
+          })
+        }
+      else
+      {
+        $event.complete();
+      }
+    
+  }
 }

@@ -68,6 +68,9 @@
             <img class="assinante" [hidden]="!time.assinante" src="./assets/imgs/selo-cartoleiro-pro.svg">
           </p>                
         <ion-icon *ngIf="time.ranking.campeonato <= 5 && time.ranking.campeonato != null" class="trofeu" name="trophy" item-end></ion-icon>
-        </ion-item>     
+        </ion-item>
+        <ion-infinite-scroll *ngIf="!esconderScroll" (ionInfinite)="carregarMais($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>     
     </ion-list>
 </ion-content>

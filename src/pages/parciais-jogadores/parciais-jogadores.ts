@@ -42,8 +42,11 @@ export class ParciaisJogadoresPage {
 
       for(let x in resposta.atletas)
       {
-        resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].nome;
-        resposta.atletas[x].clube = resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45']; 
+        if(resposta.posicoes[resposta.atletas[x].posicao_id] && resposta.clubes[resposta.atletas[x].clube_id])
+        {
+          resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].nome;
+          resposta.atletas[x].clube = resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45']; 
+        }        
       }
 
       let atletas = [];

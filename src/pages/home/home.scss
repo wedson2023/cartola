@@ -3,6 +3,11 @@ page-home {
         border-radius: 0 !important;
     }
 
+    ion-infinite-scroll-content{
+        padding: 5px !important;
+        min-height: 25px !important;
+    }
+
     ion-list{
         margin-top: 5px !important;
     }
