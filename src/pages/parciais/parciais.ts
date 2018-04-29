@@ -60,13 +60,11 @@ export class ParciaisPage{
 
     for(let x in response)
     {
-      let i = (parseInt(response[x].pontuacao_total.toString().indexOf('.')) + 3);
       let pontuacao = (ordem == 'true' ? response[x].pontuacao : response[x].pontuacao_total);
-      text += '*' + (parseInt(x) + 1) + 'º* ' + response[x].nome.toString().substr(0, 10) + ' *' + pontuacao.toString().substr(0, i) + '* ' + response[x].atletas_restante + '/12' + quebra;
+      text += '*' + (parseInt(x) + 1) + 'º* ' + response[x].nome.toString().substr(0, 12) + ' *' + pontuacao.toFixed(2) + '* ' + response[x].atletas_restante + '/12' + quebra;
     } 
-
-    let ultima = new Date(this.last_updated); 
-    text += quebra + '_Última atualização: ' + new Date(ultima.setHours(ultima.getHours() + 3)).toLocaleTimeString('pt-BR') + '_';
+ 
+    text += quebra + '_Última atualização: ' + new Date(this.last_updated).toLocaleTimeString('pt-BR') + '_';
 
     this.socialSharing.shareViaWhatsApp(text, null, '').then(() => {
       // Success!
@@ -89,9 +87,11 @@ export class ParciaisPage{
           times.atletas_restante = 0;
           times.atleta = [];
           for(let i in resposta[x].atletas)
-          {
-            times.pontuacao += (this.atletas.atletas[resposta[x].atletas[i]] === undefined ? 0 : this.atletas.atletas[resposta[x].atletas[i]].pontuacao); 
-            times.atletas_restante += (this.atletas.atletas[resposta[x].atletas[i]] === undefined ? 0 : 1 );
+          { 
+            let t = this.atletas.atletas[resposta[x].atletas[i]];
+
+            times.pontuacao += (this.atletas.atletas[resposta[x].atletas[i]] === undefined ? 0 : ( resposta[x].capitao == resposta[x].atletas[i] ? this.atletas.atletas[resposta[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[resposta[x].atletas[i]].pontuacao)); 
+            times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout).length == 0) ? 0 : 1 );
             times.atleta.push(this.atletas.atletas[resposta[x].atletas[i]]);
           }
           times.pontuacao_total = times.pontuacao + times.pontos.campeonato;

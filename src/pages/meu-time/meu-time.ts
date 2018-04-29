@@ -15,6 +15,7 @@ export class MeuTimePage {
   private meu_timeoff;
   private pontuacao_total;
   private last_updated;
+  private token_meu_time;
 
   constructor(
     public navCtrl: NavController,
@@ -26,15 +27,20 @@ export class MeuTimePage {
   ) {
     this.pontuacao_total = 0;
     this.meu_timeoff = this.navegaroff.getItem('meu_time');
+    this.token_meu_time = localStorage.getItem('token_meu_time');
   }
 
   login(){
     let modal = this.ModalController.create(LoginPage);
     modal.present();
-    modal.onDidDismiss((token) => { this.http.setToken(token); this.ionViewDidLoad(); })
+    modal.onDidDismiss((token) => {
+      this.http.setToken(token); 
+      this.ionViewDidLoad(token); 
+      this.token_meu_time = token; 
+    })    
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(auth) {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
     this.http.getApi('auth/time').subscribe(response => {
@@ -73,23 +79,6 @@ export class MeuTimePage {
         this.last_updated = new Date();
         this.meu_time = resposta;
         loading.dismiss();      
-      }, err => {
-        // for(let x in resposta.atletas)
-        // {  
-        //   let at = resposta.atletas[x];
-        //   at.scout = {};
-        //   at.escudo = resposta.clubes[at.clube_id].escudos['60x60'];
-        //   at.posicao = resposta.posicoes[at.posicao_id].abreviacao;
-        //   at.capitao = resposta.capitao_id == at.atleta_id ? 'sim' : 'não';
-        // }
-
-        // this.pontuacao_total = 0;
-        // resposta.atletas.sort((a, b) => a.posicao_id - b.posicao_id);
-        // this.navegaroff.setItem('hr_parciais_meu_time', new Date());
-        // this.navegaroff.setItem('meu_time', resposta);
-        // this.last_updated = new Date();
-        // this.meu_time = resposta;
-        // loading.dismiss();
       });
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_meu_time');

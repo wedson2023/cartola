@@ -60,8 +60,7 @@ export class ParciaisTimesPage {
     modal.present();
   }
 
-  compartilhar_texto(response){
-
+  compartilhar_texto(response){    
     let quebra = '\n';
     let text = '*:::: ' + response.time.nome + ' ::::*' + quebra + quebra;
 
@@ -70,18 +69,17 @@ export class ParciaisTimesPage {
     {
       let r = response.atletas[x];
       let capitao = response.capitao_id == r.atleta_id ? '*( C )* ' : '';
-      text += '(' + this.atletas.posicoes[r.posicao_id].abreviacao.toUpperCase() + ') ' + capitao + r.apelido + ' ' + r.pontos_num + quebra;
+      text += '(' + this.atletas.posicoes[r.posicao_id].abreviacao.toUpperCase() + ') ' + capitao + r.apelido + ' ' + (response.capitao_id == r.atleta_id ? (r.pontos_num * 2).toFixed(2) : r.pontos_num.toFixed(2)) + quebra;
       pontuacao += response.capitao_id == r.atleta_id ? (r.pontos_num * 2) : r.pontos_num;
     }
 
-    text += quebra + '*PONTUACÃO: ' + pontuacao.toString().substr(0, pontuacao.toString().indexOf('.') + 3) + '*';
+    text += quebra + '*PONTUACÃO: ' + pontuacao.toFixed(2) + '*';
     
     this.socialSharing.shareViaWhatsApp(text, null, '').then(() => {
       // Success!
     }).catch(() => {
       this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet!');
     });
-    console.log(text, response);
   }
 
   compartilhar(time){
@@ -123,10 +121,14 @@ export class ParciaisTimesPage {
           times.atleta = [];
           for(let i in resposta[x].atletas)
           {
-            times.pontuacao += (this.atletas.atletas[resposta[x].atletas[i]] === undefined ? 0 : ( resposta[x].capitao == resposta[x].atletas[i] ? this.atletas.atletas[resposta[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[resposta[x].atletas[i]].pontuacao)); 
-            times.atletas_restante += (this.atletas.atletas[resposta[x].atletas[i]] === undefined ? 0 : 1 );
+            
+            let t = this.atletas.atletas[resposta[x].atletas[i]];
+            
+            times.pontuacao += (t === undefined ? 0 : ( resposta[x].capitao == resposta[x].atletas[i] ? this.atletas.atletas[resposta[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[resposta[x].atletas[i]].pontuacao)); 
+            times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout).length == 0) ? 0 : 1 );
             times.atleta.push(this.atletas.atletas[resposta[x].atletas[i]]);
           }
+          
           times.pontuacao_total = times.pontuacao + times.pontos.campeonato;
           this.times.push(times);
         } 

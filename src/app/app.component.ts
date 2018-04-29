@@ -27,8 +27,6 @@ export class MyApp {
 
   link;
 
-  static pg = 0;
-
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,

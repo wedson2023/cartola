@@ -36,6 +36,7 @@ export class LoginPage {
       if(resposta.glbId)
       {
         localStorage.setItem('token', resposta.glbId);
+        localStorage.setItem('token_meu_time', resposta.glbId);
         this.Mensagem.mensagem('Sucesso', resposta.userMessage);
       }
       this.ViewController.dismiss(resposta.glbId);

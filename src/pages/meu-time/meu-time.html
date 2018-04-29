@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="token_meu_time">
   <ion-item >
   <ion-avatar item-start>
     <img [src]="(meu_time?.time.url_escudo_png || './assets/imgs/escudo.png')">
@@ -8,8 +8,9 @@
 </ion-item>
 </ion-header>
 <ion-content padding-right>
-    <p *ngIf="meu_time?.atletas" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
-    <ion-list [hidden]="!meu_time?.atletas">
+    <button [hidden]="token_meu_tim" (click)="login()" ion-button class="login" color="light">FAZER LOGIN</button>
+    <p *ngIf="token_meu_time" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
+    <ion-list *ngIf="token_meu_time">        
         <ion-item *ngFor="let atletas of meu_time?.atletas">
           <ion-avatar item-start>
             <img [src]="atletas.escudo">

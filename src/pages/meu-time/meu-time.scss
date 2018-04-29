@@ -46,6 +46,14 @@ page-meu-time {
         padding: 15px 15px !important;
     }
 
+    button.login{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -45px;
+        margin-top: -20px;
+    }
+
     .last_update{
         display: block;
         padding: 5px;
