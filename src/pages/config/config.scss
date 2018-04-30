@@ -6,4 +6,16 @@ page-config {
         font-size: 0.9em;
         margin: 50px 0;
     }
+
+    .button-md{
+        background-color: #fff !important; 
+        margin: 5px;
+        padding: 21px 5px !important;
+    }
+
+    ion-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

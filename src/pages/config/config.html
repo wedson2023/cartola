@@ -1,5 +1,8 @@
 <ion-header>
     <ion-searchbar (keyup)="pesquisar($event, liga)" [(ngModel)]="liga" placeholder="Pesquisar liga"></ion-searchbar>
+      <button ion-button icon-only (click)="lista_favoritos()">
+          <ion-icon style="color: gold" name="star"></ion-icon>
+      </button>
 </ion-header>
 
 <ion-content>

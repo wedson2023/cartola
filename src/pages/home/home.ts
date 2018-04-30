@@ -96,7 +96,30 @@ export class HomePage {
   }
 
   filtrar(filtro){    
-    this.liga.times.sort((a, b) => a.ranking[filtro] - b.ranking[filtro]);
+    console.log(filtro);
+    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    loading.present();
+
+    this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '?orderBy=' + filtro).subscribe(response => {
+      let resposta = JSON.parse(JSON.stringify(response));
+  
+      for(let x in resposta.times)
+      {
+        let r = resposta.times[x].ranking;
+  
+        r.campeonato = (r.campeonato || (resposta.times.length)) 
+        r.rodada = (r.rodada || (resposta.times.length)) 
+        r.patrimonio = (r.patrimonio || (resposta.times.length)) 
+        r.mes = (r.mes || (resposta.times.length)) 
+        r.turno = (r.turno || (resposta.times.length)) 
+      }
+      
+      this.liga = resposta;      
+      loading.dismiss();
+      }, err => {
+        loading.dismiss();
+        this.liga.times.sort((a, b) => a.ranking[filtro] - b.ranking[filtro]);
+      })
   }
 
   ionViewDidLoad() { 

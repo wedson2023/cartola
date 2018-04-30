@@ -106,7 +106,8 @@ export class ParciaisTimesPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     if(!refresh) loading.present();
 
-    this.http.getApi('liga/' + this.liga.liga.liga_id + '/times').subscribe(response => {      
+    this.http.getApi('liga/' + this.liga.liga.liga_id + '/times').subscribe(response => {
+      if(response['mensagem']) this.Mensagem.mensagem(response['mensagem'], 'O site oficial do cartola FC não disponibiliza parciais de ligas com mais de 100 times.'); return false;      
       this.http.getApi('atletas/pontuados').subscribe(atletas => {
         this.times = [];        
         this.atletas = atletas;
