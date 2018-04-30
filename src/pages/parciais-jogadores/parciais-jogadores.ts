@@ -37,23 +37,20 @@ export class ParciaisJogadoresPage {
     if(!refresh) loading.present();
 
     this.http.getApi('atletas/pontuados').subscribe(response => {
-      loading.dismiss(); 
-      let resposta = JSON.parse(JSON.stringify(response));
-
-      for(let x in resposta.atletas)
+      for(let x in response['atletas'])
       {
-        if(resposta.posicoes[resposta.atletas[x].posicao_id] && resposta.clubes[resposta.atletas[x].clube_id])
+        if(response['posicoes'][response['atletas'][x].posicao_id] && response['clubes'][response['atletas'][x].clube_id])
         {
-          resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].nome;
-          resposta.atletas[x].clube = resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45']; 
+          response['atletas'][x].posicao = response['posicoes'][response['atletas'][x].posicao_id].nome;
+          response['atletas'][x].clube = response['clubes'][response['atletas'][x].clube_id].escudos['45x45']; 
         }        
       }
 
       let atletas = [];
-      for(let i in resposta.atletas)
+      for(let i in response['atletas'])
       {
-        resposta.atletas[i].atleta_id = i;
-        atletas.push(resposta.atletas[i]);
+        response['atletas'][i].atleta_id = i;
+        atletas.push(response['atletas'][i]);
       }
 
       atletas.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);       
@@ -61,7 +58,8 @@ export class ParciaisJogadoresPage {
       this.navegaroff.setItem('hr_parciais_atletas', new Date());
       this.navegaroff.setItem('parciais_atletas', atletas);
       this.last_updated = new Date();
-      if(refresh) refresh.complete();         
+      if(refresh) refresh.complete();
+      loading.dismiss();          
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_atletas');
       this.atletas = this.atletasoff;

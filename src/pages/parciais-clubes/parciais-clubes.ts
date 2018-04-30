@@ -29,28 +29,30 @@ export class ParciaisClubesPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
     
-    this.http.getApi('atletas/pontuados').subscribe(response => {
-      loading.dismiss();
-      let resposta = JSON.parse(JSON.stringify(response));
+    this.http.getApi('atletas/pontuados').subscribe(response => {  
 
       let atletas = { casa : [], visitante : [] };
-      for(let x in resposta.atletas)
+      for(let x in response['atletas'])
       {
-        resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].abreviacao;
-        if(resposta.atletas[x].clube_id == clubes.clube_casa_id)
-        {
-          atletas.casa.push(resposta.atletas[x]);
-        }
-        else if(resposta.atletas[x].clube_id == clubes.clube_visitante_id)
-        {
-          atletas.visitante.push(resposta.atletas[x]);
-        }        
+        if(response['posicoes'][response['atletas'][x].posicao_id]){
+
+          response['atletas'][x].posicao = response['posicoes'][response['atletas'][x].posicao_id].abreviacao;
+          if(response['atletas'][x].clube_id == clubes.clube_casa_id)
+          {
+            atletas.casa.push(response['atletas'][x]);
+          }
+          else if(response['atletas'][x].clube_id == clubes.clube_visitante_id)
+          {
+            atletas.visitante.push(response['atletas'][x]);
+          }    
+        }            
       }
 
       atletas.casa.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1); 
       atletas.visitante.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1);       
       this.atletas = atletas;
-      this.show_parciais = clubes.clube_casa_id;        
+      this.show_parciais = clubes.clube_casa_id;   
+      loading.dismiss();     
     }, err =>{
       this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet ou as parciais não estão disponível.');
       loading.dismiss(); 
@@ -59,14 +61,12 @@ export class ParciaisClubesPage {
 
   carregar(refresh){
     this.http.getApi('partidas').subscribe(response => {
-      let resposta = JSON.parse(JSON.stringify(response));
-
-      for(let partida of resposta.partidas)
+      for(let partida of response['partidas'])
       {      
-        partida.casa = resposta.clubes[partida.clube_casa_id];
-        partida.visitante = resposta.clubes[partida.clube_visitante_id];
+        partida.casa = response['clubes'][partida.clube_casa_id];
+        partida.visitante = response['clubes'][partida.clube_visitante_id];
       }
-      this.partidas = resposta.partidas.sort((a,b) => a.partida_data > b.partida_data ? 1 : -1);
+      this.partidas = response['partidas'].sort((a,b) => a.partida_data > b.partida_data ? 1 : -1);
       this.navegaroff.setItem('hr_parciais_atletas', new Date());
       this.navegaroff.setItem('partidas_rodadas', this.partidas);
       this.last_updated = new Date();
@@ -82,15 +82,13 @@ export class ParciaisClubesPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.http.getApi('partidas').subscribe(response => {
-      let resposta = JSON.parse(JSON.stringify(response));
-      
-      for(let partida of resposta.partidas)
+    this.http.getApi('partidas').subscribe(response => {      
+      for(let partida of response['partidas'])
       {      
-        partida.casa = resposta.clubes[partida.clube_casa_id];
-        partida.visitante = resposta.clubes[partida.clube_visitante_id];
+        partida.casa = response['clubes'][partida.clube_casa_id];
+        partida.visitante = response['clubes'][partida.clube_visitante_id];
       }
-      this.partidas = resposta.partidas.sort((a,b) => a.partida_data > b.partida_data ? 1 : -1);
+      this.partidas = response['partidas'].sort((a,b) => a.partida_data > b.partida_data ? 1 : -1);
       this.navegaroff.setItem('hr_parciais_atletas', new Date());
       this.navegaroff.setItem('partidas_rodadas', this.partidas);
       this.last_updated = new Date();

@@ -37,8 +37,7 @@ export class TemJogadorPage {
     this.times = this.navegaroff.getItem('home_liga').times;
   }
 
-  tem_jogador(param){ 
-    console.log(param);   
+  tem_jogador(param){   
     this.atletas = param == 'sim' ? this.sim : this.nao;
   }
 
@@ -47,8 +46,7 @@ export class TemJogadorPage {
     loading.present();
     this.http.getApi('/liga/' + this.liga_id + '/times').subscribe(response => {           
       for(let id in response)
-      {
-        
+      {        
         let time = this.times.filter(e => e.time_id == id)[0];
         time.capitao = response[id].capitao == this.atleta_id ? 'sim' : 'não';
 

@@ -20,7 +20,12 @@ page-home {
         display: block;
         text-align: center;
         font-size: 1.2em;
-        text-transform: capitalize
+        text-transform: capitalize;
+        white-space: nowrap; 
+        width: 160px; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: auto;
     }
 
     img.assinante{

@@ -106,27 +106,25 @@ export class ParciaisTimesPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     if(!refresh) loading.present();
 
-    this.http.getApi('liga/' + this.liga.liga.liga_id + '/times').subscribe(response => {
-      loading.dismiss();
-      let resposta = JSON.parse(JSON.stringify(response));
+    this.http.getApi('liga/' + this.liga.liga.liga_id + '/times').subscribe(response => {      
       this.http.getApi('atletas/pontuados').subscribe(atletas => {
         this.times = [];        
-        this.atletas = JSON.parse(JSON.stringify(atletas));
-        for(let x in resposta)
+        this.atletas = atletas;
+        for(let x in response)
         {
           let times = this.liga.times.filter(e => e.time_id == x)[0];
           times.rodada = this.atletas.rodada;
           times.pontuacao = 0;
           times.atletas_restante = 0;
           times.atleta = [];
-          for(let i in resposta[x].atletas)
+          for(let i in response[x].atletas)
           {
             
-            let t = this.atletas.atletas[resposta[x].atletas[i]];
+            let t = this.atletas.atletas[response[x].atletas[i]];
             
-            times.pontuacao += (t === undefined ? 0 : ( resposta[x].capitao == resposta[x].atletas[i] ? this.atletas.atletas[resposta[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[resposta[x].atletas[i]].pontuacao)); 
+            times.pontuacao += (t === undefined ? 0 : ( response[x].capitao == response[x].atletas[i] ? this.atletas.atletas[response[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[response[x].atletas[i]].pontuacao)); 
             times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout).length == 0) ? 0 : 1 );
-            times.atleta.push(this.atletas.atletas[resposta[x].atletas[i]]);
+            times.atleta.push(this.atletas.atletas[response[x].atletas[i]]);
           }
           
           times.pontuacao_total = times.pontuacao + times.pontos.campeonato;
@@ -137,7 +135,8 @@ export class ParciaisTimesPage {
         this.navegaroff.setItem('hr_parciais_times', new Date());
         this.navegaroff.setItem('parciais_times', this.times);
         this.last_updated = new Date();
-        if(refresh) refresh.complete();             
+        if(refresh) refresh.complete();  
+        loading.dismiss();           
       }) 
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_times');
