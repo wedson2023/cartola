@@ -1,55 +1,63 @@
 <ion-content>
- <ion-slides pager>    
-      
-      <ion-slide>
-        {{ paginas | json }}
+ <ion-slides *ngIf="destaques.pontuador" pager>        
+      <ion-slide>        
         <ion-icon class="trofeu" name="trophy"></ion-icon>
-        <span class="destaque_time">{{ destaques.pontuador.nome }}</span>
-        <h3 class="nome capitalize">Parabéns {{ destaques.pontuador.nome_cartola }}</h3>
-        <img class="destaque_escudo" [src]="destaques.pontuador.foto_perfil ? destaques.pontuador.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
-        <h6>{{ (destaques.pontuador.pontos.rodada || 0) | number : '1.1-2' }} Pontos</h6>
+        <span class="destaque_time">{{ destaques.pontuador?.nome }}</span>
+        <h3 class="nome capitalize">Parabéns {{ destaques.pontuador?.nome_cartola }}</h3>
+        <img class="destaque_escudo" [src]="destaques.pontuador?.foto_perfil ? destaques.pontuador.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
+        <h6>{{ (destaques.pontuador?.pontos || 0) | number : '1.1-2' }} Pontos</h6>
         <h2>Campeão da rodada {{ rodada_atual - 1 }}</h2>
-        <button ion-button (click)="historico(destaques.pontuador.slug)" color="dark" round>VER TIME</button>
+        <button ion-button (click)="historico(destaques.pontuador?.slug)" color="dark" round>VER TIME</button>
       </ion-slide>
     
        <ion-slide>
         <ion-icon class="trofeu" name="color-wand"></ion-icon>
-        <span class="destaque_time">{{ destaques.lanterna.nome }}</span>
-        <h3 class="nome capitalize">Parabéns {{ destaques.lanterna.nome_cartola }}</h3>
-        <img class="destaque_escudo" [src]="destaques.lanterna.foto_perfil ? destaques.lanterna.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
-        <h6>{{ (destaques.lanterna.pontos.rodada || 0) | number : '1.1-2' }} Pontos</h6>      
+        <span class="destaque_time">{{ destaques.lanterninha?.nome }}</span>
+        <h3 class="nome capitalize">Parabéns {{ destaques.lanterninha?.nome_cartola }}</h3>
+        <img class="destaque_escudo" [src]="destaques.lanterninha?.foto_perfil ? destaques.lanterninha?.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
+        <h6>{{ (destaques.lanterninha?.pontos || 0) | number : '1.1-2' }} Pontos</h6>      
         <h2>Lanterninha da rodada {{ rodada_atual - 1 }}</h2>
-        <button ion-button (click)="historico(destaques.lanterna.slug)" color="dark" round>VER TIME</button>
+        <button ion-button (click)="historico(destaques.lanterninha?.slug)" color="dark" round>VER TIME</button>
       </ion-slide>
     
        <ion-slide>
         <ion-icon class="trofeu" name="logo-usd"></ion-icon>
-        <span class="destaque_time">{{ destaques.patrimonio.nome }}</span>
-        <h3 class="nome capitalize">Parabéns {{ destaques.patrimonio.nome_cartola }}</h3>
-        <img class="destaque_escudo" [src]="destaques.patrimonio.foto_perfil ? destaques.patrimonio.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
-        <h6>{{ (destaques.patrimonio.patrimonio || 0) | number : '1.1-2' }} Cartoletas</h6>      
+        <span class="destaque_time">{{ destaques.patrimonio?.nome }}</span>
+        <h3 class="nome capitalize">Parabéns {{ destaques.patrimonio?.nome_cartola }}</h3>
+        <img class="destaque_escudo" [src]="destaques.patrimonio?.foto_perfil ? destaques.patrimonio.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
+        <h6>{{ (destaques.patrimonio?.patrimonio || 0) | number : '1.1-2' }} Cartoletas</h6>      
         <h2>Mais rico do campeonato</h2>
-        <button ion-button (click)="historico(destaques.patrimonio.slug)" color="dark" round>VER TIME</button>
+        <button ion-button (click)="historico(destaques.patrimonio?.slug)" color="dark" round>VER TIME</button>
       </ion-slide>
     
-      <ion-slide>
+     <ion-slide>
         <ion-icon class="trofeu" name="trophy"></ion-icon>
-        <span class="destaque_time">{{ destaques.mes.nome }}</span>
-        <h3 class="nome capitalize">Parabéns {{ destaques.mes.nome_cartola }}</h3>
-        <img class="destaque_escudo" [src]="destaques.mes.foto_perfil ? destaques.mes.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
-        <h6>{{ (destaques.mes.pontos.rodada || 0) | number : '1.1-2' }} Pontos</h6>      
+        <span class="destaque_time">{{ destaques.campeonato?.nome }}</span>
+        <h3 class="nome capitalize">Parabéns {{ destaques.campeonato?.nome_cartola }}</h3>
+        <img class="destaque_escudo" [src]="destaques.campeonato?.foto_perfil ? destaques.campeonato.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
+        <h6>{{ (destaques.campeonato?.pontos || 0) | number : '1.1-2' }} Pontos</h6>      
+        <h2>Melhor do campeonato</h2>
+        <button ion-button (click)="historico(destaques.campeonato?.slug)" color="dark" round>VER TIME</button>
+      </ion-slide> 
+    
+     <ion-slide>
+        <ion-icon class="trofeu" name="trophy"></ion-icon>
+        <span class="destaque_time">{{ destaques.mes?.nome }}</span>
+        <h3 class="nome capitalize">Parabéns {{ destaques.mes?.nome_cartola }}</h3>
+        <img class="destaque_escudo" [src]="destaques.mes?.foto_perfil ? destaques.mes.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
+        <h6>{{ (destaques.mes?.pontos || 0) | number : '1.1-2' }} Pontos</h6>      
         <h2>Melhor do mês atual</h2>
-        <button ion-button (click)="historico(destaques.mes.slug)" color="dark" round>VER TIME</button>
+        <button ion-button (click)="historico(destaques.mes?.slug)" color="dark" round>VER TIME</button>
       </ion-slide>    
     
      <ion-slide>
         <ion-icon class="trofeu" name="trophy"></ion-icon>
-        <span class="destaque_time">{{ destaques.turno.nome }}</span>
-        <h3 class="nome capitalize">Parabéns {{ destaques.turno.nome_cartola }}</h3>
-        <img class="destaque_escudo" [src]="destaques.turno.foto_perfil ? destaques.turno.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
-        <h6>{{ (destaques.turno.pontos.rodada || 0) | number : '1.1-2' }} Pontos</h6>      
+        <span class="destaque_time">{{ destaques.turno?.nome }}</span>
+        <h3 class="nome capitalize">Parabéns {{ destaques.turno?.nome_cartola }}</h3>
+        <img class="destaque_escudo" [src]="destaques.turno?.foto_perfil ? destaques.turno.foto_perfil.replace('?width=100&height=100', '?width=250&height=250') : './assets/imgs/cartola.png'" />
+        <h6>{{ (destaques.turno?.pontos || 0) | number : '1.1-2' }} Pontos</h6>      
         <h2>Melhor do turno atual</h2>
-        <button ion-button (click)="historico(destaques.turno.slug)" color="dark" round>VER TIME</button>
+        <button ion-button (click)="historico(destaques.turno?.slug)" color="dark" round>VER TIME</button>
       </ion-slide>
     </ion-slides>
 </ion-content>

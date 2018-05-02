@@ -1,3 +1,4 @@
+import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { MyApp } from './../../app/app.component';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
@@ -35,7 +36,8 @@ export class HomePage {
     public ModalController: ModalController,
     private http:HttpProvider,
     private navegaroff: NavegaroffProvider,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private mensagem: MensagemProvider
   )   
   {
     
@@ -82,8 +84,16 @@ export class HomePage {
   }
 
   destaques(){
-    let modal = this.ModalController.create(ModalDestaquePage, { times : this.liga.times, rodada_atual : this.rodada_atual.rodada });
-    modal.present();
+    if(this.liga.destaques)
+    {
+      let modal = this.ModalController.create(ModalDestaquePage, { liga : this.liga, rodada_atual : this.rodada_atual.rodada });
+      modal.present();
+    }
+    else
+    {
+      this.mensagem.mensagem('Brasileirão não começou', 'Função destaques não disponível no momento.');
+    }
+    
   }
 
   nacional(){
@@ -153,7 +163,6 @@ export class HomePage {
   
   carregarMais($event){ 
       let page = this.liga.times.length / 100 + 1;
-      this.esconderScroll = ((this.liga.liga.total_times_liga - this.liga.times.length) <= 0) ? true : false;
       if((this.liga.liga.total_times_liga - this.liga.times.length) > 0){ 
         this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '?orderBy=' + this.filtro + '&page=' + page).subscribe(response => {
           let resposta = JSON.parse(JSON.stringify(response));

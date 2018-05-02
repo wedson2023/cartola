@@ -34,7 +34,6 @@ export class MeuTimePage {
     let modal = this.ModalController.create(LoginPage);
     modal.present();
     modal.onDidDismiss((token) => {
-      alert(token);  
       if(token)
       {
         this.http.setToken(token); 
