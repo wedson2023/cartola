@@ -64,9 +64,9 @@ export class ParciaisPage{
       text += '*' + (parseInt(x) + 1) + 'º* ' + response[x].nome.toString().substr(0, 12) + ' *' + pontuacao.toFixed(2) + '* ' + response[x].atletas_restante + '/12' + quebra;
     } 
  
-    text += quebra + '_Última atualização: ' + new Date(this.last_updated).toLocaleTimeString('pt-BR') + '_';
+    text += quebra + '_Última atualização: ' + new Date(this.last_updated).toLocaleTimeString('pt-BR') + '_' + quebra + quebra;
 
-    this.socialSharing.shareViaWhatsApp(text, null, '').then(() => {
+    this.socialSharing.shareViaWhatsApp(text, null, 'https://play.google.com/store/apps/details?id=br.com.wedsonwebdesigner').then(() => {
       // Success!
     }).catch(() => {
       this.Mensagem.mensagem('Algo deu errado', 'Tente novamente!');
