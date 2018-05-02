@@ -36,6 +36,7 @@ export class PartidasPage {
     }
     else
     {
+      console.log(response);
       this.rodada_atual = response.rodada;
       for(let partida of response.partidas)
       {      
@@ -60,7 +61,7 @@ export class PartidasPage {
     }, err => {
       loading.dismiss();
       this.rodada_atual = this.rodada_atual - 1;
-      this.mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a ainternet.'); 
+      this.mensagem.mensagem('Algo deu errado', 'A rodada não esta disponível ou você esta sem conexão com a internet.'); 
     });     
   }
 

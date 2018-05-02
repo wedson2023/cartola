@@ -19,6 +19,7 @@ export class ParciaisTimesPage {
   private atletas;
   private ordem;
   private pontos_campeao;
+  private provavel;
 
   constructor(
     private http: HttpProvider,
@@ -99,47 +100,58 @@ export class ParciaisTimesPage {
   }
 
   carregar(refresh){
+    this.provavel = false;
     this.ionViewDidLoad(refresh);
   }
 
   ionViewDidLoad(refresh) {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
-    if(!refresh) loading.present();
+    if(!refresh) loading.dismiss(); loading.present();
 
     this.http.getApi('liga/' + this.liga.liga.liga_id + '/times').subscribe(response => {
-      if(response['mensagem']) this.Mensagem.mensagem(response['mensagem'], 'O site oficial do cartola FC não disponibiliza parciais de ligas com mais de 100 times.'); return false;      
       this.http.getApi('atletas/pontuados').subscribe(atletas => {
-        this.times = [];        
-        this.atletas = atletas;
-        for(let x in response)
+        if(atletas == null){           
+          this.last_updated = this.navegaroff.getItem('hr_parciais_times');
+          this.times = this.timesoff;
+          if(refresh) refresh.complete();
+          loading.dismiss();
+        }
+        else
         {
-          let times = this.liga.times.filter(e => e.time_id == x)[0];
-          times.rodada = this.atletas.rodada;
-          times.pontuacao = 0;
-          times.atletas_restante = 0;
-          times.atleta = [];
-          for(let i in response[x].atletas)
+          this.times = [];        
+          this.atletas = JSON.parse(JSON.stringify(atletas));
+
+          for(let x in response)
           {
+            let times = this.liga.times.filter(e => e.time_id == x)[0];
+            times.rodada = this.atletas.rodada;
+            times.pontuacao = 0;
+            times.atletas_restante = 0;
+            times.atleta = [];
+            for(let i in response[x].atletas)
+            {
+              
+              let t = this.atletas.atletas[response[x].atletas[i]];
+              
+              times.pontuacao += (t === undefined ? 0 : ( response[x].capitao == response[x].atletas[i] ? this.atletas.atletas[response[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[response[x].atletas[i]].pontuacao)); 
+              times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout).length == 0) ? 0 : 1 );
+              times.atleta.push(this.atletas.atletas[response[x].atletas[i]]);
+            }
             
-            let t = this.atletas.atletas[response[x].atletas[i]];
-            
-            times.pontuacao += (t === undefined ? 0 : ( response[x].capitao == response[x].atletas[i] ? this.atletas.atletas[response[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[response[x].atletas[i]].pontuacao)); 
-            times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout).length == 0) ? 0 : 1 );
-            times.atleta.push(this.atletas.atletas[response[x].atletas[i]]);
-          }
+            times.pontuacao_total = times.pontuacao + times.pontos.campeonato;
+            this.times.push(times);
+          } 
           
-          times.pontuacao_total = times.pontuacao + times.pontos.campeonato;
-          this.times.push(times);
-        } 
-        
-        this.times.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);
-        this.navegaroff.setItem('hr_parciais_times', new Date());
-        this.navegaroff.setItem('parciais_times', this.times);
-        this.last_updated = new Date();
-        if(refresh) refresh.complete();  
-        loading.dismiss();           
+          this.times.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);
+          this.navegaroff.setItem('hr_parciais_times', new Date());
+          this.navegaroff.setItem('parciais_times', this.times);
+          this.last_updated = new Date();
+          if(refresh) refresh.complete();  
+          loading.dismiss(); 
+        }          
       }) 
     }, err => {
+      if(err.error['mensagem']){ this.Mensagem.mensagem(err.error['mensagem'], 'Descupe-nos só esta disponível ligas com a até 100 times, próxima versão estaremos trabalhando nisso.'); loading.dismiss(); return false; }
       this.last_updated = this.navegaroff.getItem('hr_parciais_times');
       this.times = this.timesoff;
       if(refresh) refresh.complete();

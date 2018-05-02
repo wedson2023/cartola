@@ -25,7 +25,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   static pages: Array<{title: string, component: any}>;
 
-  link;
+  link:any = { verifica : true };
 
   constructor(
     public platform: Platform,

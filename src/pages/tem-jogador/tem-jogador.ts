@@ -26,7 +26,8 @@ export class TemJogadorPage {
     private navegaroff: NavegaroffProvider,
     private mensagem: MensagemProvider,
     private viewCtrl: ViewController,
-    private LoadingController: LoadingController
+    private LoadingController: LoadingController,
+    private Mensagem: MensagemProvider
   ) {
     this.atleta_id = this.navParams.get('atleta_id');
     this.apelido = this.navParams.get('apelido');
@@ -44,25 +45,34 @@ export class TemJogadorPage {
   ionViewDidLoad() {
     let loading = this.LoadingController.create({ content: 'Por favor aguarde...' });
     loading.present();
-    this.http.getApi('/liga/' + this.liga_id + '/times').subscribe(response => {           
-      for(let id in response)
-      {        
-        let time = this.times.filter(e => e.time_id == id)[0];
-        time.capitao = response[id].capitao == this.atleta_id ? 'sim' : 'não';
+    this.http.getApi('/liga/' + this.liga_id + '/times').subscribe(response => {
+      if(response == null){           
+        this.Mensagem.mensagem('Parciais', 'Opção disponível apenas com os jogos em andamento.');
+        loading.dismiss();
+        this.viewCtrl.dismiss();
+      } 
+      else
+      {         
+        for(let id in response)
+        {        
+          let time = this.times.filter(e => e.time_id == id)[0];
+          time.capitao = response[id].capitao == this.atleta_id ? 'sim' : 'não';
 
-        if(response[id].atletas.includes(parseInt(this.atleta_id)))
-        {          
-          this.sim.push(time);          
+          if(response[id].atletas.includes(parseInt(this.atleta_id)))
+          {          
+            this.sim.push(time);          
+          }
+          else
+          {
+            this.nao.push(this.times.filter(e => e.time_id == id)[0]);  
+          }
         }
-        else
-        {
-          this.nao.push(this.times.filter(e => e.time_id == id)[0]);  
-        }
+
+        this.atletas = this.sim;
+        loading.dismiss();
       }
-
-      this.atletas = this.sim;
-      loading.dismiss();
     }, err => {
+      if(err.error['mensagem']){ this.Mensagem.mensagem(err.error['mensagem'], 'Descupe-nos esta opção só esta disponível para ligas com a até 100 times, próxima versão estaremos trabalhando nisso.'); loading.dismiss(); this.viewCtrl.dismiss(); return false; }
       loading.dismiss();
       this.mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet por favor.');
       this.viewCtrl.dismiss();

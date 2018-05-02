@@ -29,30 +29,36 @@ export class ParciaisClubesPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
     
-    this.http.getApi('atletas/pontuados').subscribe(response => {  
-
-      let atletas = { casa : [], visitante : [] };
-      for(let x in response['atletas'])
+    this.http.getApi('atletas/pontuados').subscribe(response => { 
+      if(response == null){ 
+        this.Mensagem.mensagem('Parciais', 'As parciais não estão disponível.');
+        loading.dismiss();
+      } 
+      else
       {
-        if(response['posicoes'][response['atletas'][x].posicao_id]){
+        let atletas = { casa : [], visitante : [] };
+        for(let x in response['atletas'])
+        {
+          if(response['posicoes'][response['atletas'][x].posicao_id]){
 
-          response['atletas'][x].posicao = response['posicoes'][response['atletas'][x].posicao_id].abreviacao;
-          if(response['atletas'][x].clube_id == clubes.clube_casa_id)
-          {
-            atletas.casa.push(response['atletas'][x]);
-          }
-          else if(response['atletas'][x].clube_id == clubes.clube_visitante_id)
-          {
-            atletas.visitante.push(response['atletas'][x]);
-          }    
-        }            
-      }
+            response['atletas'][x].posicao = response['posicoes'][response['atletas'][x].posicao_id].abreviacao;
+            if(response['atletas'][x].clube_id == clubes.clube_casa_id)
+            {
+              atletas.casa.push(response['atletas'][x]);
+            }
+            else if(response['atletas'][x].clube_id == clubes.clube_visitante_id)
+            {
+              atletas.visitante.push(response['atletas'][x]);
+            }    
+          }            
+        }
 
-      atletas.casa.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1); 
-      atletas.visitante.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1);       
-      this.atletas = atletas;
-      this.show_parciais = clubes.clube_casa_id;   
-      loading.dismiss();     
+        atletas.casa.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1); 
+        atletas.visitante.sort((a,b) => a.posicao_id > b.posicao_id ? -1 : 1);       
+        this.atletas = atletas;
+        this.show_parciais = clubes.clube_casa_id;   
+        loading.dismiss();   
+      } 
     }, err =>{
       this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet ou as parciais não estão disponível.');
       loading.dismiss(); 

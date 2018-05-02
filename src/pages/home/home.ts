@@ -56,6 +56,7 @@ export class HomePage {
       {
         MyApp.pages.splice(5, 2);
       }
+      this.filtro = 'campeonato';
       this.ionViewDidLoad();
     });
   }
@@ -96,7 +97,6 @@ export class HomePage {
   }
 
   filtrar(filtro){    
-    console.log(filtro);
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
@@ -153,8 +153,8 @@ export class HomePage {
   
   carregarMais($event){ 
       let page = this.liga.times.length / 100 + 1;
-      this.esconderScroll = (this.liga.liga.total_times_liga - this.liga.times.length) ? false : true;
-      if((this.liga.liga.total_times_liga - this.liga.times.length) >= 0){ 
+      this.esconderScroll = ((this.liga.liga.total_times_liga - this.liga.times.length) <= 0) ? true : false;
+      if((this.liga.liga.total_times_liga - this.liga.times.length) > 0){ 
         this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '?orderBy=' + this.filtro + '&page=' + page).subscribe(response => {
           let resposta = JSON.parse(JSON.stringify(response));
       

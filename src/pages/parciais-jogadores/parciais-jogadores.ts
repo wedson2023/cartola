@@ -37,29 +37,38 @@ export class ParciaisJogadoresPage {
     if(!refresh) loading.present();
 
     this.http.getApi('atletas/pontuados').subscribe(response => {
-      for(let x in response['atletas'])
+      if(response == null){ 
+        this.last_updated = this.navegaroff.getItem('hr_parciais_atletas');
+        this.atletas = this.atletasoff;
+        if(refresh) refresh.complete();
+        loading.dismiss();
+      }
+      else
       {
-        if(response['posicoes'][response['atletas'][x].posicao_id] && response['clubes'][response['atletas'][x].clube_id])
+        for(let x in response['atletas'])
         {
-          response['atletas'][x].posicao = response['posicoes'][response['atletas'][x].posicao_id].nome;
-          response['atletas'][x].clube = response['clubes'][response['atletas'][x].clube_id].escudos['45x45']; 
-        }        
-      }
+          if(response['posicoes'][response['atletas'][x].posicao_id] && response['clubes'][response['atletas'][x].clube_id])
+          {
+            response['atletas'][x].posicao = response['posicoes'][response['atletas'][x].posicao_id].nome;
+            response['atletas'][x].clube = response['clubes'][response['atletas'][x].clube_id].escudos['45x45']; 
+          }        
+        }
 
-      let atletas = [];
-      for(let i in response['atletas'])
-      {
-        response['atletas'][i].atleta_id = i;
-        atletas.push(response['atletas'][i]);
-      }
+        let atletas = [];
+        for(let i in response['atletas'])
+        {
+          response['atletas'][i].atleta_id = i;
+          atletas.push(response['atletas'][i]);
+        }
 
-      atletas.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);       
-      this.atletas = atletas; 
-      this.navegaroff.setItem('hr_parciais_atletas', new Date());
-      this.navegaroff.setItem('parciais_atletas', atletas);
-      this.last_updated = new Date();
-      if(refresh) refresh.complete();
-      loading.dismiss();          
+        atletas.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);       
+        this.atletas = atletas; 
+        this.navegaroff.setItem('hr_parciais_atletas', new Date());
+        this.navegaroff.setItem('parciais_atletas', atletas);
+        this.last_updated = new Date();
+        if(refresh) refresh.complete();
+        loading.dismiss(); 
+      }         
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_atletas');
       this.atletas = this.atletasoff;

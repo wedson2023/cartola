@@ -33,10 +33,10 @@ export class MeuTimePage {
   login(){
     let modal = this.ModalController.create(LoginPage);
     modal.present();
-    modal.onDidDismiss((token) => {
+    modal.onDidDismiss((token) => {      
       this.http.setToken(token); 
       this.ionViewDidLoad(token); 
-      this.token_meu_time = token; 
+      this.token_meu_time = localStorage.getItem('token_meu_time') ? true : false; 
     })    
   }
 
@@ -59,6 +59,7 @@ export class MeuTimePage {
             at.capitao = resposta.capitao_id == at.atleta_id ? 'sim' : 'não';
             pontuacao_total += resposta.capitao_id == at.atleta_id ? (at.pontos_num * 2) : at.pontos_num;
           }
+          this.pontuacao_total = pontuacao_total;
         }
         else
         {
@@ -70,9 +71,9 @@ export class MeuTimePage {
             at.posicao = resposta.posicoes[at.posicao_id].abreviacao;
             at.capitao = resposta.capitao_id == at.atleta_id ? 'sim' : 'não';
           }
+          this.pontuacao_total = 0;
         } 
 
-        this.pontuacao_total = 0;
         resposta.atletas.sort((a, b) => a.posicao_id - b.posicao_id);
         this.navegaroff.setItem('hr_parciais_meu_time', new Date());
         this.navegaroff.setItem('meu_time', resposta);

@@ -43,7 +43,7 @@ export class ConfigPage{
     {      
       let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
       loading.present();
-      this.http.getApi('ligas?q=' + encodeURI(liga)).subscribe(response => {
+      this.http.getApi('ligas?q=' + encodeURIComponent(liga)).subscribe(response => {
        loading.dismiss();        
        this.ligas = response; 
       }, (err) => {

@@ -3,6 +3,16 @@ page-home {
         border-radius: 0 !important;
     }
 
+    .item-md ion-avatar{
+        min-width: 0 !important;
+    }
+
+    .ancora{
+        margin-top: 8px;
+        width: 25px !important;
+        height: 25px !important;
+    }
+
     ion-infinite-scroll-content{
         padding: 5px !important;
         min-height: 25px !important;

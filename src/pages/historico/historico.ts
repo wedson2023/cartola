@@ -1,7 +1,7 @@
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
@@ -21,7 +21,8 @@ export class HistoricoPage {
     private navParams: NavParams,
     private loadingCtrl: LoadingController,
     private http: HttpProvider,
-    private mensagem: MensagemProvider
+    private mensagem: MensagemProvider,
+    private viewCtrl: ViewController
   ) 
   {
     let todas_rodadas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38];
@@ -40,7 +41,7 @@ export class HistoricoPage {
       {
         resposta.atletas[x].scout = (resposta.atletas[x].scout || {});
         resposta.atletas[x].posicao = resposta.posicoes[resposta.atletas[x].posicao_id].abreviacao;
-        resposta.atletas[x].escudo = resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45'];
+        resposta.atletas[x].escudo = resposta.clubes[resposta.atletas[x].clube_id] ? resposta.clubes[resposta.atletas[x].clube_id].escudos['45x45'] : './assets/imgs/escudo.png';
         resposta.atletas[x].capitao = resposta.capitao_id === resposta.atletas[x].atleta_id ? 'sim' : 'não';
       }
      
@@ -48,7 +49,8 @@ export class HistoricoPage {
       this.historico = resposta;
       loading.dismiss();
     }, err => {
-      loading.dismiss();      
+      loading.dismiss(); 
+      this.viewCtrl.dismiss();
       this.mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet');
     })
   }
