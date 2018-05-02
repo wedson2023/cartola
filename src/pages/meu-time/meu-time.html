@@ -8,7 +8,7 @@
 </ion-item>
 </ion-header>
 <ion-content padding-right>
-    <button [hidden]="!token_meu_tim" (click)="login()" ion-button class="login" color="light">FAZER LOGIN</button>
+    <button (click)="login()" ion-button class="login" color="light">FAZER LOGIN</button>
     <p [hidden]="!token_meu_time" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
     <ion-list [hidden]="!token_meu_time">        
         <ion-item *ngFor="let atletas of meu_time?.atletas">

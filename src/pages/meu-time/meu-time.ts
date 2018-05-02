@@ -33,10 +33,14 @@ export class MeuTimePage {
   login(){
     let modal = this.ModalController.create(LoginPage);
     modal.present();
-    modal.onDidDismiss((token) => {      
-      this.http.setToken(token); 
-      this.ionViewDidLoad(token); 
-      this.token_meu_time = localStorage.getItem('token_meu_time') ? true : false; 
+    modal.onDidDismiss((token) => {
+      alert(token);  
+      if(token)
+      {
+        this.http.setToken(token); 
+        this.ionViewDidLoad(token);
+        this.token_meu_time = localStorage.getItem('token_meu_time') ? true : false;
+      }          
     })    
   }
 
@@ -80,6 +84,10 @@ export class MeuTimePage {
         this.last_updated = new Date();
         this.meu_time = resposta;
         loading.dismiss();      
+      }, err => {
+        this.last_updated = this.navegaroff.getItem('hr_parciais_meu_time');
+        this.meu_time = this.meu_timeoff;
+        loading.dismiss();
       });
     }, err => {
       this.last_updated = this.navegaroff.getItem('hr_parciais_meu_time');
