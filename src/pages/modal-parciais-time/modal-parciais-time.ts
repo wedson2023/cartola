@@ -1,7 +1,8 @@
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ViewController, ModalController } from 'ionic-angular';
+import { TemJogadorPage } from '../tem-jogador/tem-jogador';
 
 @IonicPage()
 @Component({
@@ -20,10 +21,18 @@ export class ModalParciaisTimePage {
     private http: HttpProvider,
     private loadingCtrl: LoadingController,
     private Mensagem: MensagemProvider,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private ModalController: ModalController
   ) {
     this.time = this.navParams.get('time');
     this.atletas = this.navParams.get('atletas');
+  }
+
+  
+
+  tem_jogador(atleta){
+    let modal = this.ModalController.create(TemJogadorPage, { pontuacao : atleta.pontuacao, atleta_id : atleta.atleta_id, apelido : atleta.apelido, foto : atleta.foto });
+    modal.present();
   }
 
   ionViewDidLoad() {

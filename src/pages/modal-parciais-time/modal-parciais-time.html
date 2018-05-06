@@ -1,6 +1,6 @@
 <ion-content padding-right>
     <ion-list [hidden]="!time">
-        <ion-item *ngFor="let atletas of parciais?.atletas">
+        <ion-item (click)="tem_jogador(atletas)" *ngFor="let atletas of parciais?.atletas">
           <ion-avatar item-start>
             <img [src]="atletas.escudo">
           </ion-avatar>
