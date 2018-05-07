@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { PartidasPage } from './partidas';
 
 @NgModule({
-  declarations: [
-    PartidasPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(PartidasPage),
   ],

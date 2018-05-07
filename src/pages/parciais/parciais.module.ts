@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { ParciaisPage } from './parciais';
 
 @NgModule({
-  declarations: [
-    ParciaisPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(ParciaisPage),
   ],

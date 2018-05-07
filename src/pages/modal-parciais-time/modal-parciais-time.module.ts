@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { ModalParciaisTimePage } from './modal-parciais-time';
 
 @NgModule({
-  declarations: [
-    ModalParciaisTimePage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(ModalParciaisTimePage),
   ],

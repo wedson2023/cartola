@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { TimesPage } from './times';
 
 @NgModule({
-  declarations: [
-    TimesPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(TimesPage),
   ],

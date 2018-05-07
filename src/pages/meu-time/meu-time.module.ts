@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { MeuTimePage } from './meu-time';
 
 @NgModule({
-  declarations: [
-    MeuTimePage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(MeuTimePage),
   ],

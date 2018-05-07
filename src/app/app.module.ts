@@ -9,7 +9,6 @@ import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PosicaoJogadorPipe } from './../pipes/posicao-jogador/posicao-jogador';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +47,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
   declarations: [
     MyApp,
     HomePage,
-    PosicaoJogadorPipe,
     DestaquesPage,
     RegulamentoPage,
     HistoricoPage,

@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { NacionalPage } from './nacional';
 
 @NgModule({
-  declarations: [
-    NacionalPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(NacionalPage),
   ],

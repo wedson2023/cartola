@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { TemJogadorPage } from './tem-jogador';
 
 @NgModule({
-  declarations: [
-    TemJogadorPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(TemJogadorPage),
   ],

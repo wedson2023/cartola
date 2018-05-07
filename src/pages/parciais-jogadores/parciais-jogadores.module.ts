@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { ParciaisJogadoresPage } from './parciais-jogadores';
 
 @NgModule({
-  declarations: [
-    ParciaisJogadoresPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(ParciaisJogadoresPage),
   ],

@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { TimesLigaPage } from './times-liga';
 
 @NgModule({
-  declarations: [
-    TimesLigaPage,
-  ],
+  declarations: [],
   imports: [
     IonicPageModule.forChild(TimesLigaPage),
   ],
