@@ -86,14 +86,22 @@ export class ParciaisTimesPage {
   compartilhar(time){
     this.http.getApi('time/slug/' + time.slug + '/' + time.rodada).subscribe(response => {
       let resposta = JSON.parse(JSON.stringify(response));
-      for(let x in resposta.atletas)
+      if(this.atletas)
       {
-        let at = resposta.atletas[x];
-        at.scout = (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].scout : {});
-        at.pontos_num = (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].pontuacao : 0);
-      }
-      resposta.atletas.sort((a, b) => a.posicao_id - b.posicao_id)
-      this.compartilhar_texto(resposta);
+        for(let x in resposta.atletas)
+        {
+          let at = resposta.atletas[x];          
+          at.scout = (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].scout : {});
+          at.pontos_num = (this.atletas.atletas[at.atleta_id] ? this.atletas.atletas[at.atleta_id].pontuacao : 0);          
+        }
+        
+        resposta.atletas.sort((a, b) => a.posicao_id - b.posicao_id)
+        this.compartilhar_texto(resposta);
+      }     
+      else
+      {
+        this.Mensagem.mensagem('Parciais', 'As parciais não estão disponível no momento.');
+      } 
     }, err => {
       this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet!');
     })
