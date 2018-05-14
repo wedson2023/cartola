@@ -1,0 +1,48 @@
+page-transacoes {
+    div.lista{
+        border-bottom: solid thin #cccccc;
+        padding: 5px 0;
+        display: flex;
+        justify-content: space-between
+    }
+
+    .item-md.item-block .item-inner{
+        border: none !important;
+    }
+
+    ion-content span{
+        color: #666666;
+    }
+
+    div.total{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+        color: #666666;
+    }
+
+    div img{
+       width: 18px;
+       height: 18px; 
+       margin-right: 10px;
+    }
+
+    div.header{
+        text-align: center;
+        padding: 7px 5px 5px 5px;
+        border-bottom: solid thin #cccccc; 
+    }
+
+    div.header span{
+        font-size: 0.8em;
+        color: #cccccc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    p{
+        display: flex;
+        justify-content: space-between
+    }
+}

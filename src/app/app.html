@@ -1,8 +1,14 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+  <ion-header class="myapp">
+        <ion-item >
+            <ion-avatar item-start>
+              <img [src]="(token_meu_time ? header_meu_time?.escudo : './assets/imgs/escudo.png')">
+            </ion-avatar>
+            <h2>{{ (token_meu_time ? header_meu_time?.nome : 'Meu time') }}</h2>
+            <p>{{ (token_meu_time ? header_meu_time?.nome_cartola : 'Meu nome') }}</p>
+          </ion-item>
+          <button ion-button [hidden]="token_meu_time" (click)="login()">Login</button>
+          <button ion-button [hidden]="!token_meu_time" (click)="logout()" color="danger">Sair</button>
   </ion-header>
 
   <ion-content>

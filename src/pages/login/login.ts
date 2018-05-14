@@ -43,7 +43,7 @@ export class LoginPage {
       loading.dismiss();
     }, err => {
       loading.dismiss();
-      this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet!');
+      this.Mensagem.mensagem('Algo deu errado', 'Senha ou login incorretos, ou Verifique sua conexão com a internet!');
     })
   }
 

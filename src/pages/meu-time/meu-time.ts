@@ -1,8 +1,7 @@
-import { LoginPage } from './../login/login';
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,32 +14,18 @@ export class MeuTimePage {
   private meu_timeoff;
   private pontuacao_total;
   private last_updated;
-  private token_meu_time;
+  private header_meu_time;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpProvider,
     private loadingCtrl: LoadingController,
-    private navegaroff: NavegaroffProvider,
-    private ModalController: ModalController
+    private navegaroff: NavegaroffProvider
   ) {
     this.pontuacao_total = 0;
     this.meu_timeoff = this.navegaroff.getItem('meu_time');
-    this.token_meu_time = localStorage.getItem('token_meu_time');
-  }
-
-  login(){
-    let modal = this.ModalController.create(LoginPage);
-    modal.present();
-    modal.onDidDismiss((token) => {
-      if(token)
-      {
-        this.http.setToken(token); 
-        this.ionViewDidLoad(token);
-        this.token_meu_time = localStorage.getItem('token_meu_time') ? true : false;
-      }          
-    })    
+    this.header_meu_time = this.navegaroff.getItem('header_meu_time');
   }
 
   ionViewDidLoad(auth) {

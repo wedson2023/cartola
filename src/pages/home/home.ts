@@ -1,3 +1,4 @@
+import { CriarTimePage } from './../criar-time/criar-time';
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { MyApp } from './../../app/app.component';
 import { HttpProvider } from './../../providers/http/http';
@@ -13,10 +14,10 @@ import { PontuacaoComponent } from '../../components/pontuacao/pontuacao';
 import { ConfigPage } from '../config/config';
 import { ClassificacaoPage } from '../classificacao/classificacao';
 import { ModalDestaquePage } from '../modal-destaque/modal-destaque';
-import { MeuTimePage } from './../meu-time/meu-time';
 import { NacionalPage } from './../nacional/nacional';
 import { PremiacaoPage } from '../premiacao/premiacao';
 import { RegulamentoPage } from '../regulamento/regulamento';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -30,6 +31,7 @@ export class HomePage {
   rodada_atual;
   backbutton;
   esconderScroll;
+  private token_meu_time;
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -43,6 +45,7 @@ export class HomePage {
     
     this.filtro = 'campeonato';
     this.ligaoff = this.navegaroff.getItem('home_liga'); 
+    this.token_meu_time = localStorage.getItem('token_meu_time');
   }
 
   config(){
@@ -102,8 +105,26 @@ export class HomePage {
   }
 
   meu_time(){
-    let modal = this.ModalController.create(MeuTimePage);
-    modal.present();
+    let token_meu_time = localStorage.getItem('token_meu_time');
+    if(token_meu_time)
+    {
+      let modal = this.ModalController.create(CriarTimePage, { rodada_atual : this.rodada_atual.rodada });
+      modal.present();
+    }
+    else
+    {
+      let modal = this.ModalController.create(LoginPage);
+      modal.present();
+      modal.onDidDismiss((token) => {
+        if(token)
+        {
+          this.http.setToken(token);
+          this.token_meu_time = localStorage.getItem('token_meu_time');
+          let modal = this.ModalController.create(CriarTimePage, { rodada_atual : this.rodada_atual.rodada });
+          modal.present();
+        }          
+      })
+    }   
   }
 
   filtrar(filtro){    

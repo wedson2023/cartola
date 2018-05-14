@@ -1,0 +1,36 @@
+page-campinho {
+    ion-header{
+        padding: 7px 5px 5px 5px;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 5px 10px 15px #f1f1f1;
+    }
+
+    ion-header span{
+        font-size: 0.8em;
+        color: #666666;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    ion-icon{
+        margin-right: 10px
+    }
+
+    ion-card-content div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    div.campinho{
+        background: url('../assets/imgs/campinho.svg') center center no-repeat;
+        background-size: contain;
+        height: 484px;
+        width: 330px;
+        transition: all .6s ease;
+        position: relative;
+        margin: 0 auto;
+    }    
+}

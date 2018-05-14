@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-item>
+      <ion-label>Selecione a rodada</ion-label>
+        <ion-select (ionChange)="buscar(rodada)" [(ngModel)]="rodada">
+          <ion-option [value]="rodada" *ngFor="let rodada of lista_rodadas">{{ rodada + 'ª Rodada' }}</ion-option>
+        </ion-select>
+    </ion-item>
+  </ion-header>
+<ion-content>
+<div [hidden]="!transacoes" class="header">Foram realizadas <strong>{{ transacoes_num }}</strong> alterações na rodada <strong>{{ rodada_atual }}</strong></div>
+<ion-card padding *ngFor="let transacao of transacoes">
+  <ion-card-header>
+    <h4>Alteração em: {{ transacao.data_transacao | date : 'dd/MM/yyyy HH:mm' }}</h4>
+  </ion-card-header>
+  <div class="lista" *ngFor="let atleta of transacao.escalacao">
+    <span>
+      {{'( ' + atleta.posicao.toUpperCase() + ' ) ' + atleta.apelido }}
+    </span> 
+    <p>
+      <img [hidden]="transacao.capitao.id !== atleta.id" src="./assets/imgs/capitao.png" >  
+      <span>{{ transacao.capitao.id == atleta.id ? (atleta.pontos_num * 2 || '-') : (atleta.pontos_num || '-') }}</span>           
+    </p>
+  </div>
+  <div class="total">          
+    <strong>PONTUAÇÃO: </strong>
+    <strong>{{ transacao.pontuacao_total | number : '1.2-2' }}</strong>
+  </div> 
+</ion-card>
+</ion-content>

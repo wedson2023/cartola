@@ -4,6 +4,25 @@
  padding: 0;   
 }
 
+ion-header.myapp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5px; 
+}
+
+ion-header.myapp .label-md{
+    margin: 0;
+}
+
 a.link{
     text-decoration: none;
+}
+
+ion-header.myapp .item-md ion-avatar img{
+    border-radius: 0 !important;       
+}
+
+ion-header.myapp .item-md.item-block .item-inner{
+    border: none !important;
 }

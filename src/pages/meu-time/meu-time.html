@@ -1,16 +1,15 @@
-<ion-header [hidden]="!token_meu_time">
+<ion-header>
   <ion-item >
-  <ion-avatar item-start>
-    <img [src]="(meu_time?.time.url_escudo_png || './assets/imgs/escudo.png')">
-  </ion-avatar>
-  <h2>{{ meu_time?.time.nome }}</h2>
-  <p>{{ meu_time?.time.nome_cartola }}</p>
+      <ion-avatar item-start>
+        <img [src]="(header_meu_time?.escudo || './assets/imgs/escudo.png')">
+      </ion-avatar>
+      <h2>{{ (header_meu_time?.nome || 'Meu time') }}</h2>
+      <p>{{ (header_meu_time?.nome_cartola || 'Meu nome') }}</p>
 </ion-item>
 </ion-header>
 <ion-content padding-right>
-    <button (click)="login()" ion-button class="login" color="light">FAZER LOGIN</button>
-    <p [hidden]="!token_meu_time" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
-    <ion-list [hidden]="!token_meu_time">        
+    <p [hidden]="!meu_time?.atletas" class="last_update">Última atualização {{ last_updated | date : 'shortTime' }}</p>
+    <ion-list>        
         <ion-item *ngFor="let atletas of meu_time?.atletas">
           <ion-avatar item-start>
             <img [src]="atletas.escudo">
@@ -41,9 +40,8 @@
           </ion-avatar>
           <ion-note item-end="" [ngClass]="atletas.pontos_num.toString().indexOf('-') ? 'green' : 'red'" class="note note-md">{{ (atletas.capitao === 'sim' ? (atletas.pontos_num + atletas.pontos_num) : atletas.pontos_num) | number : '1.2-2' }}</ion-note>
         </ion-item>
-        <ion-item>
-          <div class="total">
-          <button (click)="login()" ion-button>Não é seu time?</button>          
+        <ion-item [hidden]="!meu_time?.atletas">
+          <div class="total">          
             <strong>PONTUAÇÃO: </strong>
             <strong [ngClass]="pontuacao_total.toString().indexOf('-') ? 'green' : 'red'">{{ pontuacao_total | number : '1.2-2' }}</strong>
           </div>          

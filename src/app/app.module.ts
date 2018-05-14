@@ -1,3 +1,6 @@
+import { TransacoesPage } from './../pages/transacoes/transacoes';
+import { CampinhoPage } from './../pages/campinho/campinho';
+import { CriarTimePage } from './../pages/criar-time/criar-time';
 import { LoginPage } from './../pages/login/login';
 import { MeuTimePage } from './../pages/meu-time/meu-time';
 import { BrowserModule } from '@angular/platform-browser';
@@ -72,7 +75,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     NacionalPage,
     MeuTimePage,
     ModalParciaisTimePage,
-    LoginPage
+    LoginPage,
+    CriarTimePage,
+    CampinhoPage,
+    TransacoesPage
   ],
   imports: [
     BrowserModule,
@@ -106,7 +112,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     NacionalPage,
     MeuTimePage,
     ModalParciaisTimePage,
-    LoginPage
+    LoginPage,
+    CriarTimePage,
+    CampinhoPage,
+    TransacoesPage
   ],
   providers: [
     StatusBar,

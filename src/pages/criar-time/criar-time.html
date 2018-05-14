@@ -1,0 +1,14 @@
+<ion-item [hidden]="true">
+  <ion-label>Ordenar</ion-label>
+    <ion-select class="parciais" (ionChange)="compartilhar(ordem)" [(ngModel)]="ordem">
+      <ion-option value="false">Geral</ion-option>
+      <ion-option value="true">Parciais</ion-option>
+    </ion-select>
+</ion-item>
+<ion-content> 
+  <ion-tabs>
+    <ion-tab tabIcon="clipboard" tabTitle="Jogadores" [root]="tab1"></ion-tab>
+    <ion-tab tabIcon="man" tabTitle="Escalação" [root]="tab2"></ion-tab>
+    <ion-tab tabIcon="cart" tabTitle="Transações" [rootParams]="rodada_atual" [root]="tab3"></ion-tab>
+  </ion-tabs> 
+</ion-content>
