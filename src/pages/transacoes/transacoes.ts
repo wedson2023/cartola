@@ -53,7 +53,7 @@ export class TransacoesPage {
             for(let i in at)
             {
               at[i].pontos_num = (atletas['atletas'][at[i].id] ? atletas['atletas'][at[i].id].pontuacao : 0);
-              pontuacao_total += response[x]['capitao'].id == at[i].id ? (atletas['atletas'][at[i].id].pontuacao * 2) : atletas['atletas'][at[i].id].pontuacao;
+              pontuacao_total += response[x]['capitao'].id == at[i].id ? (atletas['atletas'][at[i].id] ? (atletas['atletas'][at[i].id].pontuacao * 2) : 0) : (atletas['atletas'][at[i].id] ? atletas['atletas'][at[i].id].pontuacao : 0);
             }
 
             response[x].pontuacao_total = pontuacao_total;
