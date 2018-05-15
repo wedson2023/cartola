@@ -1,3 +1,4 @@
+import { Formacao3_4_3Component } from './../components/formacao3-4-3/formacao3-4-3';
 import { TransacoesPage } from './../pages/transacoes/transacoes';
 import { CampinhoPage } from './../pages/campinho/campinho';
 import { CriarTimePage } from './../pages/criar-time/criar-time';
@@ -78,7 +79,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     LoginPage,
     CriarTimePage,
     CampinhoPage,
-    TransacoesPage
+    TransacoesPage,
+    Formacao3_4_3Component
   ],
   imports: [
     BrowserModule,
@@ -115,7 +117,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     LoginPage,
     CriarTimePage,
     CampinhoPage,
-    TransacoesPage
+    TransacoesPage,
+    Formacao3_4_3Component
   ],
   providers: [
     StatusBar,

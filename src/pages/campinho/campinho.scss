@@ -32,5 +32,22 @@ page-campinho {
         transition: all .6s ease;
         position: relative;
         margin: 0 auto;
-    }    
+    } 
+    
+    div.campinho img{
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        transition-duration: 0.3s;
+    }
+
+     div.campinho img:hover{
+        transform: scale(1.2)
+    }
+
+    div.campinho span{
+        color: #f1f1f1;
+        font-size: 0.8em;
+        margin-top: 10px;        
+    }
 }

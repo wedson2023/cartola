@@ -1,0 +1,60 @@
+<div class="formacao3-4-3">
+    <div class="ataque">
+        <div id="posicao_1">
+           <img id="posicao_1" [src]="(time.clubes[escalacao.ataque[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
+           <span>{{ (escalacao.ataque[0].apelido || 'Apelido') }}</span> 
+        </div>
+        <div id="posicao_2">
+            <img id="posicao_2" [src]="(time.clubes[escalacao.ataque[1].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
+            <span>{{ (escalacao.ataque[1].apelido || 'Apelido') }}</span> 
+        </div> 
+        <div id="posicao_3">
+            <img id="posicao_3" [src]="(time.clubes[escalacao.ataque[2].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
+            <span>{{ (escalacao.ataque[2].apelido || 'Apelido') }}</span> 
+        </div>
+    </div>
+    <div class="meio">
+        <div id="posicao_1">
+            <img id="posicao_1" [src]="(time.clubes[escalacao.meio[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
+            <span>{{ (escalacao.meio[0].apelido || 'Apelido') }}</span> 
+        </div>
+        <div id="posicao_2">
+            <img id="posicao_2" [src]="(time.clubes[escalacao.meio[1].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
+            <span>{{ (escalacao.meio[1].apelido || 'Apelido') }}</span> 
+        </div> 
+        <div id="posicao_3">
+            <img id="posicao_1" [src]="(time.clubes[escalacao.meio[2].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
+            <span>{{ (escalacao.meio[2].apelido || 'Apelido') }}</span> 
+        </div> 
+        <div id="posicao_4">
+            <img id="posicao_1" [src]="(time.clubes[escalacao.meio[3].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
+            <span>{{ (escalacao.meio[3].apelido || 'Apelido') }}</span>
+        </div>
+    </div>
+    <div class="zagueiro">
+        <div id="posicao_1">
+            <img id="posicao_1" [src]="(time.clubes[escalacao.zagueiro[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um zagueiro">
+            <span>{{ (escalacao.zagueiro[0].apelido || 'Apelido') }}</span> 
+        </div>
+        <div id="posicao_2">
+            <img id="posicao_2" [src]="(time.clubes[escalacao.zagueiro[1].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um zagueiro">
+            <span>{{ (escalacao.zagueiro[1].apelido || 'Apelido') }}</span> 
+        </div>
+        <div id="posicao_3">
+            <img id="posicao_3" [src]="(time.clubes[escalacao.zagueiro[2].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um zagueiro">
+            <span>{{ (escalacao.zagueiro[2].apelido || 'Apelido') }}</span> 
+        </div>            
+    </div>
+    <div class="goleiro">
+        <div id="posicao_1">
+            <img id="posicao_1" [src]="(time.clubes[escalacao.goleiro[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um goleiro">
+            <span>{{ (escalacao.goleiro[0].apelido || 'Apelido') }}</span> 
+        </div>
+    </div>        
+    <div class="tecnico">
+        <div id="posicao_1">
+            <img id="posicao_1" [src]="(time.clubes[escalacao.tecnico[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um tecnico">
+            <span>{{ (escalacao.tecnico[0].apelido || 'Apelido') }}</span> 
+        </div>
+    </div>
+</div>
