@@ -1,4 +1,3 @@
-import { Formacao3_4_3Component } from './../components/formacao3-4-3/formacao3-4-3';
 import { TransacoesPage } from './../pages/transacoes/transacoes';
 import { CampinhoPage } from './../pages/campinho/campinho';
 import { CriarTimePage } from './../pages/criar-time/criar-time';
@@ -46,6 +45,15 @@ import { ModalDestaquePage } from '../pages/modal-destaque/modal-destaque';
 import { NacionalPage } from './../pages/nacional/nacional';
 import { ModalParciaisTimePage } from '../pages/modal-parciais-time/modal-parciais-time';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Formacao3_4_3Component } from './../components/formacao3-4-3/formacao3-4-3';
+import { Formacao3_5_2Component } from './../components/formacao3-5-2/formacao3-5-2';
+import { Formacao4_3_3Component } from '../components/formacao4-3-3/formacao4-3-3';
+import { Formacao4_4_2Component } from '../components/formacao4-4-2/formacao4-4-2';
+import { Formacao4_5_1Component } from '../components/formacao4-5-1/formacao4-5-1';
+import { Formacao5_3_2Component } from '../components/formacao5-3-2/formacao5-3-2';
+import { Formacao5_4_1Component } from './../components/formacao5-4-1/formacao5-4-1';
+
+
 
 @NgModule({
   declarations: [
@@ -80,7 +88,13 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     CriarTimePage,
     CampinhoPage,
     TransacoesPage,
-    Formacao3_4_3Component
+    Formacao3_4_3Component,
+    Formacao3_5_2Component,
+    Formacao4_3_3Component,
+    Formacao4_4_2Component,
+    Formacao4_5_1Component,
+    Formacao5_3_2Component,
+    Formacao5_4_1Component
   ],
   imports: [
     BrowserModule,
@@ -118,7 +132,13 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     CriarTimePage,
     CampinhoPage,
     TransacoesPage,
-    Formacao3_4_3Component
+    Formacao3_4_3Component,
+    Formacao3_5_2Component,
+    Formacao4_3_3Component,
+    Formacao4_4_2Component,
+    Formacao4_5_1Component,
+    Formacao5_3_2Component,
+    Formacao5_4_1Component
   ],
   providers: [
     StatusBar,

@@ -1,4 +1,4 @@
-<div class="formacao3-4-3">
+<div class="formacao3-5-2">
     <div class="ataque">
         <div id="posicao_1">
            <img id="posicao_1" [src]="(time.clubes[escalacao.ataque[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
@@ -9,11 +9,6 @@
             <img id="posicao_2" [src]="(time.clubes[escalacao.ataque[1].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
             <span>{{ (escalacao.ataque[1].apelido || 'Apelido') }}</span>
             <span>{{ 'C$ ' + ((escalacao.ataque[1].preco_num | number : '1.2-2') || '0.00') }}</span> 
-        </div> 
-        <div id="posicao_3">
-            <img id="posicao_3" [src]="(time.clubes[escalacao.ataque[2].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
-            <span>{{ (escalacao.ataque[2].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.ataque[2].preco_num | number : '1.2-2') || '0.00') }}</span> 
         </div>
     </div>
     <div class="meio">
@@ -36,6 +31,11 @@
             <img id="posicao_4" [src]="(time.clubes[escalacao.meio[3].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
             <span>{{ (escalacao.meio[3].apelido || 'Apelido') }}</span>
             <span>{{ 'C$ ' + ((escalacao.meio[3].preco_num | number : '1.2-2') || '0.00') }}</span>
+        </div>
+        <div id="posicao_5">
+            <img id="posicao_5" [src]="(time.clubes[escalacao.meio[4].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
+            <span>{{ (escalacao.meio[4].apelido || 'Apelido') }}</span>
+            <span>{{ 'C$ ' + ((escalacao.meio[4].preco_num | number : '1.2-2') || '0.00') }}</span>
         </div>
     </div>
     <div class="zagueiro">

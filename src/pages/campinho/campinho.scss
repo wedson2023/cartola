@@ -35,6 +35,7 @@ page-campinho {
     } 
     
     div.campinho img{
+        margin-bottom: 7px; 
         width: 32px;
         height: 32px;
         cursor: pointer;
@@ -47,7 +48,11 @@ page-campinho {
 
     div.campinho span{
         color: #f1f1f1;
-        font-size: 0.8em;
-        margin-top: 10px;        
+        font-size: 0.7em;
+        overflow: hidden;
+        text-overflow: ellipsis;         
+        white-space: nowrap;
+        width: 70px; 
+        text-align: center;       
     }
 }

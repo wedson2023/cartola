@@ -105,7 +105,7 @@ export class HomePage {
   }
 
   meu_time(){
-    let token_meu_time = localStorage.getItem('token_meu_time');
+    let token_meu_time = true;//localStorage.getItem('token_meu_time');
     if(token_meu_time)
     {
       let modal = this.ModalController.create(CriarTimePage, { rodada_atual : this.rodada_atual.rodada });
@@ -157,7 +157,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '?orderBy=campeonato').subscribe(response => {
+    this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '&orderBy=campeonato').subscribe(response => {
     let resposta = JSON.parse(JSON.stringify(response));
 
     for(let x in resposta.times)
