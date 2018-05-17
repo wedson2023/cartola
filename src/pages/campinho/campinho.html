@@ -16,14 +16,30 @@
     C$ {{ (time_info.patrimonio - valor_time) | number : '1.2-2' }}
   </span>
 </ion-header>
-<ion-content padding>  
-  <div class="campinho">
-      <!-- <formacao3-4-3 [escalacao]="atletas" [time]="time_info"></formacao3-4-3> -->
-      <!-- <formacao3-5-2 [escalacao]="atletas" [time]="time_info"></formacao3-5-2> -->
-      <!-- <formacao4-3-3 [escalacao]="atletas" [time]="time_info"></formacao4-3-3> -->
-      <!-- <formacao4-4-2 [escalacao]="atletas" [time]="time_info"></formacao4-4-2> -->
-      <!-- <formacao4-5-1 [escalacao]="atletas" [time]="time_info"></formacao4-5-1> -->
-      <!-- <formacao5-3-2 [escalacao]="atletas" [time]="time_info"></formacao5-3-2> -->
-      <!-- <formacao5-4-1 [escalacao]="atletas" [time]="time_info"></formacao5-4-1> -->
+<ion-content> 
+  <ion-card>
+          <ion-item>
+              <ion-label>Esquema</ion-label>
+              <ion-select [(ngModel)]="this.esquema_selecionado" (ionChange)="escolher_formacao(this.esquema_selecionado)">
+                <ion-option value="1">3-4-3</ion-option>
+                <ion-option value="2">3-5-2</ion-option>
+                <ion-option value="3">4-3-3</ion-option>
+                <ion-option value="4">4-4-2</ion-option>
+                <ion-option value="5">4-5-1</ion-option>
+                <ion-option value="6">5-3-2</ion-option>
+                <ion-option value="7">5-4-1</ion-option>
+              </ion-select>
+          </ion-item>
+          <button ion-button color="secondary">Salvar</button>
+          <button ion-button color="danger">Vender</button>
+    </ion-card> 
+  <div class="campinho">    
+      <formacao3-4-3 *ngIf="formacao == 1" (mudouTime)="mudouTime($event)" [escalacao]="atletas" [time]="time_info"></formacao3-4-3>
+      <!-- <formacao3-5-2 *ngIf="formacao == 2" [escalacao]="atletas" [time]="time_info"></formacao3-5-2>
+      <formacao4-3-3 *ngIf="formacao == 3" [escalacao]="atletas" [time]="time_info"></formacao4-3-3>
+      <formacao4-4-2 *ngIf="formacao == 4" [escalacao]="atletas" [time]="time_info"></formacao4-4-2>
+      <formacao4-5-1 *ngIf="formacao == 5" [escalacao]="atletas" [time]="time_info"></formacao4-5-1>
+      <formacao5-3-2 *ngIf="formacao == 6" [escalacao]="atletas" [time]="time_info"></formacao5-3-2>
+      <formacao5-4-1 *ngIf="formacao == 7" [escalacao]="atletas" [time]="time_info"></formacao5-4-1> -->
   </div>  
 </ion-content>

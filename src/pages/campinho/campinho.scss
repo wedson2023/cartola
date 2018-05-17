@@ -18,10 +18,27 @@ page-campinho {
         margin-right: 10px
     }
 
-    ion-card-content div{
+    ion-card{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 5px
+    }
+
+    .button-md{
+        font-size: 1.2rem;
+        padding: 0 20px
+    }
+
+    .item-block{
+        width: 85%;
+    }
+
+    select{
+        padding: 7.5px;
+        width: 40%;
+        outline: none;
+        background: #fff;
     }
 
     div.campinho{

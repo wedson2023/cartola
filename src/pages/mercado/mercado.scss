@@ -78,4 +78,14 @@ page-mercado {
         display: block;
         margin: auto;
     }
+
+    span.status{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    span.status ion-icon{
+        font-size: 20px
+    }
 }

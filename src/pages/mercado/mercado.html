@@ -72,7 +72,10 @@
             <span>C$ {{ atleta.variacao_num | number : '1.2-2' }}</span>
           </div>
           <div>
-              <span><img class="status" [src]="atleta.status_id | statusJogador" /></span>
+              <span class="status">
+                <img class="status" [src]="atleta.status_id | statusJogador" />
+                <ion-icon (click)="seleciona(atleta)" name="checkmark-circle"></ion-icon>
+              </span>
               <strong>C$ {{ atleta.preco_num | number : '1.2-2' }}</strong>
           </div>
         </ion-card-content>

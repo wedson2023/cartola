@@ -1,7 +1,7 @@
 declare var $ :any;
 
 import { Component, OnInit } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 
 import { LoadingController } from 'ionic-angular';
@@ -20,14 +20,23 @@ export class MercadoPage implements OnInit{
   public atletas;
   private atletasoff:object;
 
+  private escalacao;
+  private time;
+
   constructor(
     private http: HttpProvider,
     private LoadingController: LoadingController,
     private navegaroff: NavegaroffProvider,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private viewCtrl: ViewController,
+    private navParam: NavParams
   ) 
   {    
-    this.atletasoff = this.navegaroff.getItem('mercado'); 
+    this.atletasoff = this.navegaroff.getItem('mercado');
+    this.escalacao = this.navParam.get('escalacao'); 
+    this.time = this.navParam.get('time'); 
+
+    console.log(this.escalacao, this.time);
   }  
 
   ngOnInit(){
@@ -39,7 +48,10 @@ export class MercadoPage implements OnInit{
     $('#stats').click(function(){
       $('ion-select.stats').trigger('click');
     })
+  }
 
+  seleciona(atleta){    
+    console.log(atleta);
   }
 
   estatisticas(ordem){    

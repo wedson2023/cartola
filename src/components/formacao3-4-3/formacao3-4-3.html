@@ -1,72 +1,37 @@
 <div class="formacao3-4-3">
     <div class="ataque">
-        <div id="posicao_1">
-           <img id="posicao_1" [src]="(time.clubes[escalacao.ataque[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
-           <span>{{ (escalacao.ataque[0].apelido || 'Apelido') }}</span> 
-           <span>{{ 'C$ ' + ((escalacao.ataque[0].preco_num | number : '1.2-2') || '0.00') }}</span> 
-        </div>
-        <div id="posicao_2">
-            <img id="posicao_2" [src]="(time.clubes[escalacao.ataque[1].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
-            <span>{{ (escalacao.ataque[1].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.ataque[1].preco_num | number : '1.2-2') || '0.00') }}</span> 
-        </div> 
-        <div id="posicao_3">
-            <img id="posicao_3" [src]="(time.clubes[escalacao.ataque[2].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um atacante">
-            <span>{{ (escalacao.ataque[2].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.ataque[2].preco_num | number : '1.2-2') || '0.00') }}</span> 
+        <div *ngFor="let ataque of escalacao.ataque let i = index" id="posicao_{{ i }}" (click)="seleciona(ataque, 5)">
+           <img id="posicao_{{ i }}" [src]="(time.clubes[ataque?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')">
+           <span>{{ (ataque?.apelido || 'Apelido') }}</span> 
+           <span>{{ 'C$ ' + ((ataque?.preco_num | number : '1.2-2') || '0.00') }}</span> 
         </div>
     </div>
     <div class="meio">
-        <div id="posicao_1">
-            <img id="posicao_1" [src]="(time.clubes[escalacao.meio[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
-            <span>{{ (escalacao.meio[0].apelido || 'Apelido') }}</span> 
-            <span>{{ 'C$ ' + ((escalacao.meio[0].preco_num | number : '1.2-2') || '0.00') }}</span>
-        </div>
-        <div id="posicao_2">
-            <img id="posicao_2" [src]="(time.clubes[escalacao.meio[1].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
-            <span>{{ (escalacao.meio[1].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.meio[1].preco_num | number : '1.2-2') || '0.00') }}</span> 
-        </div> 
-        <div id="posicao_3">
-            <img id="posicao_3" [src]="(time.clubes[escalacao.meio[2].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
-            <span>{{ (escalacao.meio[2].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.meio[2].preco_num | number : '1.2-2') || '0.00') }}</span> 
-        </div> 
-        <div id="posicao_4">
-            <img id="posicao_4" [src]="(time.clubes[escalacao.meio[3].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um meio">
-            <span>{{ (escalacao.meio[3].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.meio[3].preco_num | number : '1.2-2') || '0.00') }}</span>
+        <div *ngFor="let meio of escalacao.meio let i = index" id="posicao_{{ i }}" (click)="seleciona(meio, 4)">
+            <img id="posicao_{{ i }}" [src]="(time.clubes[meio?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')">
+            <span>{{ (meio?.apelido || 'Apelido') }}</span> 
+            <span>{{ 'C$ ' + ((meio?.preco_num | number : '1.2-2') || '0.00') }}</span> 
         </div>
     </div>
     <div class="zagueiro">
-        <div id="posicao_1">
-            <img id="posicao_1" [src]="(time.clubes[escalacao.zagueiro[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um zagueiro">
-            <span>{{ (escalacao.zagueiro[0].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.zagueiro[0].preco_num | number : '1.2-2') || '0.00') }}</span> 
-        </div>
-        <div id="posicao_2">
-            <img id="posicao_2" [src]="(time.clubes[escalacao.zagueiro[1].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um zagueiro">
-            <span>{{ (escalacao.zagueiro[1].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.zagueiro[1].preco_num | number : '1.2-2') || '0.00') }}</span> 
-        </div>
-        <div id="posicao_3">
-            <img id="posicao_3" [src]="(time.clubes[escalacao.zagueiro[2].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um zagueiro">
-            <span>{{ (escalacao.zagueiro[2].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.zagueiro[2].preco_num | number : '1.2-2') || '0.00') }}</span> 
+        <div *ngFor="let zagueiro of escalacao.zagueiro let i = index" id="posicao_{{ i }}" (click)="seleciona(zagueiro, 3)">
+            <img id="posicao_{{ i }}" [src]="(time.clubes[zagueiro?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')">
+            <span>{{ (zagueiro?.apelido || 'Apelido') }}</span> 
+            <span>{{ 'C$ ' + ((zagueiro?.preco_num | number : '1.2-2') || '0.00') }}</span> 
         </div>            
     </div>
     <div class="goleiro">
-        <div id="posicao_1">
-            <img id="posicao_1" [src]="(time.clubes[escalacao.goleiro[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um goleiro">
-            <span>{{ (escalacao.goleiro[0].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.goleiro[0].preco_num | number : '1.2-2') || '0.00') }}</span> 
+        <div *ngFor="let goleiro of escalacao.goleiro let i = index" id="posicao_{{ i }}" (click)="seleciona(goleiro, 1)">
+            <img id="posicao_{{ i }}" [src]="(time.clubes[goleiro?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')">
+            <span>{{ (goleiro?.apelido || 'Apelido') }}</span> 
+            <span>{{ 'C$ ' + ((goleiro?.preco_num | number : '1.2-2') || '0.00') }}</span> 
         </div>
     </div>        
     <div class="tecnico">
-        <div id="posicao_1">
-            <img id="posicao_1" [src]="(time.clubes[escalacao.tecnico[0].clube_id].escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" title="Escolha um tecnico">
-            <span>{{ (escalacao.tecnico[0].apelido || 'Apelido') }}</span>
-            <span>{{ 'C$ ' + ((escalacao.tecnico[0].preco_num | number : '1.2-2') || '0.00') }}</span> 
+        <div *ngFor="let tecnico of escalacao.tecnico let i = index" id="posicao_{{ i }}" (click)="seleciona(tecnico, 6)">
+            <img id="posicao_{{ i }}" [src]="(time.clubes[tecnico?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')">
+            <span>{{ (tecnico?.apelido || 'Apelido') }}</span> 
+            <span>{{ 'C$ ' + ((tecnico?.preco_num | number : '1.2-2') || '0.00') }}</span> 
         </div>
     </div>
 </div>
