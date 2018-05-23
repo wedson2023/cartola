@@ -74,10 +74,12 @@
           <div>
               <span class="status">
                 <img class="status" [src]="atleta.status_id | statusJogador" />
-                <ion-icon (click)="seleciona(atleta)" name="checkmark-circle"></ion-icon>
               </span>
               <strong>C$ {{ atleta.preco_num | number : '1.2-2' }}</strong>
           </div>
+          <button [ngClass]="atleta.escalado" [hidden]="!dados.criar_time" (click)="seleciona(atleta)" ion-button icon-only>
+            <ion-icon name="cart"></ion-icon>
+          </button>
         </ion-card-content>
         <div [hidden]="!atleta.abrir_scouts" class="scouts">
           <ul>

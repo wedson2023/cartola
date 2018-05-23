@@ -37,7 +37,7 @@
         </ion-item-group>
 
         <hr />         
-          <ion-item>
+          <ion-item [hidden]="criar_time">
             <ion-label>POSIÇÃO</ion-label>
             <ion-select [(ngModel)]="filter.posicao_id">
               <ion-option value="0">Todos</ion-option>

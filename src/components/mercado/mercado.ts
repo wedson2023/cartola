@@ -11,6 +11,7 @@ export class MercadoComponent {
   atletas;
   filter = { status_id : null, posicao_id : 0, clube_id : null, preco_num : null };
   provavel;
+  criar_time;
 
   limpar(){
     this.viewCtrl.dismiss(this.navegaroff.getItem('mercado'));
@@ -30,9 +31,10 @@ export class MercadoComponent {
     private navegaroff: NavegaroffProvider
   ) 
   {   
-   delete this.navParams.data['component'];
-   delete this.navParams.data['opts'];
-   this.atletas = this.navParams.data;  
+   
+   this.atletas = this.navParams.get('atletas');  
+   this.criar_time = this.navParams.get('criar_time'); 
+   console.log(this.criar_time); 
   }
 
 }

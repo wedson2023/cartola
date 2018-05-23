@@ -1,3 +1,4 @@
+import { MensagemProvider } from './../../providers/mensagem/mensagem';
 declare var $ :any;
 
 import { Component, OnInit } from '@angular/core';
@@ -20,8 +21,7 @@ export class MercadoPage implements OnInit{
   public atletas;
   private atletasoff:object;
 
-  private escalacao;
-  private time;
+  private dados;
 
   constructor(
     private http: HttpProvider,
@@ -29,14 +29,14 @@ export class MercadoPage implements OnInit{
     private navegaroff: NavegaroffProvider,
     private popoverCtrl: PopoverController,
     private viewCtrl: ViewController,
-    private navParam: NavParams
+    private navParam: NavParams,
+    private mensagem: MensagemProvider
   ) 
   {    
     this.atletasoff = this.navegaroff.getItem('mercado');
-    this.escalacao = this.navParam.get('escalacao'); 
-    this.time = this.navParam.get('time'); 
+    this.dados = this.navParam.get('dados');
 
-    console.log(this.escalacao, this.time);
+    console.log(this.dados);
   }  
 
   ngOnInit(){
@@ -50,8 +50,39 @@ export class MercadoPage implements OnInit{
     })
   }
 
-  seleciona(atleta){    
-    console.log(atleta);
+  seleciona(atleta){ 
+    
+    let p = this.dados.escalacao[this.dados.posicao];    
+
+    if(atleta.escalado == 'escalado')
+    {
+      for(let x in p)
+      {
+        if(p[x] != null && p[x].atleta_id == atleta.atleta_id)
+        {          
+          p[x] = null;
+          atleta.escalado = 'nao_escalado'
+          this.dados.valor_time -= atleta.preco_num
+        }
+      }
+    }
+    else
+    {
+      if(this.dados.patrimonio < (this.dados.valor_time + atleta.preco_num))
+      {
+        this.mensagem.mensagem('Saldo insuficiente', 'Restam ' + (this.dados.patrimonio - this.dados.valor_time).toFixed(2) + ' Cartoletas do seu saldo atual.'); return false;        
+      }
+
+      let i = p.indexOf(null);
+      if(i >= 0)
+      {
+        p[i] = atleta;
+        this.dados.valor_time += atleta.preco_num;        
+        atleta.escalado = 'escalado';
+        let existe = p.some(e => e == null);
+        if(!existe) this.viewCtrl.dismiss(this.dados);
+      }
+    }
   }
 
   estatisticas(ordem){    
@@ -80,7 +111,7 @@ export class MercadoPage implements OnInit{
   }
 
   abrir_filtro(){   
-    let popover = this.popoverCtrl.create(MercadoComponent, this.atletasoff, { cssClass: 'mercado' });
+    let popover = this.popoverCtrl.create(MercadoComponent, {atletas : this.atletasoff, criar_time : this.dados.criar_time }, { cssClass: 'mercado' });
     popover.present();
     popover.onDidDismiss(atletas => this.atletas = ( atletas || this.atletas ));
   }
@@ -96,10 +127,27 @@ export class MercadoPage implements OnInit{
           let resposta = JSON.parse(JSON.stringify(response));
 
           let atletas = resposta.atletas.filter(elemento => elemento.status_id != 6);
-          
-          this.atletas = atletas.sort((a,b) => a.preco_num > b.preco_num ? -1 : 1);
-          for(let atleta of resposta.atletas)
+          if(this.dados.criar_time)
           {
+            atletas = atletas.filter(e => e.posicao_id == this.dados.posicao_id && e.status_id == 7);            
+          }
+          this.atletas = atletas.sort((a,b) => a.preco_num > b.preco_num ? -1 : 1);
+          for(let atleta of this.atletas)
+          {
+ 
+            if(this.dados.criar_time)
+            {
+              let escalado = this.dados.escalacao[this.dados.posicao].some(e => e != null && e.atleta_id == atleta.atleta_id);
+              if(escalado)
+              {
+                atleta.escalado = 'escalado';
+              }
+              else
+              {
+                atleta.escalado = 'nao_escalado'; 
+              }                            
+            }
+
             atleta.clube = resposta.clubes[atleta.clube_id];
             atleta.posicao = resposta.posicoes[atleta.posicao_id];
             let confronto = partidas.partidas.filter(e => e.clube_casa_id == atleta.clube_id || e.clube_visitante_id == atleta.clube_id)[0];
@@ -124,6 +172,7 @@ export class MercadoPage implements OnInit{
             atleta.scout['GS'] = (atleta.scout['GS'] || 0);
             atleta.scout['FC'] = (atleta.scout['FC'] || 0);
           }
+
           this.navegaroff.setItem('mercado', this.atletas);
           loading.dismiss();
       }) 

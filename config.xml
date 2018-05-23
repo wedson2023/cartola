@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.wedsonwebdesigner" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="br.com.wedsonwebdesigner" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Campeões Cartola FC</name>
     <description>Liga dos melhores cartoleiros da região.</description>
     <author email="wedson_cross@hotmail.com" href="wedsonwebdesigner.com.br/">wedson_cross@hotmail.com</author>

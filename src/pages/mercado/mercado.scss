@@ -8,6 +8,11 @@ page-mercado {
 
     $popover-md-width: 95%;
 
+    .button-md{
+        color: black;
+        background: #f1f1f1
+    }
+
     .mercado{
         background: red
     }
@@ -87,5 +92,13 @@ page-mercado {
 
     span.status ion-icon{
         font-size: 20px
+    }
+
+    .escalado {
+        color: green !important;
+    }
+
+    .nao_escalado {
+        color: gray !important;
     }
 }
