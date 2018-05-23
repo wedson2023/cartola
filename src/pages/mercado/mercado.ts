@@ -21,7 +21,7 @@ export class MercadoPage implements OnInit{
   public atletas;
   private atletasoff:object;
 
-  private dados;
+  private time_dados;
 
   constructor(
     private http: HttpProvider,
@@ -34,9 +34,9 @@ export class MercadoPage implements OnInit{
   ) 
   {    
     this.atletasoff = this.navegaroff.getItem('mercado');
-    this.dados = this.navParam.get('dados');
+    this.time_dados = this.navParam.get('time_dados');
 
-    console.log(this.dados);
+    console.log(this.time_dados);
   }  
 
   ngOnInit(){
@@ -52,7 +52,7 @@ export class MercadoPage implements OnInit{
 
   seleciona(atleta){ 
     
-    let p = this.dados.escalacao[this.dados.posicao];    
+    let p = this.time_dados.escalacao[this.time_dados.posicao];    
 
     if(atleta.escalado == 'escalado')
     {
@@ -62,25 +62,25 @@ export class MercadoPage implements OnInit{
         {          
           p[x] = null;
           atleta.escalado = 'nao_escalado'
-          this.dados.valor_time -= atleta.preco_num
+          this.time_dados.valor_time -= atleta.preco_num
         }
       }
     }
     else
     {
-      if(this.dados.patrimonio < (this.dados.valor_time + atleta.preco_num))
+      if(this.time_dados.patrimonio < (this.time_dados.valor_time + atleta.preco_num))
       {
-        this.mensagem.mensagem('Saldo insuficiente', 'Restam ' + (this.dados.patrimonio - this.dados.valor_time).toFixed(2) + ' Cartoletas do seu saldo atual.'); return false;        
+        this.mensagem.mensagem('Saldo insuficiente', 'Restam ' + (this.time_dados.patrimonio - this.time_dados.valor_time).toFixed(2) + ' Cartoletas do seu saldo atual.'); return false;        
       }
 
       let i = p.indexOf(null);
       if(i >= 0)
       {
         p[i] = atleta;
-        this.dados.valor_time += atleta.preco_num;        
+        this.time_dados.valor_time += atleta.preco_num;        
         atleta.escalado = 'escalado';
         let existe = p.some(e => e == null);
-        if(!existe) this.viewCtrl.dismiss(this.dados);
+        if(!existe) this.viewCtrl.dismiss(this.time_dados);
       }
     }
   }
@@ -111,7 +111,7 @@ export class MercadoPage implements OnInit{
   }
 
   abrir_filtro(){   
-    let popover = this.popoverCtrl.create(MercadoComponent, {atletas : this.atletasoff, criar_time : this.dados.criar_time }, { cssClass: 'mercado' });
+    let popover = this.popoverCtrl.create(MercadoComponent, {atletas : this.atletasoff, criar_time : this.time_dados.criar_time }, { cssClass: 'mercado' });
     popover.present();
     popover.onDidDismiss(atletas => this.atletas = ( atletas || this.atletas ));
   }
@@ -127,17 +127,17 @@ export class MercadoPage implements OnInit{
           let resposta = JSON.parse(JSON.stringify(response));
 
           let atletas = resposta.atletas.filter(elemento => elemento.status_id != 6);
-          if(this.dados.criar_time)
+          if(this.time_dados.criar_time)
           {
-            atletas = atletas.filter(e => e.posicao_id == this.dados.posicao_id && e.status_id == 7);            
+            atletas = atletas.filter(e => e.posicao_id == this.time_dados.posicao_id && e.status_id == 7);            
           }
           this.atletas = atletas.sort((a,b) => a.preco_num > b.preco_num ? -1 : 1);
           for(let atleta of this.atletas)
           {
  
-            if(this.dados.criar_time)
+            if(this.time_dados.criar_time)
             {
-              let escalado = this.dados.escalacao[this.dados.posicao].some(e => e != null && e.atleta_id == atleta.atleta_id);
+              let escalado = this.time_dados.escalacao[this.time_dados.posicao].some(e => e != null && e.atleta_id == atleta.atleta_id);
               if(escalado)
               {
                 atleta.escalado = 'escalado';

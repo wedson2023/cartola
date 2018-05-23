@@ -5,15 +5,15 @@
   </span>
   <span class="carteira">
     <ion-icon name="logo-usd"></ion-icon>  
-    C$ {{ minha_escalacao.patrimonio }}
+    C$ {{ time_salvo.patrimonio }}
   </span>
   <span class="time">
     <ion-icon name="shirt"></ion-icon>
-    C$ {{ minha_escalacao.valor_time | number : '1.2-2' }}
+    C$ {{ time_salvo.valor_time | number : '1.2-2' }}
   </span>
   <span class="resto">
     <ion-icon name="cash"></ion-icon>
-    C$ {{ (minha_escalacao.patrimonio - minha_escalacao.valor_time) | number : '1.2-2' }}
+    C$ {{ (time_salvo.patrimonio - time_salvo.valor_time) | number : '1.2-2' }}
   </span>
 </ion-header>
 <ion-content> 
@@ -31,12 +31,12 @@
               </ion-select>
           </ion-item>
           <button ion-button color="secondary">Salvar</button>
-          <button ion-button color="danger">Vender</button>
+          <button ion-button (click)="venderTime()" color="danger">Vender</button>
     </ion-card> 
   <div class="campinho">    
       <!-- <formacao3-4-3 *ngIf="formacao == 1" (mudouTime)="mudouTime($event)" [escalacao]="atletas" [time]="time_info"></formacao3-4-3>
       <formacao3-5-2 *ngIf="formacao == 2" [escalacao]="atletas" [time]="time_info"></formacao3-5-2> -->
-      <formacao4-3-3  (mudouTime)="mudouTime($event)" [escalacao]="atletas" [time]="minha_escalacao"></formacao4-3-3>
+      <formacao4-3-3  (mudouTime)="mudouTime($event)" [vender]="vender"></formacao4-3-3>
       <!-- <formacao4-4-2 *ngIf="formacao == 4" [escalacao]="atletas" [time]="time_info"></formacao4-4-2>
       <formacao4-5-1 *ngIf="formacao == 5" [escalacao]="atletas" [time]="time_info"></formacao4-5-1>
       <formacao5-3-2 *ngIf="formacao == 6" [escalacao]="atletas" [time]="time_info"></formacao5-3-2>

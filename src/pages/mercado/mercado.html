@@ -77,7 +77,7 @@
               </span>
               <strong>C$ {{ atleta.preco_num | number : '1.2-2' }}</strong>
           </div>
-          <button [ngClass]="atleta.escalado" [hidden]="!dados.criar_time" (click)="seleciona(atleta)" ion-button icon-only>
+          <button [ngClass]="atleta.escalado" [hidden]="!time_dados.criar_time" (click)="seleciona(atleta)" ion-button icon-only>
             <ion-icon name="cart"></ion-icon>
           </button>
         </ion-card-content>

@@ -11,9 +11,9 @@ export class CampinhoPage {
 
   public formacao;
   public esquema;
-  public minha_escalacao;
+  public time_salvo;
   public atletas;
-  public carteira;
+  public vender;
 
   public ataque;
   public meio;
@@ -27,25 +27,29 @@ export class CampinhoPage {
     public navParams: NavParams,
     public navegaroff: NavegaroffProvider
   ) {
-    this.minha_escalacao = this.navegaroff.getItem('minha_escalacao');
+    this.time_salvo = this.navegaroff.getItem('time_salvo');
     
-    this.esquema = this.minha_escalacao.time.esquema_id;    
+    this.esquema = this.time_salvo.time.esquema_id;    
     this.escolher_formacao(this.esquema);    
   }
 
   mudouTime(dados){
-    this.minha_escalacao.valor_time = dados.valor_time;
+    this.time_salvo.valor_time = dados.valor_time;
+  }
+
+  venderTime(){    
+    this.vender = true;
   }
 
   escolher_formacao(formacao){
     if(formacao == 1)
     {    
       this.atletas = {
-        ataque : this.minha_escalacao.atletas.filter(e => e.posicao_id === 5),
-        meio : this.minha_escalacao.atletas.filter(e => e.posicao_id === 4),
-        zagueiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 3),
-        goleiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 1),
-        tecnico : this.minha_escalacao.atletas.filter(e => e.posicao_id === 6)
+        ataque : this.time_salvo.atletas.filter(e => e.posicao_id === 5),
+        meio : this.time_salvo.atletas.filter(e => e.posicao_id === 4),
+        zagueiro : this.time_salvo.atletas.filter(e => e.posicao_id === 3),
+        goleiro : this.time_salvo.atletas.filter(e => e.posicao_id === 1),
+        tecnico : this.time_salvo.atletas.filter(e => e.posicao_id === 6)
       }
 
       this.formacao = formacao;
@@ -53,66 +57,66 @@ export class CampinhoPage {
     else if(formacao == 2)
     {
       this.atletas = {
-        ataque : this.minha_escalacao.atletas.filter(e => e.posicao_id === 5),
-        meio : this.minha_escalacao.atletas.filter(e => e.posicao_id === 4),
-        zagueiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 3),
-        goleiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 1),
-        tecnico : this.minha_escalacao.atletas.filter(e => e.posicao_id === 6)
+        ataque : this.time_salvo.atletas.filter(e => e.posicao_id === 5),
+        meio : this.time_salvo.atletas.filter(e => e.posicao_id === 4),
+        zagueiro : this.time_salvo.atletas.filter(e => e.posicao_id === 3),
+        goleiro : this.time_salvo.atletas.filter(e => e.posicao_id === 1),
+        tecnico : this.time_salvo.atletas.filter(e => e.posicao_id === 6)
       }
     }
     else if(formacao == 3)
     {      
-      this.atletas = {
-        ataque : this.minha_escalacao.atletas.filter(e => e.posicao_id === 5),
-        meio : this.minha_escalacao.atletas.filter(e => e.posicao_id === 4),
-        zagueiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 3),
-        lateral : this.minha_escalacao.atletas.filter(e => e.posicao_id === 2),
-        goleiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 1),
-        tecnico : this.minha_escalacao.atletas.filter(e => e.posicao_id === 6)
-      }
+      // this.atletas = {
+      //   ataque : this.time_salvo.atletas.filter(e => e.posicao_id === 5),
+      //   meio : this.time_salvo.atletas.filter(e => e.posicao_id === 4),
+      //   zagueiro : this.time_salvo.atletas.filter(e => e.posicao_id === 3),
+      //   lateral : this.time_salvo.atletas.filter(e => e.posicao_id === 2),
+      //   goleiro : this.time_salvo.atletas.filter(e => e.posicao_id === 1),
+      //   tecnico : this.time_salvo.atletas.filter(e => e.posicao_id === 6)
+      // }
     }
     else if(formacao == 4)
     {
       this.atletas = {
-        ataque : this.minha_escalacao.atletas.filter(e => e.posicao_id === 5),
-        meio : this.minha_escalacao.atletas.filter(e => e.posicao_id === 4),
-        zagueiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 3),
-        lateral : this.minha_escalacao.atletas.filter(e => e.posicao_id === 2),
-        goleiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 1),
-        tecnico : this.minha_escalacao.atletas.filter(e => e.posicao_id === 6)
+        ataque : this.time_salvo.atletas.filter(e => e.posicao_id === 5),
+        meio : this.time_salvo.atletas.filter(e => e.posicao_id === 4),
+        zagueiro : this.time_salvo.atletas.filter(e => e.posicao_id === 3),
+        lateral : this.time_salvo.atletas.filter(e => e.posicao_id === 2),
+        goleiro : this.time_salvo.atletas.filter(e => e.posicao_id === 1),
+        tecnico : this.time_salvo.atletas.filter(e => e.posicao_id === 6)
       }
     }    
     else if(formacao == 5)
     {
       this.atletas = {
-        ataque : this.minha_escalacao.atletas.filter(e => e.posicao_id === 5),
-        meio : this.minha_escalacao.atletas.filter(e => e.posicao_id === 4),
-        zagueiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 3),
-        lateral : this.minha_escalacao.atletas.filter(e => e.posicao_id === 2),
-        goleiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 1),
-        tecnico : this.minha_escalacao.atletas.filter(e => e.posicao_id === 6)
+        ataque : this.time_salvo.atletas.filter(e => e.posicao_id === 5),
+        meio : this.time_salvo.atletas.filter(e => e.posicao_id === 4),
+        zagueiro : this.time_salvo.atletas.filter(e => e.posicao_id === 3),
+        lateral : this.time_salvo.atletas.filter(e => e.posicao_id === 2),
+        goleiro : this.time_salvo.atletas.filter(e => e.posicao_id === 1),
+        tecnico : this.time_salvo.atletas.filter(e => e.posicao_id === 6)
       }
     }    
     else if(formacao == 6)
     {
       this.atletas = {
-        ataque : this.minha_escalacao.atletas.filter(e => e.posicao_id === 5),
-        meio : this.minha_escalacao.atletas.filter(e => e.posicao_id === 4),
-        zagueiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 3),
-        lateral : this.minha_escalacao.atletas.filter(e => e.posicao_id === 2),
-        goleiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 1),
-        tecnico : this.minha_escalacao.atletas.filter(e => e.posicao_id === 6)
+        ataque : this.time_salvo.atletas.filter(e => e.posicao_id === 5),
+        meio : this.time_salvo.atletas.filter(e => e.posicao_id === 4),
+        zagueiro : this.time_salvo.atletas.filter(e => e.posicao_id === 3),
+        lateral : this.time_salvo.atletas.filter(e => e.posicao_id === 2),
+        goleiro : this.time_salvo.atletas.filter(e => e.posicao_id === 1),
+        tecnico : this.time_salvo.atletas.filter(e => e.posicao_id === 6)
       }
     }    
     else if(formacao == 7)
     {
       this.atletas = {
-        ataque : this.minha_escalacao.atletas.filter(e => e.posicao_id === 5),
-        meio : this.minha_escalacao.atletas.filter(e => e.posicao_id === 4),
-        zagueiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 3),
-        lateral : this.minha_escalacao.atletas.filter(e => e.posicao_id === 2),
-        goleiro : this.minha_escalacao.atletas.filter(e => e.posicao_id === 1),
-        tecnico : this.minha_escalacao.atletas.filter(e => e.posicao_id === 6)
+        ataque : this.time_salvo.atletas.filter(e => e.posicao_id === 5),
+        meio : this.time_salvo.atletas.filter(e => e.posicao_id === 4),
+        zagueiro : this.time_salvo.atletas.filter(e => e.posicao_id === 3),
+        lateral : this.time_salvo.atletas.filter(e => e.posicao_id === 2),
+        goleiro : this.time_salvo.atletas.filter(e => e.posicao_id === 1),
+        tecnico : this.time_salvo.atletas.filter(e => e.posicao_id === 6)
       }
     }    
   }

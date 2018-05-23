@@ -32,7 +32,7 @@ export class MeuTimePage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
     this.http.getApi('auth/time').subscribe(response => {
-      this.navegaroff.setItem('minha_escalacao', response);
+      this.navegaroff.setItem('time_salvo', response);
       let resposta = JSON.parse(JSON.stringify(response));
       this.http.getApi('atletas/pontuados').subscribe(atletas => {
         if(atletas){
