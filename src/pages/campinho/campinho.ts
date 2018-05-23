@@ -14,6 +14,7 @@ export class CampinhoPage {
   public time_salvo;
   public atletas;
   public vender;
+  public acao_btn = 'Salvar';
 
   public ataque;
   public meio;
@@ -35,6 +36,21 @@ export class CampinhoPage {
 
   mudouTime(dados){
     this.time_salvo.valor_time = dados.valor_time;
+
+    console.log(dados);
+    for(let x in dados.escalacao)
+    {
+      let existe = dados.escalacao[x].some(e => e == null);
+      if(existe)
+      {
+        this.acao_btn = 'Voltar';
+        return false;
+      }
+      else
+      {
+        this.acao_btn = 'Salvar';
+      }
+    }
   }
 
   venderTime(){    

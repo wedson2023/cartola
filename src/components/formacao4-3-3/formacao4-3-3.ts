@@ -1,5 +1,5 @@
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
-import { Component, Input, Output, EventEmitter, DoCheck, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { ModalController, AlertController } from 'ionic-angular';
 import { MercadoPage } from '../../pages/mercado/mercado';
 
@@ -94,7 +94,7 @@ export class Formacao4_3_3Component implements OnChanges {
     if(atleta){
       posicao[posicao.indexOf(atleta)] = null;
       this.time_dados.valor_time -= atleta.preco_num; 
-      this.mudouTime.emit({ valor_time : this.time_dados.valor_time });
+      this.mudouTime.emit(this.time_dados);
     }
     else
     {
@@ -103,14 +103,9 @@ export class Formacao4_3_3Component implements OnChanges {
 
       let modal = this.ModalController.create(MercadoPage, { time_dados : this.time_dados });
       modal.present();
-      modal.onDidDismiss((time_dados) => {
-        console.log(time_dados);
-        if(time_dados)
-        {        
-          console.log('entrou');  
-          this.time_dados.escalacao = time_dados.escalacao; 
-          this.mudouTime.emit(time_dados);
-        }               
+      modal.onDidDismiss(() => {
+        this.time_dados.escalacao = this.time_dados.escalacao;                       
+        this.mudouTime.emit(this.time_dados);
       })
     }
   }  
