@@ -1,14 +1,15 @@
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { HttpProvider } from './../../providers/http/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, LoadingController, ViewController } from 'ionic-angular';
+declare var $ :any;
 
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage implements OnInit{
 
   public usuario = {
     payload : {
@@ -24,7 +25,7 @@ export class LoginPage {
     private loadingCtrl: LoadingController,
     private ViewController:ViewController
   ) {
-
+    
   }
 
   login(){
@@ -47,8 +48,19 @@ export class LoginPage {
     })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  ngOnInit(){
+    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    loading.present(); 
+
+    $('iframe').load(function(){ 
+      
+      $(this).contents().find('button').on('click', function(){
+        alert('entrou');
+      });
+      
+      loading.dismiss();
+      $(this).show();      
+    })
   }
 
 }

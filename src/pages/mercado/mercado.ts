@@ -34,7 +34,7 @@ export class MercadoPage implements OnInit{
   ) 
   {    
     this.atletasoff = this.navegaroff.getItem('mercado');
-    this.time_dados = this.navParam.get('time_dados');
+    this.time_dados = this.navParam.get('time_dados') ? this.navParam.get('time_dados') : { criar_time : null };
 
     console.log(this.time_dados);
   }  
@@ -54,15 +54,15 @@ export class MercadoPage implements OnInit{
     
     let p = this.time_dados.escalacao[this.time_dados.posicao];    
 
-    if(atleta.escalado == 'escalado')
+    if(atleta.escalado)
     {
       for(let x in p)
       {
         if(p[x] != null && p[x].atleta_id == atleta.atleta_id)
         {          
           p[x] = null;
-          atleta.escalado = 'nao_escalado'
-          this.time_dados.valor_time -= atleta.preco_num
+          atleta.escalado = false;
+          this.time_dados.valor_time -= atleta.preco_num;
         }
       }
     }
@@ -78,7 +78,7 @@ export class MercadoPage implements OnInit{
       {
         p[i] = atleta;
         this.time_dados.valor_time += atleta.preco_num;        
-        atleta.escalado = 'escalado';
+        atleta.escalado = true;
         let existe = p.some(e => e == null);
         if(!existe) this.viewCtrl.dismiss(this.time_dados);
       }
@@ -104,10 +104,6 @@ export class MercadoPage implements OnInit{
         return (a[ordem] > b[ordem]) ? -1 : ((a[ordem] < b[ordem]) ? 1 : 0);
       }
     });
-  }
-
-  abrir_scouts(atleta){
-    atleta.abrir_scouts = true;
   }
 
   abrir_filtro(){   
@@ -140,11 +136,11 @@ export class MercadoPage implements OnInit{
               let escalado = this.time_dados.escalacao[this.time_dados.posicao].some(e => e != null && e.atleta_id == atleta.atleta_id);
               if(escalado)
               {
-                atleta.escalado = 'escalado';
+                atleta.escalado = true;
               }
               else
               {
-                atleta.escalado = 'nao_escalado'; 
+                atleta.escalado = false; 
               }                            
             }
 
