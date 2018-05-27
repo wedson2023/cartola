@@ -36,7 +36,7 @@ export class MercadoPage implements OnInit{
     this.atletasoff = this.navegaroff.getItem('mercado');
     this.time_dados = this.navParam.get('time_dados') ? this.navParam.get('time_dados') : { criar_time : null };
 
-    console.log(this.time_dados);
+    //console.log(this.time_dados);
   }  
 
   ngOnInit(){

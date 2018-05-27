@@ -2,7 +2,7 @@ formacao4-3-3 {
     
     /* :::: FORMAÇÃO 4-3-3 :::: */
 
-    div.formacao4-3-3{        
+    form.formacao4-3-3{        
         position: relative;
         top: 30px;
         width: 288px;
@@ -10,16 +10,24 @@ formacao4-3-3 {
         margin: 0 auto;
     }
 
+    form.formacao4-3-3 img.capitao{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 0px;
+        right: 20px;
+    }
+
     /* :::: ATAQUE :::: */
 
-    div.formacao4-3-3 div.ataque{        
+    form.formacao4-3-3 div.ataque{        
         position: relative;
         top: 10px;
         width: 100%;
         height: 80px;
     }    
     
-    div.formacao4-3-3 div.ataque div{
+    form.formacao4-3-3 div.ataque div{
         position: absolute;        
         width: 96px;
         height: 80px;
@@ -29,28 +37,28 @@ formacao4-3-3 {
         align-items: center; 
     }    
 
-    div.formacao4-3-3 div.ataque div#posicao_0{
+    form.formacao4-3-3 div.ataque div#posicao_0{
         left: 0;
     }
 
-    div.formacao4-3-3 div.ataque div#posicao_1{
+    form.formacao4-3-3 div.ataque div#posicao_1{
         left: 96px;
     }
 
-    div.formacao4-3-3 div.ataque div#posicao_2{
+    form.formacao4-3-3 div.ataque div#posicao_2{
         left: 192px;
     }
 
     /* :::: MEIO :::: */
 
-    div.formacao4-3-3 div.meio{        
+    form.formacao4-3-3 div.meio{        
         position: relative;
         top: 25px;
         width: 100%;
         height: 80px;
     }    
     
-    div.formacao4-3-3 div.meio div{
+    form.formacao4-3-3 div.meio div{
         position: absolute;        
         width: 96px;
         height: 80px;
@@ -60,55 +68,28 @@ formacao4-3-3 {
         align-items: center; 
     }    
 
-    div.formacao4-3-3 div.meio div#posicao_0{
+    form.formacao4-3-3 div.meio div#posicao_0{
         left: 0;
     }
 
-    div.formacao4-3-3 div.meio div#posicao_1{
+    form.formacao4-3-3 div.meio div#posicao_1{
         left: 96px;
     }
 
-    div.formacao4-3-3 div.meio div#posicao_2{
+    form.formacao4-3-3 div.meio div#posicao_2{
         left: 192px;
     }  
 
     /* :::: LATERAL :::: */
 
-    div.formacao4-3-3 div.lateral{        
+    form.formacao4-3-3 div.lateral{        
         position: relative;
         top: 30px;
         width: 100%;
         height: 80px;
     }    
     
-    div.formacao4-3-3 div.lateral div{
-        position: absolute;        
-        width: 72px;
-        height: 80px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; 
-    }    
-
-    div.formacao4-3-3 div.lateral div#posicao_0{
-        left: 0;
-    }
-
-    div.formacao4-3-3 div.lateral div#posicao_1{
-        right: 0;
-    }
-
-    /* :::: ZAGUEIRO :::: */
-
-    div.formacao4-3-3 div.zagueiro{        
-        position: relative;
-        top: 15px;
-        width: 100%;
-        height: 80px;
-    }    
-    
-    div.formacao4-3-3 div.zagueiro div{
+    form.formacao4-3-3 div.lateral div{
         position: absolute;        
         width: 96px;
         height: 80px;
@@ -118,17 +99,44 @@ formacao4-3-3 {
         align-items: center; 
     }    
 
-    div.formacao4-3-3 div.zagueiro div#posicao_0{
+    form.formacao4-3-3 div.lateral div#posicao_0{
+        left: 0;
+    }
+
+    form.formacao4-3-3 div.lateral div#posicao_1{
+        right: 0;
+    }
+
+    /* :::: ZAGUEIRO :::: */
+
+    form.formacao4-3-3 div.zagueiro{        
+        position: relative;
+        top: 15px;
+        width: 100%;
+        height: 80px;
+    }    
+    
+    form.formacao4-3-3 div.zagueiro div{
+        position: absolute;        
+        width: 96px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+    }    
+
+    form.formacao4-3-3 div.zagueiro div#posicao_0{
         left: 48px;
     }
 
-    div.formacao4-3-3 div.zagueiro div#posicao_1{
+    form.formacao4-3-3 div.zagueiro div#posicao_1{
         right: 48px;
     }
 
     /* :::: GOLEIRO :::: */
 
-    div.formacao4-3-3 div.goleiro{        
+    form.formacao4-3-3 div.goleiro{        
         position: relative;
         top: 5px;
         width: 96px;
@@ -136,7 +144,7 @@ formacao4-3-3 {
         left: 96px;
     }    
     
-    div.formacao4-3-3 div.goleiro div{
+    form.formacao4-3-3 div.goleiro div{
         position: absolute;        
         width: 100%;
         height: 70px;
@@ -148,7 +156,7 @@ formacao4-3-3 {
 
     /* :::: TECNICO :::: */
 
-    div.formacao4-3-3 div.tecnico{        
+    form.formacao4-3-3 div.tecnico{        
         position: relative;
         top: -53px;
         width: 96px;
@@ -156,7 +164,7 @@ formacao4-3-3 {
         left: 0;
     }    
     
-    div.formacao4-3-3 div.tecnico div{
+    form.formacao4-3-3 div.tecnico div{
         position: absolute;        
         width: 100%;
         height: 70px;

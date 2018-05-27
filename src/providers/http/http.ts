@@ -18,14 +18,14 @@ export class HttpProvider {
   }
 
   getApi(url:string) {
-    return this.http.get(/*this.ApiLocal + */this.ApiCartola + url, { headers: { 'X-GLB-Token' : this.Token }});
+    return this.http.get(this.ApiLocal + this.ApiCartola + url/*, { headers: { 'X-GLB-Token' : this.Token }}*/);
   }
 
   setToken(token){
     this.Token = token;
   }
 
-  getApiPost(url:string, data) {
-    return this.http.post('https://login.globo.com/' + url, data);
+  getApiSalvar(url:string, data) {
+    return this.http.post(this.ApiCartola + url, data);
   }
 }

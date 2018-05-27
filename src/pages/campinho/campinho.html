@@ -30,7 +30,7 @@
                 <ion-option value="7">5-4-1</ion-option>
               </ion-select>
           </ion-item>
-          <button ion-button color="{{ acao_btn === 'Salvar' ? 'secondary' : 'dark' }}">{{ acao_btn }}</button>
+          <button ion-button (click)="salvar()" color="{{ acao_btn === 'Salvar' ? 'secondary' : 'dark' }}">{{ acao_btn }}</button>
           <button ion-button (click)="venderTime()" color="danger">Vender</button>
     </ion-card> 
   <div class="campinho">    

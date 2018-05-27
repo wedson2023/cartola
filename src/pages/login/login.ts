@@ -29,23 +29,23 @@ export class LoginPage implements OnInit{
   }
 
   login(){
-    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
-    loading.present();
+    // let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    // loading.present();
 
-    this.http.getApiPost('api/authentication', this.usuario).subscribe(response => {
-      let resposta = JSON.parse(JSON.stringify(response));
-      if(resposta.glbId)
-      {
-        localStorage.setItem('token', resposta.glbId);
-        localStorage.setItem('token_meu_time', resposta.glbId);
-        this.Mensagem.mensagem('Sucesso', resposta.userMessage);
-      }
-      this.ViewController.dismiss(resposta.glbId);
-      loading.dismiss();
-    }, err => {
-      loading.dismiss();
-      this.Mensagem.mensagem('Algo deu errado', 'Senha ou login incorretos, ou Verifique sua conexão com a internet!');
-    })
+    // this.http.getApiPost('api/authentication', this.usuario).subscribe(response => {
+    //   let resposta = JSON.parse(JSON.stringify(response));
+    //   if(resposta.glbId)
+    //   {
+    //     localStorage.setItem('token', resposta.glbId);
+    //     localStorage.setItem('token_meu_time', resposta.glbId);
+    //     this.Mensagem.mensagem('Sucesso', resposta.userMessage);
+    //   }
+    //   this.ViewController.dismiss(resposta.glbId);
+    //   loading.dismiss();
+    // }, err => {
+    //   loading.dismiss();
+    //   this.Mensagem.mensagem('Algo deu errado', 'Senha ou login incorretos, ou Verifique sua conexão com a internet!');
+    // })
   }
 
   ngOnInit(){

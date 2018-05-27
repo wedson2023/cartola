@@ -52,6 +52,7 @@ import { Formacao4_4_2Component } from '../components/formacao4-4-2/formacao4-4-
 import { Formacao4_5_1Component } from '../components/formacao4-5-1/formacao4-5-1';
 import { Formacao5_3_2Component } from '../components/formacao5-3-2/formacao5-3-2';
 import { Formacao5_4_1Component } from './../components/formacao5-4-1/formacao5-4-1';
+import { FormacaoProvider } from '../providers/formacao/formacao';
 
 
 
@@ -149,7 +150,8 @@ import { Formacao5_4_1Component } from './../components/formacao5-4-1/formacao5-
     NavegaroffProvider,
     MensagemProvider,
     SocialSharing,
-    BackgroundMode
+    BackgroundMode,
+    FormacaoProvider
   ]
 })
 export class AppModule {}
