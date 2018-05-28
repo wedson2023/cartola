@@ -30,13 +30,13 @@
                 <ion-option value="7">5-4-1</ion-option>
               </ion-select>
           </ion-item>
-          <button ion-button (click)="salvar()" color="{{ acao_btn === 'Salvar' ? 'secondary' : 'dark' }}">{{ acao_btn }}</button>
+          <button ion-button [disabled]="!salvarTime.capitao" (click)="salvar()" color="{{ acao_btn === 'Salvar' ? 'secondary' : 'dark' }}">{{ acao_btn }}</button>
           <button ion-button (click)="venderTime()" color="danger">Vender</button>
     </ion-card> 
   <div class="campinho">    
       <!-- <formacao3-4-3 *ngIf="formacao == 1" (mudouTime)="mudouTime($event)" [escalacao]="atletas" [time]="time_info"></formacao3-4-3>
       <formacao3-5-2 *ngIf="formacao == 2" [escalacao]="atletas" [time]="time_info"></formacao3-5-2> -->
-      <formacao4-3-3  (mudouTime)="mudouTime($event)" [vender]="vender"></formacao4-3-3>
+      <formacao4-3-3  (mudouTime)="mudouTime($event)" [vender]="vender" [capitaoClass]="capitaoClass"></formacao4-3-3>
       <!-- <formacao4-4-2 *ngIf="formacao == 4" [escalacao]="atletas" [time]="time_info"></formacao4-4-2>
       <formacao4-5-1 *ngIf="formacao == 5" [escalacao]="atletas" [time]="time_info"></formacao4-5-1>
       <formacao5-3-2 *ngIf="formacao == 6" [escalacao]="atletas" [time]="time_info"></formacao5-3-2>

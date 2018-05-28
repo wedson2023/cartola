@@ -9,15 +9,17 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 export class Formacao4_3_3Component implements OnChanges {
 
   @Input() vender;
+  @Input() capitaoClass;
   @Output() mudouTime = new EventEmitter();
 
   private escalacao;
   private clubes;
-  private capitao;
+  private capitao;  
 
   constructor(
     private formacao: FormacaoProvider
-  ) {    
+  ) {  
+    this.capitao = this.formacao.getCapitao(); 
     this.escalacao = this.formacao.getEscalacao();
     this.clubes = this.formacao.getClubes();
   }
@@ -33,10 +35,11 @@ export class Formacao4_3_3Component implements OnChanges {
   }  
 
   selecionaCapitao(capitao){
-    this.capitao = capitao;
+    this.formacao.setCapitao(capitao, this.mudouTime);
+    this.capitao = this.formacao.getCapitao();
   }
 
-  seleciona(atleta, posicao_id){    
+  seleciona(atleta, posicao_id){
     this.formacao.selecionaAtleta(atleta, posicao_id, this.mudouTime);
   }  
 }

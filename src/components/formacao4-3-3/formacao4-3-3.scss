@@ -10,14 +10,6 @@ formacao4-3-3 {
         margin: 0 auto;
     }
 
-    form.formacao4-3-3 img.capitao{
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 0px;
-        right: 20px;
-    }
-
     /* :::: ATAQUE :::: */
 
     form.formacao4-3-3 div.ataque{        
@@ -28,7 +20,7 @@ formacao4-3-3 {
     }    
     
     form.formacao4-3-3 div.ataque div{
-        position: absolute;        
+        position: absolute; 
         width: 96px;
         height: 80px;
         display: flex;
@@ -100,11 +92,11 @@ formacao4-3-3 {
     }    
 
     form.formacao4-3-3 div.lateral div#posicao_0{
-        left: 0;
+        left: -10px;
     }
 
     form.formacao4-3-3 div.lateral div#posicao_1{
-        right: 0;
+        right: -10px;
     }
 
     /* :::: ZAGUEIRO :::: */

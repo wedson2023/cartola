@@ -76,4 +76,16 @@ page-campinho {
     div.campinho input[type=radio]{
         display: none;
     }
+
+    div.campinho .sumir_capitao{
+        display: none;
+    }
+
+    form.formacao4-3-3 img.capitao{
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: -3px;
+        right: 23px;
+    }
 }

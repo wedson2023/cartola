@@ -1,10 +1,10 @@
 <form class="formacao4-3-3">
     <div class="ataque">
-        <div *ngFor="let ataque of escalacao.ataque let i = index" id="posicao_{{ i }}" >
-            <label [for]="ataque?.atleta_id">
+        <div *ngFor="let ataque of escalacao.ataque let i = index" id="posicao_{{ i }}" (click)="seleciona(ataque, 5)">
+            <label [ngClass]="capitaoClass" [for]="ataque?.atleta_id">
                 <img [src]="capitao == ataque?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
             </label>
-            <img id="posicao_{{ i }}" [src]="(clubes[ataque?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(ataque, 5)">
+            <img id="posicao_{{ i }}" [src]="(clubes[ataque?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')">
             <span>{{ (ataque?.apelido || 'Apelido') }}</span> 
             <span>{{ 'C$ ' + ((ataque?.preco_num | number : '1.2-2') || '0.00') }}</span>
             <input type="radio" [id]="ataque?.atleta_id" name="capitao" (click)="selecionaCapitao(ataque?.atleta_id)"> 
@@ -12,7 +12,7 @@
     </div>
     <div class="meio">
         <div *ngFor="let meio of escalacao.meio let i = index" id="posicao_{{ i }}" >
-            <label [for]="meio?.atleta_id">
+            <label [ngClass]="capitaoClass" [for]="meio?.atleta_id">
                 <img [src]="capitao == meio?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
             </label>
             <img id="posicao_{{ i }}" [src]="(clubes[meio?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(meio, 4)">
@@ -23,7 +23,7 @@
     </div>
     <div class="lateral">
         <div *ngFor="let lateral of escalacao.lateral let i = index" id="posicao_{{ i }}">
-            <label [for]="lateral?.atleta_id">
+            <label [ngClass]="capitaoClass" [for]="lateral?.atleta_id">
                 <img [src]="capitao == lateral?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
             </label>
             <img id="posicao_{{ i }}" [src]="(clubes[lateral?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(lateral, 2)">
@@ -34,7 +34,7 @@
     </div>
     <div class="zagueiro">
         <div *ngFor="let zagueiro of escalacao.zagueiro let i = index" id="posicao_{{ i }}">
-            <label [for]="zagueiro?.atleta_id">
+            <label [ngClass]="capitaoClass" [for]="zagueiro?.atleta_id">
                 <img [src]="capitao == zagueiro?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
             </label>
             <img id="posicao_{{ i }}" [src]="(clubes[zagueiro?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(zagueiro, 3)">
@@ -45,7 +45,7 @@
     </div>
     <div class="goleiro">
         <div *ngFor="let goleiro of escalacao.goleiro let i = index" id="posicao_{{ i }}">
-            <label [for]="goleiro?.atleta_id">
+            <label [ngClass]="capitaoClass" [for]="goleiro?.atleta_id">
                 <img [src]="capitao == goleiro?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
             </label>
             <img id="posicao_{{ i }}" [src]="(clubes[goleiro?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(goleiro, 1)">
@@ -56,7 +56,7 @@
     </div>        
     <div class="tecnico">
         <div *ngFor="let tecnico of escalacao.tecnico let i = index" id="posicao_{{ i }}">
-            <label [for]="tecnico?.atleta_id">
+            <label [ngClass]="capitaoClass" [for]="tecnico?.atleta_id">
                 <img [src]="capitao == tecnico?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
             </label>
             <img id="posicao_{{ i }}" [src]="(clubes[tecnico?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(tecnico, 6)">

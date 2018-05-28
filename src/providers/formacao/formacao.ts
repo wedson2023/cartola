@@ -22,7 +22,8 @@ export class FormacaoProvider {
       escalacao : escalacao,
       valor_time : this.time_salvo.valor_time,
       patrimonio : this.time_salvo.patrimonio,
-      criar_time : true
+      criar_time : true,
+      capitao_id : this.time_salvo.capitao_id
     };
   }
 
@@ -32,6 +33,15 @@ export class FormacaoProvider {
 
   getClubes(){
     return this.time_salvo.clubes;
+  }
+
+  setCapitao(capitao_id, mudouTime){
+    this.time_dados.capitao_id = capitao_id;
+    mudouTime.emit(this.time_dados);
+  }
+
+  getCapitao(){
+    return this.time_dados.capitao_id;
   }
 
   selecionaAtleta(atleta, posicao_id, mudouTime){

@@ -3,7 +3,7 @@ import { HttpProvider } from './../../providers/http/http';
 import { FormacaoProvider } from './../../providers/formacao/formacao';
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -18,12 +18,14 @@ export class CampinhoPage {
   public vender;
   public salvarTime;  
   public acao_btn = 'Salvar';
+  public capitaoClass;
 
   constructor(
     public navegaroff: NavegaroffProvider,
     private formacao: FormacaoProvider,
     private http: HttpProvider,
-    private mensagem: MensagemProvider
+    private mensagem: MensagemProvider,
+    private loadingCtrl: LoadingController
   ) {
     this.time_salvo = this.navegaroff.getItem('time_salvo');    
     this.esquema = this.time_salvo.time.esquema_id;      
@@ -31,14 +33,15 @@ export class CampinhoPage {
     this.salvarTime = {
       atletas : [],
       capitao : null,
-      esquema : this.time_salvo.esquema_id
+      esquema : 3
     }
   }
 
   mudouTime(dados){ 
-    //console.log(dados);
+    console.log(dados);
     this.time_novo = dados.escalacao;
     this.time_salvo.valor_time = dados.valor_time;
+    this.salvarTime.capitao = dados.capitao_id;    
 
     for(let x in dados.escalacao)
     {
@@ -46,10 +49,12 @@ export class CampinhoPage {
       if(existe)
       {
         this.acao_btn = 'Voltar';
+        this.capitaoClass = 'sumir_capitao';
         return false;
       }
       else
       {
+        this.capitaoClass = null;
         this.acao_btn = 'Salvar';
       }
     }
@@ -60,8 +65,12 @@ export class CampinhoPage {
   }
 
   salvar(){
+    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    loading.present();
+
     if(this.acao_btn == 'Salvar')
     {
+      this.salvarTime.atletas = [];
 
       for(let x in this.time_novo)
       {
@@ -71,25 +80,25 @@ export class CampinhoPage {
         }
       }
 
-      console.log(this.salvarTime)
-
       if(this.salvarTime.capitao)
       {
-        // this.http.getApiSalvar('auth/time/salvar', this.salvarTime).subscribe(function(response){
-        //   console.log(response);
-        // }, err => {
-        //   console.log(err);
-        // });
+        this.http.getApiSalvar('auth/time/salvar', this.salvarTime).subscribe((response) => {
+          this.mensagem.mensagem('Sucesso', response['mensagem']);
+          loading.dismiss();          
+        }, err => {
+          this.mensagem.mensagem('Não cadastrado', err['error'].mensagem);
+          loading.dismiss();          
+        });
       }
       else
       {
         this.mensagem.mensagem('Alerta', 'Por favor selecione o seu capitão.');
       }
 
-     
     }
     else
     {
+      loading.dismiss();
       let escalacao = this.formacao.meuEsquema(this.time_salvo)['timeCompleto'];
     }
   }
