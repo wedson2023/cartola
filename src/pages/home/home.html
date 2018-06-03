@@ -68,6 +68,13 @@
             <img class="assinante" [hidden]="!time.assinante" src="./assets/imgs/selo-cartoleiro-pro.svg">
           </p>  
           <ion-icon *ngIf="time.ranking.campeonato <= 5 && time.ranking.campeonato != null" class="trofeu" name="trophy" item-end></ion-icon>
+          <ion-note [ngClass]="(filtro === 'campeonato' ? time.variacao.campeonato : (filtro === 'patrimonio' ? time.variacao.patrimonio : (filtro === 'mes' ? time.variacao.mes : time.pontos.turno ))) >= 0 ? 'green' : 'red'" item-end="" class="note note-md">
+            {{ 
+              (filtro === 'campeonato' ? time.variacao.campeonato : 
+              (filtro === 'patrimonio' ? time.variacao.patrimonio : 
+              (filtro === 'mes' ? time.variacao.mes : time.pontos.turno ))) 
+            }}
+          </ion-note>
         </ion-item>
         <ion-infinite-scroll (ionInfinite)="carregarMais($event)">
           <ion-infinite-scroll-content></ion-infinite-scroll-content>

@@ -1,3 +1,4 @@
+import { ParciaisLigasPage } from './../pages/parciais-ligas/parciais-ligas';
 import { TransacoesPage } from './../pages/transacoes/transacoes';
 import { CampinhoPage } from './../pages/campinho/campinho';
 import { CriarTimePage } from './../pages/criar-time/criar-time';
@@ -89,6 +90,7 @@ import { FormacaoProvider } from '../providers/formacao/formacao';
     CriarTimePage,
     CampinhoPage,
     TransacoesPage,
+    ParciaisLigasPage,
     Formacao3_4_3Component,
     Formacao3_5_2Component,
     Formacao4_3_3Component,
@@ -133,6 +135,7 @@ import { FormacaoProvider } from '../providers/formacao/formacao';
     CriarTimePage,
     CampinhoPage,
     TransacoesPage,
+    ParciaisLigasPage,
     Formacao3_4_3Component,
     Formacao3_5_2Component,
     Formacao4_3_3Component,

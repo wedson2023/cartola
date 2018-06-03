@@ -1,0 +1,29 @@
+<ion-content>
+  <section [hidden]="!ligas.classicas.length">
+    <ion-item-divider>
+        SUAS LIGAS CLÁSSICAS ({{ ligas.classicas.length }}/6 LIGAS)
+    </ion-item-divider>
+    <ion-list>
+      <ion-item *ngFor="let classicas of ligas.classicas" >
+        <ion-avatar item-left>
+        <img class="escudo" [src]="classicas.url_flamula_svg" >        
+        </ion-avatar>
+        <h2 class="capitalize">{{ classicas.nome }}</h2>
+        <p>MODERADA | {{ classicas.total_times_liga }} CARTOLEIROS</p>
+        <ion-note item-end="" class="note note-md">{{ classicas.camp_ranking_num }}º</ion-note>                 
+      </ion-item>
+    </ion-list>
+    <ion-item-divider>
+        SUAS LIGAS MATA-MATA ({{ ligas.mata_mata.length }}/5 LIGAS)
+    </ion-item-divider>
+    <ion-list>
+        <ion-item *ngFor="let mata_mata of ligas.mata_mata" >
+          <ion-avatar item-left>
+          <img class="escudo" [src]="mata_mata.url_trofeu_svg">        
+          </ion-avatar>
+          <h2 class="capitalize">{{ mata_mata.nome }}</h2>
+          <p>MODERADA | {{ mata_mata.total_times_liga }} CARTOLEIROS</p>
+        </ion-item>
+      </ion-list>
+  </section>
+</ion-content>

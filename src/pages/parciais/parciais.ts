@@ -1,3 +1,4 @@
+import { ParciaisLigasPage } from './../parciais-ligas/parciais-ligas';
 declare var $ :any;
 
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
@@ -26,6 +27,7 @@ export class ParciaisPage{
   tab1 = ParciaisTimesPage;
   tab2 = ParciaisJogadoresPage;
   tab3 = ParciaisClubesPage;
+  tab4 = ParciaisLigasPage;
 
   constructor(
     private http: HttpProvider,
