@@ -3,7 +3,7 @@ import { HttpProvider } from './../../providers/http/http';
 import { FormacaoProvider } from './../../providers/formacao/formacao';
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController } from 'ionic-angular';
+import { IonicPage, LoadingController, AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,13 +19,15 @@ export class CampinhoPage {
   public salvarTime;  
   public acao_btn = 'Salvar';
   public capitaoClass;
+  public restaurar_time;
 
   constructor(
     public navegaroff: NavegaroffProvider,
     private formacao: FormacaoProvider,
     private http: HttpProvider,
     private mensagem: MensagemProvider,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {
     this.time_salvo = this.navegaroff.getItem('time_salvo');    
     this.esquema = this.time_salvo.time.esquema_id;      
@@ -65,11 +67,11 @@ export class CampinhoPage {
   }
 
   salvar(){
-    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
-    loading.present();
-
     if(this.acao_btn == 'Salvar')
     {
+      let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+      loading.present();
+
       this.salvarTime.atletas = [];
 
       for(let x in this.time_novo)
@@ -94,12 +96,31 @@ export class CampinhoPage {
       {
         this.mensagem.mensagem('Alerta', 'Por favor selecione o seu capitão.');
       }
-
+       
+      loading.dismiss();
     }
     else
     {
-      loading.dismiss();
-      let escalacao = this.formacao.meuEsquema(this.time_salvo)['timeCompleto'];
+      let alerta = this.alertCtrl.create({
+        title : 'Confirme por favor',
+        message : 'Tem certeza que deseja restaurar o time?',
+        buttons : [
+          {
+            text : 'Não',
+            role : 'cancel',
+            handler : () => {}
+          },
+          {
+            text : 'Sim',
+            handler: () => {
+              let escalacao = this.formacao.meuEsquema(this.time_salvo)['timeCompleto'];      
+              this.restaurar_time = escalacao;
+            }
+          }
+        ]
+      });
+
+      alerta.present();     
     }
   }
 }

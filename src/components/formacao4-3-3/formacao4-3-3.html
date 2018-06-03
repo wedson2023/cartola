@@ -56,13 +56,9 @@
     </div>        
     <div class="tecnico">
         <div *ngFor="let tecnico of escalacao.tecnico let i = index" id="posicao_{{ i }}">
-            <label [ngClass]="capitaoClass" [for]="tecnico?.atleta_id">
-                <img [src]="capitao == tecnico?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
-            </label>
             <img id="posicao_{{ i }}" [src]="(clubes[tecnico?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(tecnico, 6)">
             <span>{{ (tecnico?.apelido || 'Apelido') }}</span> 
             <span>{{ 'C$ ' + ((tecnico?.preco_num | number : '1.2-2') || '0.00') }}</span>
-            <input type="radio" [id]="tecnico?.atleta_id" name="capitao" name="capitao" (click)="selecionaCapitao(tecnico?.atleta_id)"> 
         </div>
     </div>
 </form>
