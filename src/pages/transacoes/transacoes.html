@@ -18,7 +18,7 @@
     </span> 
     <p>
       <img [hidden]="transacao.capitao.id !== atleta.id" src="./assets/imgs/capitao.png" >  
-      <span>{{ transacao.capitao.id == atleta.id ? (atleta.pontos_num * 2 || '-') : (atleta.pontos_num || '-') }}</span>
+      <span>{{ (transacao.capitao.id == atleta.id ? (atleta.pontos_num * 2 || '0') : (atleta.pontos_num || '0')) | number : '1.2-2' }}</span>
     </p>
   </div>
   <div class="total">          

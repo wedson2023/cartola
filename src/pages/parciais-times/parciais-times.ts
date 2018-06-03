@@ -1,6 +1,6 @@
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, ModalController } from 'ionic-angular';
+import { IonicPage, LoadingController, ModalController, NavParams } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { NavegaroffProvider } from '../../providers/navegaroff/navegaroff';
 import { ModalParciaisTimePage } from './../modal-parciais-time/modal-parciais-time';
@@ -20,6 +20,7 @@ export class ParciaisTimesPage {
   private ordem;
   private pontos_campeao;
   private provavel;
+  private liga_id;
 
   constructor(
     private http: HttpProvider,
@@ -27,8 +28,10 @@ export class ParciaisTimesPage {
     private navegaroff: NavegaroffProvider,
     private ModalController: ModalController,    
     private socialSharing: SocialSharing,
-    private Mensagem: MensagemProvider
-  ) {    
+    private Mensagem: MensagemProvider,
+    private NavParams: NavParams
+  ) {   
+    this.liga_id = this.NavParams.get('liga_id');
     this.liga = this.navegaroff.getItem('home_liga');
     this.timesoff = this.navegaroff.getItem('parciais_times');
   }
@@ -116,7 +119,7 @@ export class ParciaisTimesPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     if(!refresh) loading.dismiss(); loading.present();
 
-    this.http.getApi('liga/' + this.liga.liga.liga_id + '/times').subscribe(response => {
+    this.http.getApi('liga/' + (this.liga_id || this.liga.liga.liga_id) + '/times').subscribe(response => {
       this.http.getApi('atletas/pontuados').subscribe(atletas => {
         if(atletas == null){           
           this.last_updated = this.navegaroff.getItem('hr_parciais_times');
@@ -151,8 +154,11 @@ export class ParciaisTimesPage {
           } 
           
           this.times.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);
-          this.navegaroff.setItem('hr_parciais_times', new Date());
-          this.navegaroff.setItem('parciais_times', this.times);
+          if(!this.liga_id)
+          {
+            this.navegaroff.setItem('hr_parciais_times', new Date());
+            this.navegaroff.setItem('parciais_times', this.times);
+          }
           this.last_updated = new Date();
           if(refresh) refresh.complete();  
           loading.dismiss(); 

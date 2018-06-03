@@ -4,7 +4,7 @@
         SUAS LIGAS CLÁSSICAS ({{ ligas.classicas.length }}/6 LIGAS)
     </ion-item-divider>
     <ion-list>
-      <ion-item *ngFor="let classicas of ligas.classicas" >
+      <ion-item *ngFor="let classicas of ligas.classicas" (click)="abrir_liga_classica(classicas.liga_id, classicas.total_times_liga)">
         <ion-avatar item-left>
         <img class="escudo" [src]="classicas.url_flamula_svg" >        
         </ion-avatar>
