@@ -28,7 +28,6 @@ export class HomePage {
   liga;  
   ligaoff:object; 
   filtro:String;
-  rodada_atual;
   backbutton;
   esconderScroll;
   private token_meu_time;
@@ -43,7 +42,7 @@ export class HomePage {
   )   
   {
     
-    this.filtro = 'campeonato';
+    this.filtro = 'campeonato'; 
     this.ligaoff = this.navegaroff.getItem('home_liga'); 
     this.token_meu_time = localStorage.getItem('token_meu_time');
   }
@@ -82,14 +81,14 @@ export class HomePage {
   }
 
   historico(time){
-    let modal = this.ModalController.create(HistoricoPage, { time : time, rodada_atual : this.rodada_atual.rodada });
+    let modal = this.ModalController.create(HistoricoPage, { time : time });
     modal.present();
   }
 
   destaques(){
     if(this.liga.destaques)
     {
-      let modal = this.ModalController.create(ModalDestaquePage, { liga : this.liga, rodada_atual : this.rodada_atual.rodada });
+      let modal = this.ModalController.create(ModalDestaquePage, { liga : this.liga });
       modal.present();
     }
     else
@@ -100,7 +99,7 @@ export class HomePage {
   }
 
   nacional(){
-    let modal = this.ModalController.create(NacionalPage, { rodada_atual : this.rodada_atual });
+    let modal = this.ModalController.create(NacionalPage);
     modal.present();
   }
 
@@ -108,7 +107,7 @@ export class HomePage {
     let token_meu_time = true;//localStorage.getItem('token_meu_time');
     if(token_meu_time)
     {
-      let modal = this.ModalController.create(CriarTimePage, { rodada_atual : this.rodada_atual.rodada });
+      let modal = this.ModalController.create(CriarTimePage);
       modal.present();
     }
     else
@@ -120,7 +119,7 @@ export class HomePage {
         {
           this.http.setToken(token);
           this.token_meu_time = localStorage.getItem('token_meu_time');
-          let modal = this.ModalController.create(CriarTimePage, { rodada_atual : this.rodada_atual.rodada });
+          let modal = this.ModalController.create(CriarTimePage);
           modal.present();
         }          
       })
@@ -157,7 +156,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '&orderBy=campeonato').subscribe(response => {
+    this.http.getApi('auth/liga/' + localStorage.getItem('liga_padrao') + '?orderBy=campeonato').subscribe(response => {
     let resposta = JSON.parse(JSON.stringify(response));
 
     for(let x in resposta.times)
@@ -173,8 +172,8 @@ export class HomePage {
     this.liga = resposta;      
     this.navegaroff.setItem('home_liga', resposta);
     loading.dismiss();
-    this.http.getApi('partidas').subscribe(response => {
-      this.rodada_atual = response;
+    this.http.getApi('mercado/status').subscribe(response => {
+      this.navegaroff.setItem('status_mercado', response);
     })
     }, err => {
       loading.dismiss();

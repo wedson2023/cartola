@@ -24,6 +24,16 @@ page-campinho {
         align-items: center;
         padding: 5px
     }
+    
+    .green{
+        color: green;
+        font-size: 0.8em;
+    }
+
+    .red{
+        color: red;
+        font-size: 0.8em;
+    }
 
     .button-md{
         font-size: 1.2rem;
@@ -46,6 +56,7 @@ page-campinho {
         background-size: contain;
         height: 484px;
         width: 330px;
+        overflow: hidden;
         transition: all .6s ease;
         position: relative;
         margin: 0 auto;

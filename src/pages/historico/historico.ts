@@ -1,3 +1,4 @@
+import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
@@ -22,12 +23,13 @@ export class HistoricoPage {
     private loadingCtrl: LoadingController,
     private http: HttpProvider,
     private mensagem: MensagemProvider,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private navegaroff: NavegaroffProvider
   ) 
   {
     let todas_rodadas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38];
     this.time = this.navParams.get('time');
-    this.rodada_atual = this.navParams.get('rodada_atual');
+    this.rodada_atual = this.navegaroff.getItem('status_mercado').rodada_atual;
     this.lista_rodadas = todas_rodadas.splice(0, this.rodada_atual);
   }
 

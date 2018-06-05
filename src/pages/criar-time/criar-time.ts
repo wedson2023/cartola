@@ -15,9 +15,5 @@ export class CriarTimePage {
   tab2 = CampinhoPage;
   tab3 = TransacoesPage;
 
-  rodada_atual;
-
-  constructor(private nav: NavParams) {
-    this.rodada_atual = this.nav.get('rodada_atual');
-  }
+  constructor(private nav: NavParams) {}
 }

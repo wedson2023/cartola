@@ -9,7 +9,6 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 export class Formacao4_3_3Component implements OnChanges {
 
   @Input() vender;
-  @Input() restaurar;
   @Input() capitaoClass;
   @Output() mudouTime = new EventEmitter();
 
@@ -23,7 +22,6 @@ export class Formacao4_3_3Component implements OnChanges {
     this.capitao = this.formacao.getCapitao(); 
     this.escalacao = this.formacao.getEscalacao();
     this.clubes = this.formacao.getClubes();
-    console.log(this.escalacao);
   }
 
   ngOnChanges(){   
@@ -31,14 +29,17 @@ export class Formacao4_3_3Component implements OnChanges {
     {
       let alerta = this.formacao.venderTime(this.vender, this.mudouTime);
       alerta.onDidDismiss(() => {       
-       this.escalacao = this.formacao.getEscalacao();
+       this.escalacao = this.formacao.getEscalacao(); 
       });
       this.vender = null;
     }
-    else if(this.restaurar)
-    {      
-      this.escalacao = this.restaurar;
-      this.restaurar = null;
+
+    for(let x in this.escalacao)
+    {
+      for(let i in this.escalacao[x])
+      {
+        if(!this.escalacao[x][i]) this.capitaoClass = 'sumir_capitao';
+      }
     }
   }  
 

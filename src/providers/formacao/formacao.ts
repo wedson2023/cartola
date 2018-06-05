@@ -45,6 +45,8 @@ export class FormacaoProvider {
   }
 
   selecionaAtleta(atleta, posicao_id, mudouTime){
+    if(atleta) this.time_dados.capitao_id = null;
+    
     this.posicao_id = { 1 : 'goleiro', 2 : 'lateral', 3 : 'zagueiro', 4 : 'meio', 5 : 'ataque', 6 : 'tecnico' };
     var posicao = this.time_dados.escalacao[this.posicao_id[posicao_id]];
     if(atleta){
@@ -85,7 +87,7 @@ export class FormacaoProvider {
             this.time_dados.patrimonio = this.time_salvo.patrimonio,
 
             this.time_dados.escalacao = this.meuEsquema(this.time_salvo)['timeVazio'];
-
+            this.time_dados.capitao_id = null;
             mudouTime.emit(this.time_dados);
             vender = false;
           }
@@ -116,7 +118,7 @@ export class FormacaoProvider {
       tecnico : time_salvo.atletas.filter(e => e.posicao_id === 6)
     }
 
-    if(time_salvo.esquema_id == 1)
+    if(time_salvo.time.esquema_id == 1)
     {      
       return {
         timeCompleto : semLateral,
@@ -129,7 +131,7 @@ export class FormacaoProvider {
         }
       }      
     }
-    else if(time_salvo.esquema_id == 2)
+    else if(time_salvo.time.esquema_id == 2)
     {      
       return {
         timeCompleto : semLateral,
@@ -142,7 +144,7 @@ export class FormacaoProvider {
         }
       }      
     }
-    else if(time_salvo.esquema_id == 3)
+    else if(time_salvo.time.esquema_id == 3)
     {      
       return {
         timeCompleto : comLateral,
@@ -156,7 +158,7 @@ export class FormacaoProvider {
         }
       }      
     }
-    else if(time_salvo.esquema_id == 4)
+    else if(time_salvo.time.esquema_id == 4)
     {      
       return {
         timeCompleto : comLateral,
@@ -170,7 +172,7 @@ export class FormacaoProvider {
         }
       } 
     }
-    else if(time_salvo.esquema_id == 5)
+    else if(time_salvo.time.esquema_id == 5)
     {      
       return {
         timeCompleto : comLateral,
@@ -184,7 +186,7 @@ export class FormacaoProvider {
         }
       } 
     }
-    else if(time_salvo.esquema_id == 6)
+    else if(time_salvo.time.esquema_id == 6)
     {      
       return {
         timeCompleto : comLateral,
@@ -198,7 +200,7 @@ export class FormacaoProvider {
         }
       } 
     }
-    else if(time_salvo.esquema_id == 7)
+    else if(time_salvo.time.esquema_id == 7)
     {      
       return {
         timeCompleto : comLateral,

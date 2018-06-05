@@ -22,7 +22,7 @@ export class NacionalPage {
     private loadingCtrl: LoadingController,
     private ModalController: ModalController
   ) {    
-    this.rodada_atual = this.navParams.get('rodada_atual');
+    this.rodada_atual = this.navegaroff.getItem('status_mercado').rodada_atual;
     this.time_nacionaloff = this.navegaroff.getItem('time_nacional');
   }  
 

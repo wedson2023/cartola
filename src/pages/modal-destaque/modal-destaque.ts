@@ -1,3 +1,4 @@
+import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavParams, ModalController, LoadingController } from 'ionic-angular';
@@ -18,11 +19,12 @@ export class ModalDestaquePage {
     private navParams: NavParams,
     private ModalController: ModalController,
     private http: HttpProvider,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private navegaroff: NavegaroffProvider
   ) 
   { 
     this.liga = JSON.parse(JSON.stringify(this.navParams.get('liga')));
-    this.rodada_atual = this.navParams.get('rodada_atual'); 
+    this.rodada_atual = this.navegaroff.getItem('status_mercado').rodada_atual; 
   }
 
   ionViewDidLoad(){
