@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, LoadingController, ViewController } from 'ionic-angular';
 declare var $ :any;
 
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -48,19 +49,12 @@ export class LoginPage implements OnInit{
     // })
   }
 
-  ngOnInit(){
-    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
-    loading.present(); 
-
-    $('iframe').load(function(){ 
-      
-      $(this).contents().find('button').on('click', function(){
-        alert('entrou');
-      });
-      
-      loading.dismiss();
-      $(this).show();      
-    })
+  ngOnInit(){  
+    window.open('https://login.globo.com/login/438?url=https://cartolafc.globo.com', '_parent');   
+    // $('iframe').load(function(){
+    //   $(this).contents().find('form').submit(function(e){
+    //     alert(JSON.stringify(e));
+    //   });      
+    // })
   }
-
 }
