@@ -49,6 +49,11 @@ export class Formacao4_3_3Component implements OnChanges {
   }
 
   seleciona(atleta, posicao_id){
+    if(atleta)
+    {
+      this.formacao.setCapitao(null, this.mudouTime);
+      this.capitao = this.formacao.getCapitao();
+    }
     this.formacao.selecionaAtleta(atleta, posicao_id, this.mudouTime);
   }  
 }

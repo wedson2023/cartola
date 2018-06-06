@@ -44,9 +44,7 @@ export class FormacaoProvider {
     return this.time_dados.capitao_id;
   }
 
-  selecionaAtleta(atleta, posicao_id, mudouTime){
-    if(atleta) this.time_dados.capitao_id = null;
-    
+  selecionaAtleta(atleta, posicao_id, mudouTime){    
     this.posicao_id = { 1 : 'goleiro', 2 : 'lateral', 3 : 'zagueiro', 4 : 'meio', 5 : 'ataque', 6 : 'tecnico' };
     var posicao = this.time_dados.escalacao[this.posicao_id[posicao_id]];
     if(atleta){
