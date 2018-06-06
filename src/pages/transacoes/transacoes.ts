@@ -28,8 +28,8 @@ export class TransacoesPage {
   ) {
     this.transacoesoff = this.navegaroff.getItem('transacoes_time');
     let todas_rodadas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38];
-    
-    this.lista_rodadas = todas_rodadas.splice(0, this.nav.data);
+    this.rodada_atual = this.navegaroff.getItem('status_mercado').rodada_atual;
+    this.lista_rodadas = todas_rodadas.splice(0, this.rodada_atual);
   }
 
   buscar(rodada){
@@ -40,10 +40,10 @@ export class TransacoesPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
     
-    this.http.getApi('auth/time/historico/' + (rodada || this.nav.data)).subscribe(response => {
+    this.http.getApi('auth/time/historico/' + (rodada || this.rodada_atual)).subscribe(response => {
       this.http.getApi('atletas/pontuados').subscribe(atletas => { 
         let pontuacao_total = 0;       
-        if(atletas && (!rodada || rodada == this.nav.data))
+        if(atletas && (!rodada || rodada == this.rodada_atual))
         {
           for(let x in response)
           {
@@ -71,7 +71,7 @@ export class TransacoesPage {
 
         this.transacoes_num = Object.keys(response).length; 
         this.transacoes = response;
-        this.rodada_atual = (rodada || this.nav.data);
+        this.rodada_atual = (rodada || this.rodada_atual);
         this.navegaroff.setItem('transacoes_time', response);
         loading.dismiss();               
       }, err => {
@@ -82,7 +82,7 @@ export class TransacoesPage {
         }
         this.transacoes_num = Object.keys(response).length; 
         this.transacoes = response;
-        this.rodada_atual = (rodada || this.nav.data);
+        this.rodada_atual = (rodada || this.rodada_atual);
         loading.dismiss();
       })      
     }, err => {
