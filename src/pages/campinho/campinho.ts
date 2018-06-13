@@ -20,6 +20,7 @@ export class CampinhoPage {
   public acao_btn = 'Salvar';
   public capitaoClass;
   public status_mercado;
+  public acessa_esquema;
 
   constructor(
     public navegaroff: NavegaroffProvider,
@@ -32,6 +33,7 @@ export class CampinhoPage {
     this.time_salvo = this.navegaroff.getItem('time_salvo');    
     this.status_mercado = this.navegaroff.getItem('status_mercado');
     this.esquema = this.time_salvo.time.esquema_id;      
+    this.acessa_esquema = this.time_salvo.time.esquema_id;      
 
     this.salvarTime = {
       atletas : [],
@@ -44,8 +46,11 @@ export class CampinhoPage {
     console.log(dados);
     this.time_novo = dados.escalacao;
     this.time_salvo.valor_time = dados.valor_time; 
-    this.salvarTime.capitao = dados.capitao_id;       
+    this.salvarTime.capitao = dados.capitao_id;
+    this.acessa_esquema = dados.acessa_esquema; 
 
+    this.navegaroff.setItem('escalacao_atual', dados.escalacao);
+    
     for(let x in dados.escalacao)
     {
       let existe = dados.escalacao[x].some(e => e == null);
@@ -58,6 +63,15 @@ export class CampinhoPage {
       {        
         this.capitaoClass = null;
       }
+    }
+  }
+
+  escolher_formacao(esquema){
+    console.log(this.navegaroff.getItem('escalacao_atual'));
+    let escalacao = this.formacao.minhaEscalacao(this.navegaroff.getItem('escalacao_atual'), esquema);
+    if(escalacao)
+    {
+      this.acessa_esquema = esquema;
     }
   }
 

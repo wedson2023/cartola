@@ -1,14 +1,59 @@
-import { Component, Input } from '@angular/core';
+import { FormacaoProvider } from './../../providers/formacao/formacao';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'formacao3-5-2',
   templateUrl: 'formacao3-5-2.html'
 })
-export class Formacao3_5_2Component {
+export class Formacao3_5_2Component implements OnChanges {
 
-  @Input() escalacao;
-  @Input() time;
+  @Input() vender;
+  @Input() capitaoClass;
+  @Output() mudouTime = new EventEmitter();
 
-  constructor() {}
+  private escalacao;
+  private clubes;
+  private capitao;  
+
+  constructor(
+    private formacao: FormacaoProvider
+  ) {  
+    this.capitao = this.formacao.getCapitao(); 
+    this.escalacao = this.formacao.getEscalacao();
+    this.clubes = this.formacao.getClubes();
+  }
+
+  ngOnChanges(){   
+    if(this.vender)
+    {
+      let alerta = this.formacao.venderTime(this.vender, this.mudouTime);
+      alerta.onDidDismiss(() => {       
+       this.escalacao = this.formacao.getEscalacao(); 
+      });
+      this.vender = null;
+    }
+
+    for(let x in this.escalacao)
+    {
+      for(let i in this.escalacao[x])
+      {
+        if(!this.escalacao[x][i]) this.capitaoClass = 'sumir_capitao';
+      }
+    }
+  }  
+
+  selecionaCapitao(capitao){
+    this.formacao.setCapitao(capitao, this.mudouTime);
+    this.capitao = this.formacao.getCapitao();
+  }
+
+  seleciona(atleta, posicao_id){
+    if(atleta)
+    {
+      this.formacao.setCapitao(null, this.mudouTime);
+      this.capitao = this.formacao.getCapitao();
+    }
+    this.formacao.selecionaAtleta(atleta, posicao_id, this.mudouTime);
+  }  
 
 }

@@ -1,41 +1,60 @@
-import { MercadoPage } from './../../pages/mercado/mercado';
-import { ModalController } from 'ionic-angular';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { FormacaoProvider } from './../../providers/formacao/formacao';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'formacao3-4-3',
   templateUrl: 'formacao3-4-3.html'
 })
-export class Formacao3_4_3Component {
 
-  @Input() escalacao;
-  @Input() time;
+export class Formacao3_4_3Component implements OnChanges {
 
+  @Input() vender;
+  @Input() capitaoClass;
   @Output() mudouTime = new EventEmitter();
-  private posicao_id = { 1 : 'goleiro', 3 : 'zagueiro', 4 : 'meio', 5 : 'ataque', 6 : 'tecnico' };
+
+  private escalacao;
+  private clubes;
+  private capitao;
 
   constructor(
-    private ModalController: ModalController,
-  ) {}
-
-  seleciona(atleta, posicao_id){
-
-    var posicao = this.escalacao[this.posicao_id[posicao_id]];
-
-    if(atleta){
-      posicao[posicao.indexOf(atleta)] = null;
-    }
-    else
-    {
-      let modal = this.ModalController.create(MercadoPage, { escalacao : this.escalacao, time : this.time });
-      modal.present();
-      modal.onDidDismiss((atletaMercado) => {
-        posicao[posicao.indexOf(atleta)] = atletaMercado;  
-        this.mudouTime.emit(this.escalacao);       
-      })
-    }
+    private formacao: FormacaoProvider
+  ) {      
+    this.capitao = this.formacao.getCapitao(); 
+    this.escalacao = this.formacao.getEscalacao();
+    this.clubes = this.formacao.getClubes();
   }
 
-  ionViewDidLoad() {}
+  ngOnChanges(){   
+    if(this.vender)
+    {
+      let alerta = this.formacao.venderTime(this.vender, this.mudouTime);
+      alerta.onDidDismiss(() => {       
+       this.escalacao = this.formacao.getEscalacao(); 
+      });
+      this.vender = null;
+    }
+
+    for(let x in this.escalacao)
+    {
+      for(let i in this.escalacao[x])
+      {
+        if(!this.escalacao[x][i]) this.capitaoClass = 'sumir_capitao';
+      }
+    }
+  }  
+
+  selecionaCapitao(capitao){
+    this.formacao.setCapitao(capitao, this.mudouTime);
+    this.capitao = this.formacao.getCapitao();
+  }
+
+  seleciona(atleta, posicao_id){
+    if(atleta)
+    {
+      this.formacao.setCapitao(null, this.mudouTime);
+      this.capitao = this.formacao.getCapitao();
+    }
+    this.formacao.selecionaAtleta(atleta, posicao_id, this.mudouTime);
+  }  
   
 }
