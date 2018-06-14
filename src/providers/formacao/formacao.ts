@@ -79,6 +79,7 @@ export class FormacaoProvider {
 
   selecionaAtleta(atleta, posicao_id, mudouTime){    
     var posicao = this.time_dados.escalacao[this.posicao_id[posicao_id]];
+    
     if(atleta){
       posicao[posicao.indexOf(atleta)] = null;
       this.time_dados.valor_time -= atleta.preco_num; 
@@ -88,13 +89,11 @@ export class FormacaoProvider {
     {
       this.time_dados.posicao = this.posicao_id[posicao_id];
       this.time_dados.posicao_id = posicao_id;
-      console.log(this.time_dados);
       let modal = this.ModalController.create(MercadoPage, { time_dados : this.time_dados });
       modal.present();
       modal.onDidDismiss(() => {
-        this.time_dados.escalacao = this.time_dados.escalacao;   
-        console.log('parei aqui');                    
-        //mudouTime.emit(this.time_dados);
+        this.time_dados.escalacao = this.time_dados.escalacao;
+        mudouTime.emit(this.time_dados);
       })
     }
   }
@@ -131,11 +130,10 @@ export class FormacaoProvider {
   };
 
   minhaEscalacao(escalacao, esquema){
-    
+    console.log(this.time_dados);
     for(let x in escalacao)
     {      
       // valida ataque
-      console.log(escalacao[x], esquema);
       if(x == 'ataque' && escalacao[x].length > this.esquema[esquema].ataque)
       {
         let remova = escalacao[x].length - this.esquema[esquema].ataque;
@@ -167,6 +165,7 @@ export class FormacaoProvider {
         if(remova > qtd_atletas_nulos)
         {     
           this.mensagem.mensagem('Atenção', 'Por favor remova ' + (remova - qtd_atletas_nulos) + ' atleta do MEIO, antes de alterar o esquema');      
+          console.log(this.time_dados);
           return false;
         }
         else
@@ -231,7 +230,8 @@ export class FormacaoProvider {
     {
       delete escalacao['lateral'];
     }
-   // this.navegaroff.setItem('escalacao_atual', escalacao);
+    this.navegaroff.setItem('escalacao_atual', escalacao);
+    this.time_dados.acessa_esquema = esquema;
     this.time_dados.escalacao = escalacao;
     return true;
   }

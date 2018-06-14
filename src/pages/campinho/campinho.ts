@@ -21,6 +21,7 @@ export class CampinhoPage {
   public capitaoClass;
   public status_mercado;
   public acessa_esquema;
+  public ultimo_esquema;
 
   constructor(
     public navegaroff: NavegaroffProvider,
@@ -32,13 +33,17 @@ export class CampinhoPage {
   ) {
     this.time_salvo = this.navegaroff.getItem('time_salvo');    
     this.status_mercado = this.navegaroff.getItem('status_mercado');
+
+    this.navegaroff.setItem('ultimo_esquema', this.time_salvo.time.esquema_id);
+    
     this.esquema = this.time_salvo.time.esquema_id;      
-    this.acessa_esquema = this.time_salvo.time.esquema_id;      
+    this.acessa_esquema = this.time_salvo.time.esquema_id;   
+    this.ultimo_esquema = this.time_salvo.time.esquema_id;
 
     this.salvarTime = {
       atletas : [],
       capitao : null,
-      esquema : 3
+      esquema : this.acessa_esquema
     }
   }
 
@@ -67,11 +72,15 @@ export class CampinhoPage {
   }
 
   escolher_formacao(esquema){
-    console.log(this.navegaroff.getItem('escalacao_atual'));
-    let escalacao = this.formacao.minhaEscalacao(this.navegaroff.getItem('escalacao_atual'), esquema);
+    let escalacao = this.formacao.minhaEscalacao(this.navegaroff.getItem('escalacao_atual'), esquema);    
     if(escalacao)
     {
+      this.navegaroff.setItem('ultimo_esquema', esquema);
       this.acessa_esquema = esquema;
+    }
+    else
+    {
+      this.esquema = parseInt(this.navegaroff.getItem('ultimo_esquema'));
     }
   }
 

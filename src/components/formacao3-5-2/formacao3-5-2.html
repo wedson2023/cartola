@@ -1,10 +1,10 @@
 <form class="formacao3-5-2">
     <div class="ataque">
-        <div *ngFor="let ataque of escalacao.ataque let i = index" id="posicao_{{ i }}" (click)="seleciona(ataque, 5)">
+        <div *ngFor="let ataque of escalacao.ataque let i = index" id="posicao_{{ i }}">
             <label [ngClass]="capitaoClass" [for]="ataque?.atleta_id">
                 <img [src]="capitao == ataque?.atleta_id ? './assets/imgs/capitao.png' : './assets/imgs/capitao_cinza.png'" class="capitao">
             </label>
-            <img [ngClass]="ataque?.status_id && ataque?.status_id != 7 ? 'improvavel' : null" id="posicao_{{ i }}" [src]="(clubes[ataque?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')">
+            <img [ngClass]="ataque?.status_id && ataque?.status_id != 7 ? 'improvavel' : null" id="posicao_{{ i }}" [src]="(clubes[ataque?.clube_id]?.escudos['45x45'] || './assets/imgs/escudo-jogadores.png')" (click)="seleciona(ataque, 5)">
             <span>{{ (ataque?.apelido || 'Apelido') }}</span> 
             <span>{{ 'C$ ' + ((ataque?.preco_num | number : '1.2-2') || '0.00') }}</span>
             <input type="radio" [id]="ataque?.atleta_id" name="capitao" (click)="selecionaCapitao(ataque?.atleta_id)"> 
