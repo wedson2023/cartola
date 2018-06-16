@@ -79,10 +79,10 @@ export class FormacaoProvider {
 
   selecionaAtleta(atleta, posicao_id, mudouTime){    
     var posicao = this.time_dados.escalacao[this.posicao_id[posicao_id]];
-    
     if(atleta){
-      posicao[posicao.indexOf(atleta)] = null;
-      this.time_dados.valor_time -= atleta.preco_num; 
+      let atl = posicao.filter(e => e !== null && e.atleta_id === atleta.atleta_id)[0];
+      posicao[posicao.indexOf(atl)] = null;      
+      this.time_dados.valor_time -= atl.preco_num; 
       mudouTime.emit(this.time_dados);
     }
     else
@@ -129,8 +129,7 @@ export class FormacaoProvider {
     return alerta;
   };
 
-  minhaEscalacao(escalacao, esquema){
-    console.log(this.time_dados);
+  async minhaEscalacao(escalacao, esquema){
     for(let x in escalacao)
     {      
       // valida ataque
@@ -165,8 +164,7 @@ export class FormacaoProvider {
         if(remova > qtd_atletas_nulos)
         {     
           this.mensagem.mensagem('Atenção', 'Por favor remova ' + (remova - qtd_atletas_nulos) + ' atleta do MEIO, antes de alterar o esquema');      
-          console.log(this.time_dados);
-          return false;
+          return false;          
         }
         else
         {
@@ -199,7 +197,7 @@ export class FormacaoProvider {
         if(remova > qtd_atletas_nulos)
         {     
           this.mensagem.mensagem('Atenção', 'Por favor remova ' + (remova - qtd_atletas_nulos) + ' atleta da ZAGA, antes de alterar o esquema');
-          return false;      
+          return false;          
         }
         else
         {
@@ -232,8 +230,9 @@ export class FormacaoProvider {
     }
     this.navegaroff.setItem('escalacao_atual', escalacao);
     this.time_dados.acessa_esquema = esquema;
-    this.time_dados.escalacao = escalacao;
+    this.time_dados.escalacao = escalacao;      
     return true;
+    
   }
 
   meuEsquema(time_salvo, esquema){

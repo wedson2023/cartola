@@ -55,5 +55,6 @@ export class Formacao4_3_3Component implements OnChanges {
       this.capitao = this.formacao.getCapitao();
     }
     this.formacao.selecionaAtleta(atleta, posicao_id, this.mudouTime);
+    this.escalacao = this.formacao.getEscalacao();
   }  
 }
