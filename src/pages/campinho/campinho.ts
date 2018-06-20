@@ -72,8 +72,7 @@ export class CampinhoPage {
   }
 
   escolher_formacao(esquema){
-    let escalacao = this.formacao.minhaEscalacao(this.navegaroff.getItem('escalacao_atual'), esquema); 
-
+    let escalacao = this.formacao.minhaEscalacao(this.navegaroff.getItem('escalacao_atual'), esquema);     
     if(escalacao['__zone_symbol__value'])
     {
       this.navegaroff.setItem('ultimo_esquema', esquema);

@@ -148,11 +148,21 @@ export class FormacaoProvider {
           {
             if(escalacao[x][i] == null && remova != 0)
             {
-              escalacao[x].splice(escalacao[x].indexOf(null), 1);
+              escalacao[x].splice(escalacao[x].indexOf(null), 1);              
               remova--;
             }
           }
         }
+      }
+      else if(x == 'ataque' && escalacao[x].length < this.esquema[esquema].ataque)
+      {
+        let adicione = this.esquema[esquema].meio - escalacao[x].length; 
+        let a = 0; 
+        while(a < adicione)
+        {
+          escalacao[x].push(null);
+          a++;
+        }      
       }
 
       // valida meio
@@ -161,13 +171,14 @@ export class FormacaoProvider {
       {
         let remova = escalacao[x].length - this.esquema[esquema].meio;
         let qtd_atletas_nulos = escalacao[x].filter(e => e == null).length;
+        
         if(remova > qtd_atletas_nulos)
         {     
           this.mensagem.mensagem('Atenção', 'Por favor remova ' + (remova - qtd_atletas_nulos) + ' atleta do MEIO, antes de alterar o esquema');      
           return false;          
         }
         else
-        {
+        {          
           for(let i in escalacao[x])
           {
             if(escalacao[x][i] == null && remova != 0)
@@ -228,6 +239,7 @@ export class FormacaoProvider {
     {
       delete escalacao['lateral'];
     }
+
     this.navegaroff.setItem('escalacao_atual', escalacao);
     this.time_dados.acessa_esquema = esquema;
     this.time_dados.escalacao = escalacao;      
