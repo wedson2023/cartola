@@ -34,6 +34,25 @@ export class CampinhoPage {
     this.time_salvo = this.navegaroff.getItem('time_salvo');    
     this.status_mercado = this.navegaroff.getItem('status_mercado');
 
+    let valor_time = 0;
+    let escalacao_atual = this.navegaroff.getItem('escalacao_atual');
+
+    if(escalacao_atual)
+    {
+      
+      for(let x in escalacao_atual)
+      {
+        for(let i in escalacao_atual[x])
+        {
+          if(escalacao_atual[x][i])
+          {
+            valor_time += escalacao_atual[x][i].preco_num;
+          }
+        }
+      }
+      this.time_salvo.valor_time = valor_time; 
+    }
+
     this.navegaroff.setItem('ultimo_esquema', this.time_salvo.time.esquema_id);
     
     this.esquema = this.time_salvo.time.esquema_id;      
