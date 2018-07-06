@@ -18,7 +18,7 @@ export class HttpProvider {
   }
 
   getApi(url:string) {
-    return this.http.get(this.ApiLocal + this.ApiCartola + url/*, { headers: { 'X-GLB-Token' : this.Token }}*/);
+    return this.http.get(/*this.ApiLocal + */this.ApiCartola + url, { headers: { 'X-GLB-Token' : this.Token }});
   }
 
   setToken(token){
