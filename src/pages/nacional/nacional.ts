@@ -1,7 +1,7 @@
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { HttpProvider } from './../../providers/http/http';
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { IonicPage, LoadingController, ModalController } from 'ionic-angular';
 import { HistoricoPage } from '../historico/historico';
 
 @IonicPage()
@@ -16,7 +16,6 @@ export class NacionalPage {
   rodada_atual;
 
   constructor(
-    private navParams: NavParams,
     private http: HttpProvider,
     private navegaroff: NavegaroffProvider,
     private loadingCtrl: LoadingController,

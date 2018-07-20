@@ -17,7 +17,7 @@
         SUAS LIGAS MATA-MATA ({{ ligas.mata_mata.length }}/5 LIGAS)
     </ion-item-divider>
     <ion-list>
-        <ion-item *ngFor="let mata_mata of ligas.mata_mata" >
+        <ion-item (click)="abrir_mata_mata(mata_mata)" *ngFor="let mata_mata of ligas.mata_mata" >
           <ion-avatar item-left>
           <img class="escudo" [src]="mata_mata.url_trofeu_svg">        
           </ion-avatar>

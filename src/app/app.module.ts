@@ -1,3 +1,4 @@
+import { MataMataPage } from './../pages/mata-mata/mata-mata';
 import { ParciaisLigasPage } from './../pages/parciais-ligas/parciais-ligas';
 import { TransacoesPage } from './../pages/transacoes/transacoes';
 import { CampinhoPage } from './../pages/campinho/campinho';
@@ -90,7 +91,8 @@ import { FormacaoProvider } from '../providers/formacao/formacao';
     CriarTimePage,
     CampinhoPage,
     TransacoesPage,
-    ParciaisLigasPage,
+    ParciaisLigasPage,    
+    MataMataPage,
     Formacao3_4_3Component,
     Formacao3_5_2Component,
     Formacao4_3_3Component,
@@ -136,6 +138,7 @@ import { FormacaoProvider } from '../providers/formacao/formacao';
     CampinhoPage,
     TransacoesPage,
     ParciaisLigasPage,
+    MataMataPage,
     Formacao3_4_3Component,
     Formacao3_5_2Component,
     Formacao4_3_3Component,

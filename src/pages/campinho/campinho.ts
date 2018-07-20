@@ -3,7 +3,7 @@ import { HttpProvider } from './../../providers/http/http';
 import { FormacaoProvider } from './../../providers/formacao/formacao';
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -28,8 +28,7 @@ export class CampinhoPage {
     private formacao: FormacaoProvider,
     private http: HttpProvider,
     private mensagem: MensagemProvider,
-    private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController
+    private loadingCtrl: LoadingController
   ) {
     this.time_salvo = this.navegaroff.getItem('time_salvo');    
     this.status_mercado = this.navegaroff.getItem('status_mercado');

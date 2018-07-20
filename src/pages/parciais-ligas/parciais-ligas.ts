@@ -1,3 +1,4 @@
+import { MataMataPage } from './../mata-mata/mata-mata';
 import { ParciaisTimesPage } from './../parciais-times/parciais-times';
 import { MensagemProvider } from './../../providers/mensagem/mensagem';
 import { NavegaroffProvider } from './../../providers/navegaroff/navegaroff';
@@ -30,8 +31,7 @@ export class ParciaisLigasPage {
     this.ligasoff = navegaroff.getItem('parciais_atletas');
   }
 
-  abrir_liga_classica(liga_id, participantes){
-    console.log(liga_id, participantes);
+  abrir_liga_classica(liga_id, participantes){    
     if(participantes > 100)
     {
       this.mensagem.mensagem('Atenção', 'Descupe-nos só esta disponível ligas com a até 100 times, próxima versão estaremos trabalhando nisso.');
@@ -41,6 +41,11 @@ export class ParciaisLigasPage {
       let modal = this.ModalController.create(ParciaisTimesPage, { liga_id : liga_id });
       modal.present();
     }
+  }
+
+  abrir_mata_mata(liga){
+    let modal = this.ModalController.create(MataMataPage, { slug : liga.slug });
+    modal.present();
   }
 
   ionViewDidLoad() {

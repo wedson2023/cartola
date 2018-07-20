@@ -50,7 +50,7 @@ export class LoginPage implements OnInit{
   }
 
   ngOnInit(){  
-    window.open('https://login.globo.com/login/438?url=https://cartolafc.globo.com', '_parent');   
+   // window.open('https://login.globo.com/login/438?url=https://cartolafc.globo.com', '_parent');   
     // $('iframe').load(function(){
     //   $(this).contents().find('form').submit(function(e){
     //     alert(JSON.stringify(e));

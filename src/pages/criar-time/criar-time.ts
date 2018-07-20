@@ -1,7 +1,7 @@
 import { TransacoesPage } from './../transacoes/transacoes';
 import { MeuTimePage } from './../meu-time/meu-time';
 import { Component } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { CampinhoPage } from '../campinho/campinho';
 
 @IonicPage()
@@ -15,5 +15,5 @@ export class CriarTimePage {
   tab2 = CampinhoPage;
   tab3 = TransacoesPage;
 
-  constructor(private nav: NavParams) {}
+  constructor() {}
 }
