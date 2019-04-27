@@ -12,13 +12,13 @@ export class HttpProvider {
   constructor(
     public http: HttpClient
   ) {
-    this.Token = localStorage.getItem('token') ? localStorage.getItem('token') : '13f44f7074ccc136cc8b948de7ac210866178526d6161536f49415664337371372d7734684b4e6d614b55447a4d4f56685064586a384f474f7475316747474963646c58374577675a5049386e54582d55494d65703168706c766e694b436f37364d61345055773d3d3a303a6a6f73655f776564736f6e5f63726f7373';
-    this.ApiLocal = 'http://wedsonwebdesigner.com.br/cartola/app.php?api=';
+    this.Token = localStorage.getItem('token') ? localStorage.getItem('token') : '18a979fbef073694b5e974b29dbd439ad48446a505a523656453853344a7039396e732d553053593163786b674256515637614d4d4f63377a394371716761344d765631395837646363503849576a62546e72576d57566b6d414563766d726846356b395f37773d3d3a303a6a6f73655f776564736f6e5f63726f7373';
+    this.ApiLocal = 'http://104.236.95.250/cartola/app.php?api=';
     this.ApiCartola = 'https://api.cartolafc.globo.com/';
   }
 
   getApi(url:string) {
-    return this.http.get(/*this.ApiLocal + */this.ApiCartola + url, { headers: { 'X-GLB-Token' : this.Token }});
+    return this.http.get(this.ApiLocal + this.ApiCartola + url, { headers: { 'X-GLB-TOKEN' : this.Token }});
   }
 
   setToken(token){

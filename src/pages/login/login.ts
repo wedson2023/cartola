@@ -43,7 +43,7 @@ export class LoginPage {
       loading.dismiss();
     }, err => {
       loading.dismiss();
-      this.Mensagem.mensagem('Algo deu errado', 'Verifique sua conexão com a internet!');
+      this.Mensagem.mensagem('Atenção', 'Só é possível logar usando a conta do Globo Esporte!');
     })
   }
 

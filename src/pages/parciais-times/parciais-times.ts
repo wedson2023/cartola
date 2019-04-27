@@ -138,11 +138,11 @@ export class ParciaisTimesPage {
             times.atleta = [];
             for(let i in response[x].atletas)
             {
-              
               let t = this.atletas.atletas[response[x].atletas[i]];
+              console.log(t);
               
               times.pontuacao += (t === undefined ? 0 : ( response[x].capitao == response[x].atletas[i] ? this.atletas.atletas[response[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[response[x].atletas[i]].pontuacao)); 
-              times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout).length == 0) ? 0 : 1 );
+              times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout || {}).length == 0) ? 0 : 1 );
               times.atleta.push(this.atletas.atletas[response[x].atletas[i]]);
             }
             

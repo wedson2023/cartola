@@ -20,25 +20,25 @@
             <ion-list class="casa">
                 <ion-item *ngFor="let atleta of atletas?.casa">
                     <h2> {{ (atleta.posicao | uppercase) + ' - ' + atleta.apelido }} </h2>
-                    <span class="green"> {{ ( atleta.scout.G ? atleta.scout.G + 'G' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.A ? atleta.scout.A + 'A' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.FT ? atleta.scout.FT + 'FT' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.FD ? atleta.scout.FD + 'FD' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.FF ? atleta.scout.FF + 'FF' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.FS ? atleta.scout.FS + 'FS' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.PP ? atleta.scout.PP + 'PP' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.I ? atleta.scout.I + 'I' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.PE ? atleta.scout.PE + 'PE' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.G ? atleta.scout.G + 'G' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.A ? atleta.scout.A + 'A' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.FT ? atleta.scout.FT + 'FT' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.FD ? atleta.scout.FD + 'FD' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.FF ? atleta.scout.FF + 'FF' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.FS ? atleta.scout.FS + 'FS' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.PP ? atleta.scout.PP + 'PP' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.I ? atleta.scout.I + 'I' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.PE ? atleta.scout.PE + 'PE' : null ) }}</span>
                     
-                    <span class="green"> {{ ( atleta.scout.SG ? atleta.scout.SG + 'SG' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.DP ? atleta.scout.DP + 'DP' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.DD ? atleta.scout.DD + 'DD' : null ) }}</span>
-                    <span class="green"> {{ ( atleta.scout.RB ? atleta.scout.RB + 'RB' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.GC ? atleta.scout.GC + 'GC' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.CV ? atleta.scout.CV + 'CV' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.CA ? atleta.scout.CA + 'CA' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.GS ? atleta.scout.GS + 'GS' : null ) }}</span>
-                    <span class="red"> {{ ( atleta.scout.FC ? atleta.scout.FC + 'FC' : null ) }}</span>            
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.SG ? atleta.scout.SG + 'SG' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.DP ? atleta.scout.DP + 'DP' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.DD ? atleta.scout.DD + 'DD' : null ) }}</span>
+                    <span class="green"> {{ ( atleta.scout && atleta.scout.RB ? atleta.scout.RB + 'RB' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.GC ? atleta.scout.GC + 'GC' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.CV ? atleta.scout.CV + 'CV' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.CA ? atleta.scout.CA + 'CA' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.GS ? atleta.scout.GS + 'GS' : null ) }}</span>
+                    <span class="red"> {{ ( atleta.scout && atleta.scout.FC ? atleta.scout.FC + 'FC' : null ) }}</span>            
                     <ion-note item-end="" class="note note-md">{{ atleta.pontuacao | number : '1.2-2' }}</ion-note>                    
                 </ion-item>
             </ion-list>

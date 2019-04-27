@@ -28,7 +28,7 @@ export class PremiacaoPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.http.get('http://wedsonwebdesigner.com.br/cartola/premiacao.php').subscribe(response => {
+    this.http.get('http://104.236.95.250/cartola/premiacao.php').subscribe(response => {
       this.navegaroff.setItem('premiacao', response);       
       this.premiacao = response[0];
       this.outros = response[1];

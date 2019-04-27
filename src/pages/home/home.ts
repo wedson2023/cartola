@@ -49,7 +49,7 @@ export class HomePage {
     let modal = this.ModalController.create(ConfigPage);
     modal.present();
     modal.onDidDismiss(() => { 
-      if(localStorage.getItem('liga_padrao') == 'campeoes-agrestina')
+      if(localStorage.getItem('liga_padrao') == 'campeonato-cartola-ano-8')
       {
         let existe = MyApp.pages.some(e => e.title == 'Premiação');
         if(!existe) MyApp.pages.push({ title: 'Premiação', component: PremiacaoPage }, { title: 'Regulamento', component: RegulamentoPage });

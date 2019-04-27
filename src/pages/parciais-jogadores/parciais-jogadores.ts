@@ -12,7 +12,7 @@ import { TemJogadorPage } from '../tem-jogador/tem-jogador';
 export class ParciaisJogadoresPage {
   private last_updated;
   private atletasoff;
-  private atletas;
+  private atletas:any;
 
   constructor(
     private http: HttpProvider,
@@ -63,6 +63,7 @@ export class ParciaisJogadoresPage {
 
         atletas.sort((a,b) => a.pontuacao > b.pontuacao ? -1 : 1);       
         this.atletas = atletas; 
+        console.log(this.atletas);
         this.navegaroff.setItem('hr_parciais_atletas', new Date());
         this.navegaroff.setItem('parciais_atletas', atletas);
         this.last_updated = new Date();

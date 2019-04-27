@@ -56,7 +56,7 @@ export class MyApp {
       }
     }, 0);
 
-    this.http.get('http://wedsonwebdesigner.com.br/cartola/atualizacao.php').subscribe(response => {
+    this.http.get('http://104.236.95.250/cartola/atualizacao.php').subscribe(response => {
       this.link = response;
     });
     
@@ -74,9 +74,9 @@ export class MyApp {
 
     if(localStorage.getItem('liga_padrao') === null)
     {
-      localStorage.setItem('liga_padrao', 'campeoes-agrestina');
+      localStorage.setItem('liga_padrao', 'campeonato-cartola-ano-8');
     } 
-    else if(localStorage.getItem('liga_padrao') != 'campeoes-agrestina')
+    else if(localStorage.getItem('liga_padrao') != 'campeonato-cartola-ano-8')
     {
       this.pages.splice(5, 2);
     }
