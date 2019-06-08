@@ -31,7 +31,8 @@ export class ModalParciaisTimePage {
   
 
   tem_jogador(atleta){
-    let modal = this.ModalController.create(TemJogadorPage, { pontuacao : atleta.pontuacao, atleta_id : atleta.atleta_id, apelido : atleta.apelido, foto : atleta.foto });
+    console.log(atleta);
+    let modal = this.ModalController.create(TemJogadorPage, { pontuacao : atleta.pontos_num, atleta_id : atleta.atleta_id, apelido : atleta.apelido, foto : atleta.foto });
     modal.present();
   }
 
@@ -39,7 +40,7 @@ export class ModalParciaisTimePage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.http.getApi('time/slug/' + this.time.slug + '/' + this.time.rodada).subscribe(response => {
+    this.http.getApi('time/id/' + this.time.time_id + '/' + this.time.rodada).subscribe(response => {
       let resposta = JSON.parse(JSON.stringify(response));
       let pontuacao_total = 0;
       for(let x in resposta.atletas)

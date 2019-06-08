@@ -95,7 +95,7 @@ export class ParciaisPage{
               let t = this.atletas.atletas[response[x].atletas[i]];
 
               times.pontuacao += (this.atletas.atletas[response[x].atletas[i]] === undefined ? 0 : ( response[x].capitao == response[x].atletas[i] ? this.atletas.atletas[response[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[response[x].atletas[i]].pontuacao)); 
-              times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout).length == 0) ? 0 : 1 );
+              times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout || {}).length == 0) ? 0 : 1 );
               times.atleta.push(this.atletas.atletas[response[x].atletas[i]]);
             }
             times.pontuacao_total = times.pontuacao + times.pontos.campeonato;
@@ -111,6 +111,7 @@ export class ParciaisPage{
         }
       }) 
     }, err => {
+    console.log(err);
       if(err.error['mensagem']){ this.Mensagem.mensagem(err.error['mensagem'], 'Descupe-nos só esta disponível ligas com a até 100 times, próxima versão estaremos trabalhando nisso.'); return false; }
       this.last_updated = this.navegaroff.getItem('hr_parciais_times');
       if(+this.timesoff)

@@ -84,7 +84,7 @@ export class ParciaisTimesPage {
   }
 
   compartilhar(time){
-    this.http.getApi('time/slug/' + time.slug + '/' + time.rodada).subscribe(response => {
+    this.http.getApi('time/id/' + time.time_id + '/' + time.rodada).subscribe(response => {
       let resposta = JSON.parse(JSON.stringify(response));
       if(this.atletas)
       {
@@ -139,7 +139,6 @@ export class ParciaisTimesPage {
             for(let i in response[x].atletas)
             {
               let t = this.atletas.atletas[response[x].atletas[i]];
-              console.log(t);
               
               times.pontuacao += (t === undefined ? 0 : ( response[x].capitao == response[x].atletas[i] ? this.atletas.atletas[response[x].atletas[i]].pontuacao * 2 : this.atletas.atletas[response[x].atletas[i]].pontuacao)); 
               times.atletas_restante += (t === undefined || (t.pontuacao == 0 && Object.keys(t.scout || {}).length == 0) ? 0 : 1 );

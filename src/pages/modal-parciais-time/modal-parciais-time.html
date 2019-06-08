@@ -5,25 +5,25 @@
             <img [src]="atletas.escudo">
           </ion-avatar>
           <h2>{{ (atletas.posicao | uppercase ) + ' - ' + atletas.apelido }}</h2>
-          <span class="green"> {{ ( atletas.scout.G ? atletas.scout.G + 'G' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.A ? atletas.scout.A + 'A' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.FT ? atletas.scout.FT + 'FT' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.FD ? atletas.scout.FD + 'FD' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.FF ? atletas.scout.FF + 'FF' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.FS ? atletas.scout.FS + 'FS' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.PP ? atletas.scout.PP + 'PP' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.I ? atletas.scout.I + 'I' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.PE ? atletas.scout.PE + 'PE' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.G ? atletas.scout.G + 'G' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.A ? atletas.scout.A + 'A' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.FT ? atletas.scout.FT + 'FT' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.FD ? atletas.scout.FD + 'FD' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.FF ? atletas.scout.FF + 'FF' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.FS ? atletas.scout.FS + 'FS' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.PP ? atletas.scout.PP + 'PP' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.I ? atletas.scout.I + 'I' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.PE ? atletas.scout.PE + 'PE' : null ) }}</span>
           
-          <span class="green"> {{ ( atletas.scout.SG ? atletas.scout.SG + 'SG' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.DP ? atletas.scout.DP + 'DP' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.DD ? atletas.scout.DD + 'DD' : null ) }}</span>
-          <span class="green"> {{ ( atletas.scout.RB ? atletas.scout.RB + 'RB' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.GC ? atletas.scout.GC + 'GC' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.CV ? atletas.scout.CV + 'CV' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.CA ? atletas.scout.CA + 'CA' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.GS ? atletas.scout.GS + 'GS' : null ) }}</span>
-          <span class="red"> {{ ( atletas.scout.FC ? atletas.scout.FC + 'FC' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.SG ? atletas.scout.SG + 'SG' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.DP ? atletas.scout.DP + 'DP' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.DD ? atletas.scout.DD + 'DD' : null ) }}</span>
+          <span class="green"> {{ ( atletas.scout && atletas.scout.RB ? atletas.scout.RB + 'RB' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.GC ? atletas.scout.GC + 'GC' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.CV ? atletas.scout.CV + 'CV' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.CA ? atletas.scout.CA + 'CA' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.GS ? atletas.scout.GS + 'GS' : null ) }}</span>
+          <span class="red"> {{ ( atletas.scout && atletas.scout.FC ? atletas.scout.FC + 'FC' : null ) }}</span>
           
           <ion-avatar [hidden]="atletas.capitao === 'não'" item-end>
             <img class="end" src="./assets/imgs/capitao.png">

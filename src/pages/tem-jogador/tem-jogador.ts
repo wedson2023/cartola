@@ -33,7 +33,7 @@ export class TemJogadorPage {
     this.apelido = this.navParams.get('apelido');
     this.foto = this.navParams.get('foto');
     this.pontuacao = this.navParams.get('pontuacao');
-
+    console.log(this.pontuacao);
     this.liga_id = this.navegaroff.getItem('home_liga').liga.liga_id;
     this.times = this.navegaroff.getItem('home_liga').times;
   }

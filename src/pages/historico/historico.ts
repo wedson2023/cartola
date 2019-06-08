@@ -35,7 +35,7 @@ export class HistoricoPage {
     let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
     loading.present();
 
-    this.http.getApi('/time/slug/' + this.time.slug + '/' + rodada_atual).subscribe(response => {
+    this.http.getApi('/time/id/' + this.time.time_id + '/' + rodada_atual).subscribe(response => {
       let resposta = JSON.parse(JSON.stringify(response));
       for(let x in resposta.atletas)
       {
